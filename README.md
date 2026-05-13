@@ -2,5 +2,4 @@
 </p>
 
 <img width="622" height="964" alt="gbgn" src="https://github.com/user-attachments/assets/20bdeed0-a3a5-4ac3-8ee6-f764e4dfcca2" />
-
-<F5>cantondecarton@hotmail.com<F5>
+𝑐𝑎𝑛𝑡𝑜𝑛𝑑𝑒𝑐𝑎𝑟𝑡𝑜𝑛@ℎ𝑜𝑡𝑚𝑎𝑖𝑙.𝑐𝑜𝑚
