@@ -14,20 +14,20 @@
     right: 20px;     /* Pegado al lado derecho con un pequeño margen */
     z-index: 9999;   /* Para que siempre esté por encima de otros elementos */
   }
-<style>
+
   .spotify-btn {
-    background-color: #1DB954; /* Verde oficial de Spotify */
+    background-color: #1DB954;
     color: white;
-    padding: 12px 24px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    padding: 12px 20px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     border-radius: 50px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3); /* Sombra para que resalte */
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
   }
@@ -35,21 +35,14 @@
   .spotify-btn:hover {
     background-color: #1ed760;
     transform: scale(1.05);
-    color: white;
-  }
-
-  .spotify-btn:active {
-    transform: scale(0.98);
-  }
-
-  /* Icono simple opcional */
-  .spotify-btn i {
-    margin-right: 10px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.4);
   }
 </style>
 
-<a href="spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" 
-   onclick="window.location.href='https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q'; return false;" 
-   class="spotify-btn">
-   Escuchar en Spotify
-</a>
+<div class="contenedor-flotante">
+  <a href="spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" 
+     onclick="window.location.href='https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q'; return false;" 
+     class="spotify-btn">
+     <span>Escuchar en Spotify</span>
+  </a>
+</div>
