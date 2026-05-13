@@ -4,7 +4,7 @@
       <img src="https://github.com/user-attachments/assets/d7f341ec-2906-4cf1-bf53-7cb670db2ab0" width="30" height="30">
     </td>
     <td>
-      <h4>𝖘𝖎𝖘𝖎𝖒𝖆𝖓</h4>
+      <h3>𝖘𝖎𝖘𝖎𝖒𝖆𝖓</h3>
     </td>
   </tr>
 </table>
