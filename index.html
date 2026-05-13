@@ -13,28 +13,46 @@
   }
 </style>
 
-<style>
-  .foto-movible {
-    /* 1. Esto permite que la foto "flote" y la puedas mover */
-    position: fixed; 
+<!-- ESTO ES EL MARCO QUE FALTABA -->
+<div class="contenedor-imagen-total">
+  <style>
+    .contenedor-imagen-total {
+      display: flex; /* Mágia para centrar y ajustar */
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center; /* Centra verticalmente */
+      width: 100%; /* Todo el ancho de la pantalla */
+      height: 100vh; /* Todo el alto de la pantalla visible */
+      background-color: transparent; /* Fondo transparente */
+      overflow: hidden; /* Evita que salgan barras de desplazamiento si la foto es gigante */
+    }
 
-    /* 2. AJUSTA ESTOS NÚMEROS PARA MOVERLA */
-    top: 0px;    /* Arriba / Abajo (Sube si es menor, baja si es mayor) */
-    left: 0px;    /* Izquierda / Derecha (Se mueve a la derecha si es mayor) */
+    .foto-movible {
+      position: relative; /* Cambié 'fixed' por 'relative' para que se ajuste al contenedor */
+      
+      /* AJUSTA ESTOS NÚMEROS SI QUIERES MOVERLA DESDE EL CENTRO */
+      top: 0px; /* Sube si es negativo (-20px), baja si es positivo */
+      left: 0px; /* Izquierda si es negativo, derecha si es positivo */
 
-    /* 3. Tamaño de la foto */
-    width: 1000px;  
-    height: auto;
-    
-    /* 4. El movimiento animado que querías */
-    animation: flotar 3s ease-in-out infinite;
-    z-index: 999; /* Para que esté por encima de todo */
-  }
+      /* TAMAÑO INTELIGENTE: Nunca más grande que su ancho original ni que la pantalla */
+      width: auto;
+      max-width: 600px; /* Cambia este número para el tamaño máximo que quieras (ej. 400px o 800px) */
+      height: auto;
+      max-height: 90vh; /* Nunca más alta que el 90% de la pantalla */
 
-  @keyframes flotar {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-</style>
+      animation: flotar 3s ease-in-out infinite;
+      z-index: 999;
+      
+      /* Asegura que la imagen no se estire feo */
+      object-fit: contain;
+    }
 
-<img class="foto-movible" src="https://github.com/user-attachments/assets/3c320006-1971-4a02-89d2-06eecc2dff8b" />
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+  </style>
+
+  <img class="foto-movible" 
+       alt="imagen" 
+       src="https://github.com/user-attachments/assets/3c320006-1971-4a02-89d2-06eecc2dff8b" />
+</div>
