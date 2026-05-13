@@ -7,6 +7,15 @@
 3125951818
 
 <style>
+  /* Contenedor para posicionar el botón */
+  .contenedor-flotante {
+    position: fixed; /* Mantiene el botón en la pantalla aunque hagas scroll */
+    top: 35%;        /* "Arribita de la mitad" */
+    right: 20px;     /* Pegado al lado derecho con un pequeño margen */
+    z-index: 9999;   /* Para que siempre esté por encima de otros elementos */
+  }
+
+<style>
   .spotify-btn {
     background-color: #1DB954; /* Verde oficial de Spotify */
     color: white;
