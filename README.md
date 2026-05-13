@@ -14,7 +14,6 @@
     right: 20px;     /* Pegado al lado derecho con un pequeño margen */
     z-index: 9999;   /* Para que siempre esté por encima de otros elementos */
   }
-
 <style>
   .spotify-btn {
     background-color: #1DB954; /* Verde oficial de Spotify */
