@@ -12,3 +12,24 @@
     color: #1DB954; /* Color verde (como el de Spotify) para resaltar */
   }
 </style>
+
+<style>
+  .foto-ajustable {
+    /* Esto permite moverla por toda la pantalla */
+    position: fixed; 
+
+    /* 1. POSICIÓN (Cambia los números para moverla) */
+    top: 150px;   /* Distancia desde arriba (Aumenta para bajarla) */
+    left: 80px;   /* Distancia desde la izquierda (Aumenta para mover a la derecha) */
+
+    /* 2. TAMAÑO (Cambia este número para el tamaño) */
+    width: 300px; /* Ancho de la foto (Ponle 400px si la quieres más grande) */
+    
+    height: auto; /* Esto mantiene la forma para que no se estire feo */
+    z-index: 999; /* Asegura que la foto esté al frente de todo */
+  }
+</style>
+
+<img class="foto-ajustable" 
+     alt="imagen" 
+     src="https://github.com/user-attachments/assets/3c320006-1971-4a02-89d2-06eecc2dff8b" />
