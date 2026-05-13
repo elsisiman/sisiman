@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/d7f341ec-2906-4cf1-bf53-7cb670db2ab0" width="30" height="30">
+      <img src="https://github.com/user-attachments/assets/d7f341ec-2906-4cf1-bf53-7cb670db2ab0" width="35" height="35">
     </td>
     <td>
       <h1>𝖘𝖎𝖘𝖎𝖒𝖆𝖓</h1>
