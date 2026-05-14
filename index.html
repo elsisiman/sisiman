@@ -17,108 +17,99 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Imagen Movible</title>
+<title>Mi página</title>
 
 <style>
-  body{
-    background:white;
-    height:110vh;
-    margin:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  }
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:white;
+}
 
-  .imagen{
-    width:150px;   /* 🔎 CAMBIA EL TAMAÑO AQUÍ */
-    position:fixed;
-
-    left:-20px;      /* 👉 DERECHA (+) IZQUIERDA (-) */
-    top:3px;       /* 👇 ABAJO (+) ARRIBA (-) */
-
-    transition:0.3s;
-  }
-</style>
-</head>
-
-<body>
-
-<img class="imagen"
-src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
-
-</body>
-</html>
-
-<a id="spotifyBtn"
-href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank">
-
-<img id="spotifyImg"
-src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
-</a>
-
-<style>
+/* ===== BOTON SPOTIFY ===== */
 #spotifyBtn{
   position:fixed;
   top:20px;
   left:20px;
   cursor:grab;
-  z-index:9999;
+  z-index:999999;
 }
-
 #spotifyBtn img{
   width:300px;
   border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
-  transition:0.2s;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  transition:.2s;
+}
+#spotifyBtn img:hover{
+  transform:scale(1.05);
 }
 </style>
+</head>
+
+<body>
+
+<!-- TU PAGINA NORMAL -->
+<h1 style="text-align:center;margin-top:120px;">
+Tu página sigue intacta 👍
+</h1>
+
+<!-- ===== BOTON SPOTIFY FLOTANTE ===== -->
+<a id="spotifyBtn"
+href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
+target="_blank">
+<img id="spotifyImg"
+src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
+</a>
 
 <script>
-const btn = document.getElementById("spotifyBtn");
-const img = document.getElementById("spotifyImg");
+window.onload=function(){
 
-let isDragging = false;
-let offsetX, offsetY;
+const btn=document.getElementById("spotifyBtn");
+const img=document.getElementById("spotifyImg");
 
-const savedX = localStorage.getItem("spotifyX");
-const savedY = localStorage.getItem("spotifyY");
-const savedSize = localStorage.getItem("spotifySize");
+let isDragging=false,offsetX,offsetY;
 
-if(savedX && savedY){
-  btn.style.left = savedX + "px";
-  btn.style.top = savedY + "px";
-}
-if(savedSize){
-  img.style.width = savedSize + "px";
-}
+/* cargar memoria */
+let x=localStorage.getItem("spotifyX");
+let y=localStorage.getItem("spotifyY");
+let s=localStorage.getItem("spotifySize");
 
-btn.addEventListener("mousedown", e => {
-  isDragging = true;
-  offsetX = e.clientX - btn.offsetLeft;
-  offsetY = e.clientY - btn.offsetTop;
-});
+if(x && y){btn.style.left=x+"px";btn.style.top=y+"px";}
+if(s){img.style.width=s+"px";}
 
-document.addEventListener("mousemove", e => {
-  if(!isDragging) return;
-  btn.style.left = (e.clientX - offsetX) + "px";
-  btn.style.top  = (e.clientY - offsetY) + "px";
-});
+/* arrastrar */
+btn.onmousedown=e=>{
+  isDragging=true;
+  offsetX=e.clientX-btn.offsetLeft;
+  offsetY=e.clientY-btn.offsetTop;
+};
 
-document.addEventListener("mouseup", () => {
-  if(!isDragging) return;
-  isDragging = false;
-  localStorage.setItem("spotifyX", btn.offsetLeft);
-  localStorage.setItem("spotifyY", btn.offsetTop);
-});
+document.onmousemove=e=>{
+  if(!isDragging)return;
+  btn.style.left=(e.clientX-offsetX)+"px";
+  btn.style.top=(e.clientY-offsetY)+"px";
+};
 
-img.addEventListener("wheel", e => {
+document.onmouseup=e=>{
+  if(!isDragging)return;
+  isDragging=false;
+  localStorage.setItem("spotifyX",btn.offsetLeft);
+  localStorage.setItem("spotifyY",btn.offsetTop);
+};
+
+/* zoom con rueda */
+img.onwheel=e=>{
   e.preventDefault();
-  let size = img.offsetWidth;
-  size += e.deltaY * -0.2;
-  if(size < 120) size = 120;
-  if(size > 700) size = 700;
-  img.style.width = size + "px";
-  localStorage.setItem("spotifySize", size);
-});
+  let size=img.offsetWidth;
+  size+=e.deltaY*-0.2;
+  if(size<120)size=120;
+  if(size>700)size=700;
+  img.style.width=size+"px";
+  localStorage.setItem("spotifySize",size);
+};
+
+};
 </script>
+
+</body>
+</html>
