@@ -6,50 +6,50 @@
 
 <style>
 
-/* ============================= */
-/* 🎨 FONDO GENERAL DE LA PAGINA */
-/* ============================= */
+/* 🔵 ELIMINA márgenes del navegador para que todo ocupe la pantalla */
 body{
-  background-color:#000000;   /* color de fondo de TODA la web */
-  color:#ffffff;              /* color del texto */
-  margin:0;                   /* quita márgenes del navegador */
+  margin:0;
   padding:0;
-  font-family:Arial, Helvetica, sans-serif;
 }
 
-/* color de los links */
-a{
-  color:#1DB954;
+/* 🟢 CAPA 1 — FONDO NEGRO (pantalla completa) */
+.fondo-negro{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:#000;   /* 👉 color del fondo */
+  z-index:0;
 }
 
+/* 🟡 CAPA 2 — TU FOTO EN EL CENTRO */
+.foto{
+  position:fixed;
 
-/* ============================= */
-/* 🎵 CONTENEDOR DEL BOTON */
-/* ============================= */
-#spotifyBtn{
-  position:fixed;   /* 🔥 hace que el botón flote en pantalla */
-  top:20px;         /* 🔼 mueve el botón ARRIBA/ABAJO */
-  left:20px;        /* ◀ mueve el botón IZQUIERDA/DERECHA */
-  z-index:999999;   /* siempre encima de todo */
+  top:50%;     /* 👉 mueve arriba/abajo */
+  left:50%;    /* 👉 mueve izquierda/derecha */
+
+  transform:translate(-50%,-50%); /* centra perfecto */
+
+  width:350px; /* 👉 CAMBIA TAMAÑO DE TU FOTO AQUÍ */
+  z-index:1;
 }
 
+/* 🟣 CAPA 3 — BOTÓN SPOTIFY FLOTANTE */
+.logo{
+  position:fixed;
 
-/* ============================= */
-/* 🖼️ IMAGEN DEL BOTON */
-/* ============================= */
-#spotifyBtn img{
-  width:300px;      /* 📏 CAMBIAR TAMAÑO DEL BOTON */
-  border-radius:20px; /* bordes redondeados */
-  box-shadow:0 10px 25px rgba(0,0,0,0.25); /* sombra */
-  transition:0.3s;  /* animación suave */
+  top:20px;   /* 👉 mueve vertical (arriba/abajo) */
+  left:20px;  /* 👉 mueve horizontal (izquierda/derecha) */
+
+  width:70px; /* 👉 tamaño del botón */
+  z-index:2;
 }
 
-
-/* ============================= */
-/* ✨ EFECTO AL PASAR EL MOUSE */
-/* ============================= */
-#spotifyBtn img:hover{
-  transform:scale(1.08); /* 🔍 agranda al pasar el mouse */
+/* ✨ efecto al pasar el mouse */
+.logo:hover{
+  transform:scale(1.1);
 }
 
 </style>
@@ -57,22 +57,17 @@ a{
 
 <body>
 
-<!-- TEXTO DE PRUEBA -->
-<h1 style="text-align:center;margin-top:120px;">
-Tu página ya tiene fondo negro y botón 🎧
-</h1>
+<!-- FONDO NEGRO -->
+<div class="fondo-negro"></div>
 
+<!-- TU FOTO -->
+<img class="foto"
+src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- ============================= -->
-<!-- 🔗 BOTON QUE ABRE SPOTIFY -->
-<!-- ============================= -->
-<a id="spotifyBtn"
-href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank">  <!-- 🔥 abre en otra pestaña -->
-
-<!-- 🖼️ IMAGEN DEL BOTON -->
-<img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
-
+<!-- BOTÓN QUE ABRE SPOTIFY EN OTRA PESTAÑA -->
+<a href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP" target="_blank">
+  <img class="logo"
+  src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg">
 </a>
 
 </body>
