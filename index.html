@@ -10,7 +10,7 @@
 body{
   margin:0;
   padding:0;
-  background:black; /* fondo negro */
+  background:black;
   font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -20,20 +20,21 @@ body{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:500px;        /* 🔧 cambia tamaño de la foto */
-  z-index:1;          /* capa base */
+  width:500px;
+  z-index:1;
 }
 
 /* ====== BOTON SPOTIFY ====== */
 .botonSpotify{
   position:fixed;
-  top:20px;           /* 🔧 mueve vertical */
-  right:20px;         /* 🔧 mueve horizontal */
-  z-index:9999;       /* SIEMPRE encima */
+  top:20px;
+  right:20px;
+  z-index:9999;
+  cursor:pointer;
 }
 
 .botonSpotify img{
-  width:260px;        /* 🔧 tamaño del botón */
+  width:260px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.4);
   transition:0.3s;
@@ -43,16 +44,16 @@ body{
   transform:scale(1.08);
 }
 
-/* ====== LOGO PEQUEÑO IZQUIERDA (NUEVO) ====== */
+/* ====== LOGO PEQUEÑO IZQUIERDA ====== */
 .logoFijo{
   position:fixed;
-  top:20px;          /* 🔧 distancia arriba */
-  left:20px;         /* 🔧 distancia izquierda */
-  z-index:99999;     /* 🔥 encima de TODO */
+  top:20px;
+  left:20px;
+  z-index:99999;
 }
 
 .logoFijo img{
-  width:50px;        /* 🔧 tamaño del logo */
+  width:50px;
 }
 
 </style>
@@ -64,17 +65,32 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTON SPOTIFY -->
-<a class="botonSpotify"
-href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank">
+<!-- BOTON SPOTIFY CON DEEP LINK -->
+<a class="botonSpotify" onclick="abrirSpotify()">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- LOGO PEQUEÑO ESQUINA IZQUIERDA -->
+<!-- LOGO PEQUEÑO -->
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
+
+<!-- 🔥 SCRIPT DEEP LINK HÍBRIDO -->
+<script>
+function abrirSpotify() {
+
+  // intenta abrir la APP
+  window.location.href = "spotify:track:1xm343jLVRrE6F3seWr5OP";
+
+  // si no existe → abre navegador
+  setTimeout(function(){
+    window.open(
+      "https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q",
+      "_blank"
+    );
+  }, 700);
+}
+</script>
 
 </body>
 </html>
