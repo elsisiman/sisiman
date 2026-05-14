@@ -53,42 +53,33 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Imagen adaptable PRO</title>
+<title>Imagen movible simple</title>
 
 <style>
   body{
     background:white;
     margin:0;
-    padding:0;
-  }
-
-  .contenedor{
-    width:100%;
-  }
-
-  /* 💻 POSICIÓN EN PC */
-  .mover{
-    margin-top:100px;
-    margin-left:120px;
   }
 
   .logo{
-    width:400px; /* tamaño PC */
-    max-width:90vw; /* evita que se rompa */
+    position:relative;
+
+    /* 🔎 TAMAÑO PC */
+    width:400px;
+
+    /* 🎮 MOVER PC */
+    top:100px;
+    left:120px;
   }
 
-  /* 📱 CELULAR */
+  /* 📱 AJUSTES CELULAR */
   @media (max-width:768px){
-
-    .mover{
-      margin-top:40px;   /* mover vertical celular */
-      margin-left:70px;  /* mover horizontal celular */
-    }
-
     .logo{
-      width:110vw;  /* tamaño celular REAL adaptable */
-    }
+      width:250px;   /* 🔎 tamaño celular */
 
+      top:40px;      /* 🎮 mover arriba/abajo celular */
+      left:30px;     /* 🎮 mover izquierda/derecha celular */
+    }
   }
 
 </style>
@@ -96,10 +87,8 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 
 <body>
 
-<div class="contenedor mover">
-  <img class="logo"
-  src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
-</div>
+<img class="logo"
+src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
 </body>
 </html>
