@@ -53,29 +53,31 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
-<!-- ⭐ ESTA LINEA ERA EL PROBLEMA -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Imagen movible REAL</title>
+<title>Imagen fija</title>
 
 <style>
   body{
-    margin:0;
     background:white;
+    margin:0;
   }
 
+  /* 📍 POSICIÓN NORMAL (PC) */
   .logo{
     display:block;
-    width:400px; /* tamaño PC */
-    transform: translate(120px,100px); /* mover PC */
+    width:400px;        /* tamaño PC */
+
+    margin-top:100px;   /* mover arriba/abajo PC */
+    margin-left:120px;  /* mover izquierda/derecha PC */
   }
 
-  /* 📱 CELULAR */
+  /* 📱 AJUSTES CELULAR */
   @media (max-width:768px){
     .logo{
-      width:300px; /* tamaño celular */
-      transform: translate(-20px,40px); /* mover celular */
+      width:260px;        /* tamaño celular */
+
+      margin-top:40px;    /* mover arriba/abajo celular */
+      margin-left:20px;   /* mover izquierda/derecha celular */
     }
   }
 
