@@ -6,43 +6,53 @@
 
 <style>
 
-/* QUITA márgenes del navegador */
+/* ====== BASE DE LA PAGINA ====== */
 body{
   margin:0;
   padding:0;
-  background:black; /* fondo negro total */
+  background:black; /* fondo negro */
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-/* 🖼️ FOTO CENTRAL (fondo visual) */
-.foto{
+/* ====== FOTO GRANDE CENTRO ====== */
+.fotoCentral{
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  
-  width:500px;   /* 👉 tamaño de tu foto */
-  z-index:1;     /* capa media */
+  width:500px;        /* 🔧 cambia tamaño de la foto */
+  z-index:1;          /* capa base */
 }
 
-/* 🎵 BOTÓN SPOTIFY FLOTANTE */
+/* ====== BOTON SPOTIFY ====== */
 .botonSpotify{
   position:fixed;
-  top:200px;   /* 👉 mueve vertical */
-  left:400px;  /* 👉 mueve horizontal */
-
-  z-index:9999; /* 🔥 SIEMPRE ENCIMA DE TODO */
+  top:20px;           /* 🔧 mueve vertical */
+  right:20px;         /* 🔧 mueve horizontal */
+  z-index:9999;       /* SIEMPRE encima */
 }
 
 .botonSpotify img{
-  width:260px;  /* 👉 tamaño del botón */
+  width:260px;        /* 🔧 tamaño del botón */
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.4);
   transition:0.3s;
 }
 
-/* efecto hover */
 .botonSpotify img:hover{
   transform:scale(1.08);
+}
+
+/* ====== LOGO PEQUEÑO IZQUIERDA (NUEVO) ====== */
+.logoFijo{
+  position:fixed;
+  top:20px;          /* 🔧 distancia arriba */
+  left:20px;         /* 🔧 distancia izquierda */
+  z-index:99999;     /* 🔥 encima de TODO */
+}
+
+.logoFijo img{
+  width:50px;        /* 🔧 tamaño del logo */
 }
 
 </style>
@@ -50,18 +60,21 @@ body{
 
 <body>
 
-<!-- FOTO CENTRAL -->
-<img class="foto"
+<!-- FOTO GRANDE -->
+<img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTÓN CON TU IMAGEN -->
+<!-- BOTON SPOTIFY -->
 <a class="botonSpotify"
 href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP"
 target="_blank">
-
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
-
 </a>
+
+<!-- LOGO PEQUEÑO ESQUINA IZQUIERDA -->
+<div class="logoFijo">
+  <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+</div>
 
 </body>
 </html>
