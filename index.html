@@ -59,38 +59,36 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
   body{
     background:white;
     margin:0;
-    padding:0; /* quitamos padding que rompía el movimiento */
+    padding:0;
   }
 
-  /* CAJA QUE CONTROLA LA POSICIÓN */
   .contenedor{
     width:100%;
   }
 
-  /* 💻 POSICIÓN EN COMPUTADORA */
-  .mover-pc{
-    margin-top:100px;   /* mover vertical PC */
-    margin-left:120px;  /* mover horizontal PC */
+  /* 💻 POSICIÓN EN PC */
+  .mover{
+    margin-top:100px;
+    margin-left:120px;
   }
 
-  /* 📱 POSICIÓN EN CELULAR */
-  @media (max-width:768px){
-    .mover-pc{
-      margin-top:40px;   /* mover vertical celular */
-      margin-left:40px;  /* mover horizontal celular */
-    }
-  }
-
-  /* IMAGEN */
   .logo{
-    width:400px;  /* tamaño PC */
+    width:400px; /* tamaño PC */
+    max-width:90vw; /* evita que se rompa */
   }
 
-  /* TAMAÑO EN CELULAR */
+  /* 📱 CELULAR */
   @media (max-width:768px){
-    .logo{
-      width:768px;  /* tamaño celular */
+
+    .mover{
+      margin-top:40px;   /* mover vertical celular */
+      margin-left:20px;  /* mover horizontal celular */
     }
+
+    .logo{
+      width:80vw;  /* tamaño celular REAL adaptable */
+    }
+
   }
 
 </style>
@@ -98,7 +96,7 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 
 <body>
 
-<div class="contenedor mover-pc">
+<div class="contenedor mover">
   <img class="logo"
   src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 </div>
