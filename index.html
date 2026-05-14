@@ -6,50 +6,43 @@
 
 <style>
 
-/* 🔵 ELIMINA márgenes del navegador para que todo ocupe la pantalla */
+/* QUITA márgenes del navegador */
 body{
   margin:0;
   padding:0;
+  background:black; /* fondo negro total */
 }
 
-/* 🟢 CAPA 1 — FONDO NEGRO (pantalla completa) */
-.fondo-negro{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:#000;   /* 👉 color del fondo */
-  z-index:0;
-}
-
-/* 🟡 CAPA 2 — TU FOTO EN EL CENTRO */
+/* 🖼️ FOTO CENTRAL (fondo visual) */
 .foto{
   position:fixed;
-
-  top:50%;     /* 👉 mueve arriba/abajo */
-  left:50%;    /* 👉 mueve izquierda/derecha */
-
-  transform:translate(-50%,-50%); /* centra perfecto */
-
-  width:350px; /* 👉 CAMBIA TAMAÑO DE TU FOTO AQUÍ */
-  z-index:1;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  
+  width:500px;   /* 👉 tamaño de tu foto */
+  z-index:1;     /* capa media */
 }
 
-/* 🟣 CAPA 3 — BOTÓN SPOTIFY FLOTANTE */
-.logo{
+/* 🎵 BOTÓN SPOTIFY FLOTANTE */
+.botonSpotify{
   position:fixed;
+  top:20px;   /* 👉 mueve vertical */
+  left:20px;  /* 👉 mueve horizontal */
 
-  top:20px;   /* 👉 mueve vertical (arriba/abajo) */
-  left:20px;  /* 👉 mueve horizontal (izquierda/derecha) */
-
-  width:70px; /* 👉 tamaño del botón */
-  z-index:2;
+  z-index:9999; /* 🔥 SIEMPRE ENCIMA DE TODO */
 }
 
-/* ✨ efecto al pasar el mouse */
-.logo:hover{
-  transform:scale(1.1);
+.botonSpotify img{
+  width:260px;  /* 👉 tamaño del botón */
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+/* efecto hover */
+.botonSpotify img:hover{
+  transform:scale(1.08);
 }
 
 </style>
@@ -57,17 +50,17 @@ body{
 
 <body>
 
-<!-- FONDO NEGRO -->
-<div class="fondo-negro"></div>
-
-<!-- TU FOTO -->
+<!-- FOTO CENTRAL -->
 <img class="foto"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTÓN QUE ABRE SPOTIFY EN OTRA PESTAÑA -->
-<a href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP" target="_blank">
-  <img class="logo"
-  src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg">
+<!-- BOTÓN CON TU IMAGEN -->
+<a class="botonSpotify"
+href="https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP"
+target="_blank">
+
+<img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
+
 </a>
 
 </body>
