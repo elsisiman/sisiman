@@ -91,3 +91,53 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Botón Spotify Movible</title>
+
+<style>
+  body{
+    height:200vh;
+    margin:0;
+    background:white;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+  /* BOTON */
+  .spotify-btn{
+    position:fixed;          /* 🔥 esto permite moverlo libre por la pantalla */
+    top:150px;               /* 👉 CAMBIA posición vertical */
+    left:150px;              /* 👉 CAMBIA posición horizontal */
+
+    padding:18px 30px;       /* 👉 CAMBIA tamaño del botón */
+    font-size:20px;          /* 👉 CAMBIA tamaño del texto */
+
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    background:linear-gradient(45deg,#1DB954,#1ed760);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.3s;
+    font-weight:bold;
+  }
+
+  .spotify-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 15px 35px rgba(0,0,0,0.35);
+  }
+</style>
+</head>
+
+<body>
+
+<a class="spotify-btn"
+href="spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
+onclick="window.location.href='https://open.spotify.com/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q'; return false;">
+🎵 Escuchar en Spotify
+</a>
+
+</body>
+</html>
