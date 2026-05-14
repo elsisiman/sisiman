@@ -53,6 +53,10 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<!-- ⭐ ESTA LINEA ERA EL PROBLEMA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Imagen movible REAL</title>
 
 <style>
@@ -64,17 +68,14 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
   .logo{
     display:block;
     width:400px; /* tamaño PC */
-
-    transform: translate(120px,100px);
-    /* translate(X , Y)  →  (horizontal , vertical) */
+    transform: translate(120px,100px); /* mover PC */
   }
 
   /* 📱 CELULAR */
   @media (max-width:768px){
     .logo{
-      width:400px; /* tamaño celular */
-
-      transform: translate(20px,40px);
+      width:300px; /* tamaño celular */
+      transform: translate(-20px,40px); /* mover celular */
     }
   }
 
