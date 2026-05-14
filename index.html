@@ -53,32 +53,28 @@ src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Imagen movible simple</title>
+<title>Imagen movible REAL</title>
 
 <style>
   body{
-    background:white;
     margin:0;
+    background:white;
   }
 
   .logo{
-    position:relative;
+    display:block;
+    width:400px; /* tamaño PC */
 
-    /* 🔎 TAMAÑO PC */
-    width:400px;
-
-    /* 🎮 MOVER PC */
-    top:100px;
-    left:120px;
+    transform: translate(120px,100px);
+    /* translate(X , Y)  →  (horizontal , vertical) */
   }
 
-  /* 📱 AJUSTES CELULAR */
+  /* 📱 CELULAR */
   @media (max-width:768px){
     .logo{
-      width:400px;   /* 🔎 tamaño celular */
+      width:400px; /* tamaño celular */
 
-      top:40px;      /* 🎮 mover arriba/abajo celular */
-      left:-50px;     /* 🎮 mover izquierda/derecha celular */
+      transform: translate(20px,40px);
     }
   }
 
