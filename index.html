@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<!-- 🔥 ESTO HACE QUE FUNCIONE BIEN EN CELULAR -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mi página</title>
 
 <style>
@@ -32,7 +36,7 @@ body{
 }
 
 .botonSpotify img{
-  width:260px; /* cambia tamaño aquí */
+  width:260px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.4);
   transition:0.3s;
@@ -53,25 +57,51 @@ body{
 .logoFijo img{
   width:50px;
 }
+
+/* 📱📱📱 MODO CELULAR 📱📱📱 */
+@media (max-width: 768px){
+
+  /* foto central más pequeña y adaptable */
+  .fotoCentral{
+    width:85vw; /* ocupa 85% de la pantalla */
+  }
+
+  /* botón spotify más pequeño */
+  .botonSpotify{
+    top:15px;
+    right:15px;
+  }
+
+  .botonSpotify img{
+    width:150px;
+    border-radius:15px;
+  }
+
+  /* logo esquina más pequeño */
+  .logoFijo{
+    top:15px;
+    left:15px;
+  }
+
+  .logoFijo img{
+    width:35px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- FOTO GRANDE CENTRO -->
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTON SPOTIFY (OFICIAL Y SIN BLOQUEOS) -->
 <a class="botonSpotify"
 href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
 target="_blank"
 rel="noopener">
-
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- LOGO PEQUEÑO IZQUIERDA -->
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
