@@ -13,3 +13,38 @@
   }
 </style>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Imagen Movible</title>
+
+<style>
+  body{
+    background:white;
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .imagen{
+    width:120px;   /* 🔎 CAMBIA EL TAMAÑO AQUÍ */
+    position:relative;
+
+    left:0px;      /* 👉 DERECHA (+) IZQUIERDA (-) */
+    top:0px;       /* 👇 ABAJO (+) ARRIBA (-) */
+
+    transition:0.3s;
+  }
+</style>
+</head>
+
+<body>
+
+<img class="imagen"
+src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+
+</body>
+</html>
