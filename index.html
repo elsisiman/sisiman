@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 🔥 ESTO HACE QUE FUNCIONE BIEN EN CELULAR -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Mi página</title>
@@ -61,9 +60,10 @@ body{
 /* 📱📱📱 MODO CELULAR 📱📱📱 */
 @media (max-width: 768px){
 
-  /* foto central más pequeña y adaptable */
+  /* 🔥 FOTO SUBE SOLO EN CELULAR */
   .fotoCentral{
-    width:85vw; /* ocupa 85% de la pantalla */
+    width:85vw;
+    transform:translate(-50%,-62%);
   }
 
   /* botón spotify más pequeño */
