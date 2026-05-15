@@ -35,7 +35,7 @@ body{
 }
 
 .botonSpotify img{
-  width:260px; /* tamaño normal en PC */
+  width:260px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.4);
   transition:0.3s;
@@ -60,25 +60,26 @@ body{
 /* 📱📱📱 MODO CELULAR 📱📱📱 */
 @media (max-width: 768px){
 
-  /* FOTO SUBE SOLO EN CELULAR */
+  /* 🔥 ESTO CREA SCROLL HACIA ABAJO */
+  body{
+    height:1400px; /* puedes subir este número si quieres más espacio */
+  }
+
   .fotoCentral{
     width:85vw;
     transform:translate(-50%,-57%);
   }
 
-  /* posición del botón */
   .botonSpotify{
     top:537px;
     right:33px;
   }
 
-  /* 🔥 BOTON MAS GRANDE SOLO EN CELULAR */
   .botonSpotify img{
     width:300px;
     border-radius:18px;
   }
 
-  /* logo esquina más pequeño */
   .logoFijo{
     top:10px;
     left:0px;
