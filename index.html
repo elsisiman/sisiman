@@ -21,10 +21,10 @@ body{
   display:block;
   width:500px;
   margin:auto;
-  margin-top:120px; /* posición en PC */
+  margin-top:120px;
 }
 
-/* ===== BOTON SPOTIFY ===== */
+/* ===== BOTON SPOTIFY (PC sigue flotante) ===== */
 .botonSpotify{
   position:fixed;
   top:20px;
@@ -58,20 +58,22 @@ body{
 /* 📱📱📱 MODO CELULAR 📱📱📱 */
 @media (max-width: 768px){
 
-  /* 🔥 ESTO CREA SCROLL HACIA ABAJO */
   body{
-    height:1300px; /* puedes subir este número si quieres más espacio */
+    height:1300px;
   }
 
-  /* foto centrada sin flotar */
   .fotoCentral{
     width:85vw;
-    margin-top:81px; /* posición en celular */
+    margin-top:81px;
   }
 
+  /* 🔥 BOTON SPOTIFY YA NO FLOTANTE */
   .botonSpotify{
-    top:537px;
-    right:33px;
+    position:static;      /* clave */
+    display:block;
+    margin:auto;
+    margin-top:80px;      /* lo coloca donde estaba visualmente */
+    width:300px;
   }
 
   .botonSpotify img{
