@@ -69,8 +69,8 @@ body{
     position: relative;
 
     /* 🔥 CONTROLES MAGICOS */
-    top: 30px;   /* arriba / abajo */
-    left: -215px;   /* izquierda / derecha */
+    top: 30px;
+    left: -215px;
 
     transition: 0.3s;
   }
@@ -80,7 +80,8 @@ body{
 @media (max-width: 768px){
 
   body{
-    height:0px;
+    min-height: 100vh;   /* ✔️ CORREGIDO */
+    overflow-x: hidden;
   }
 
   .fotoCentral{
