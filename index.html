@@ -56,31 +56,30 @@ body{
   width:110px;
 }
 
-/* 🎧 EMBED (BASE) */
+/* 🎧 EMBED BASE */
 .spotifyEmbed{
   display:flex;
   justify-content:center;
 }
 
-/* 🎚️ SOLO PC: AQUÍ LO MUEVES */
+/* 🎚️ PC CONTROL */
 @media (min-width: 769px){
 
   .spotifyEmbed{
     position: relative;
 
-    /* 🔥 CONTROLES MAGICOS */
-    top: 30px;
-    left: -215px;
+    top: 30px;     /* 🔥 mueve arriba/abajo en PC */
+    left: -215px;  /* 🔥 mueve izquierda/derecha en PC */
 
     transition: 0.3s;
   }
 }
 
-/* CELULAR */
+/* 📱 CELULAR CONTROL */
 @media (max-width: 768px){
 
   body{
-    min-height: 180vh;   /* ✔️ CORREGIDO */
+    min-height: 180vh;
     overflow-x: hidden;
   }
 
@@ -112,6 +111,17 @@ body{
 
   .logoFijo img{
     width:65px;
+  }
+
+  /* 🎧 EMBED CONTROL EN CELULAR */
+  .spotifyEmbed{
+    position: relative;
+
+    top: 40px;   /* 🔥 mueve arriba/abajo en celular */
+    left: 0px;   /* 🔥 mueve izquierda/derecha en celular */
+
+    display:flex;
+    justify-content:center;
   }
 }
 </style>
