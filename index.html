@@ -56,16 +56,24 @@ body{
   width:110px;
 }
 
-/* 🎧 EMBED MOVIBLE */
+/* 🎧 EMBED (BASE) */
 .spotifyEmbed{
-  position: relative;
-
-  /* 🔥 AQUÍ LO MUEVES CON NÚMEROS */
-  top: 80px;   /* sube o baja */
-  left: 0px;   /* izquierda o derecha */
-
   display:flex;
   justify-content:center;
+}
+
+/* 🎚️ SOLO PC: AQUÍ LO MUEVES */
+@media (min-width: 769px){
+
+  .spotifyEmbed{
+    position: relative;
+
+    /* 🔥 CONTROLES MAGICOS */
+    top: 80px;   /* arriba / abajo */
+    left: 0px;   /* izquierda / derecha */
+
+    transition: 0.3s;
+  }
 }
 
 /* CELULAR */
