@@ -16,14 +16,12 @@ body{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-/* ===== FOTO CENTRAL ===== */
+/* ===== FOTO CENTRAL (YA NO FLOTANTE) ===== */
 .fotoCentral{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  display:block;
   width:500px;
-  z-index:1;
+  margin:auto;
+  margin-top:120px; /* posición en PC */
 }
 
 /* ===== BOTON SPOTIFY ===== */
@@ -65,9 +63,10 @@ body{
     height:1400px; /* puedes subir este número si quieres más espacio */
   }
 
+  /* foto centrada sin flotar */
   .fotoCentral{
     width:85vw;
-    transform:translate(-50%,-57%);
+    margin-top:90px; /* posición en celular */
   }
 
   .botonSpotify{
