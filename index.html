@@ -19,9 +19,11 @@ body{
   width:1000px;
   margin:auto;
   margin-top:-150px;
+
+  /* 🎯 CONTROLES MANUALES (AQUI MUEVES LA IMAGEN) */
   position:relative;
-  left:0px;
-  top:0px;
+  left:0px;   /* <- mueve izquierda / derecha */
+  top:0px;    /* <- mueve arriba / abajo */
 }
 
 /* BOTON SPOTIFY PC */
@@ -55,22 +57,6 @@ body{
   width:110px;
 }
 
-/* CONTROLES PC */
-.controles{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:rgba(255,255,255,0.1);
-  padding:10px;
-  border-radius:10px;
-  color:white;
-  z-index:99999;
-}
-
-.controles input{
-  width:180px;
-}
-
 /* CELULAR */
 @media (max-width: 768px){
 
@@ -81,6 +67,10 @@ body{
   .fotoCentral{
     width:85vw;
     margin-top:81px;
+
+    /* puedes ajustar también aquí si quieres */
+    left:0px;
+    top:0px;
   }
 
   .botonSpotify{
@@ -105,17 +95,13 @@ body{
   .logoFijo img{
     width:65px;
   }
-
-  .controles{
-    display:none;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<img class="fotoCentral" id="foto"
+<img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
 <a class="botonSpotify"
@@ -126,17 +112,6 @@ target="_blank" rel="noopener">
 
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
-</div>
-
-<!-- CONTROLES SIMPLES -->
-<div class="controles">
-  <div>Horizontal</div>
-  <input type="range" min="-500" max="500" value="0"
-    oninput="document.getElementById('foto').style.left = this.value + 'px'">
-
-  <div>Vertical</div>
-  <input type="range" min="-500" max="500" value="0"
-    oninput="document.getElementById('foto').style.top = this.value + 'px'">
 </div>
 
 </body>
