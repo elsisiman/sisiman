@@ -2,13 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Mi página</title>
 
 <style>
-/* ===== PAGINA ===== */
 body{
   margin:0;
   padding:0;
@@ -16,7 +13,7 @@ body{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-/* ===== FOTO CENTRAL (YA NO FLOTANTE) ===== */
+/* FOTO CENTRAL */
 .fotoCentral{
   display:block;
   width:500px;
@@ -24,7 +21,7 @@ body{
   margin-top:120px;
 }
 
-/* ===== BOTON SPOTIFY (PC sigue flotante) ===== */
+/* BOTON SPOTIFY PC */
 .botonSpotify{
   position:fixed;
   top:20px;
@@ -43,19 +40,19 @@ body{
   transform:scale(1.08);
 }
 
-/* ===== LOGO IZQUIERDA ===== */
+/* ===== LOGO PC (GRANDE + CONTROLES) ===== */
 .logoFijo{
   position:fixed;
-  top:20px;
-  left:20px;
+  top:40px;   /* 🔧 mover vertical PC */
+  left:40px;  /* 🔧 mover horizontal PC */
   z-index:99999;
 }
 
 .logoFijo img{
-  width:50px;
+  width:80px;   /* 🔥 LOGO MAS GRANDE EN PC */
 }
 
-/* 📱📱📱 MODO CELULAR 📱📱📱 */
+/* 📱 MODO CELULAR */
 @media (max-width: 768px){
 
   body{
@@ -67,12 +64,11 @@ body{
     margin-top:81px;
   }
 
-  /* 🔥 BOTON SPOTIFY YA NO FLOTANTE */
   .botonSpotify{
-    position:static;      /* clave */
+    position:static;
     display:block;
     margin:auto;
-    margin-top:0px;      /* lo coloca donde estaba visualmente */
+    margin-top:0px;
     width:300px;
   }
 
@@ -81,9 +77,11 @@ body{
     border-radius:18px;
   }
 
+  /* LOGO SOLO CELULAR */
   .logoFijo{
-    top:10px;
-    left:0px;
+    position:fixed;
+    top:10px;   /* 🔧 mover solo celular */
+    left:0px;   /* 🔧 mover solo celular */
   }
 
   .logoFijo img{
@@ -100,8 +98,7 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 
 <a class="botonSpotify"
 href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank"
-rel="noopener">
+target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
