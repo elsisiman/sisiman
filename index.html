@@ -11,8 +11,6 @@ body{
   padding:0;
   background:black;
   font-family:Arial, Helvetica, sans-serif;
-
-  /* 🔥 SOLO ESTO CREA SCROLL HACIA ABAJO EN PC */
   min-height:200vh;
 }
 
@@ -56,6 +54,18 @@ body{
 
 .logoFijo img{
   width:110px;
+}
+
+/* 🎧 EMBED MOVIBLE */
+.spotifyEmbed{
+  position: relative;
+
+  /* 🔥 AQUÍ LO MUEVES CON NÚMEROS */
+  top: 80px;   /* sube o baja */
+  left: 0px;   /* izquierda o derecha */
+
+  display:flex;
+  justify-content:center;
 }
 
 /* CELULAR */
@@ -109,8 +119,8 @@ target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- 🎧 EMBED DE SPOTIFY (AQUÍ LO AGREGUÉ SIN TOCAR TU DISEÑO) -->
-<div style="width:100%; display:flex; justify-content:center; margin-top:80px;">
+<!-- 🎧 EMBED DE SPOTIFY -->
+<div class="spotifyEmbed">
   <iframe style="border-radius:12px" 
   src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
   width="90%" 
