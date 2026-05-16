@@ -144,8 +144,12 @@ target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- BOTON YOUTUBE -->
-<a class="botonYoutube" href="#" onclick="abrirYouTube(); return false;">
+<!-- BOTON YOUTUBE (DEEP LINK REAL) -->
+<a class="botonYoutube"
+href="https://youtu.be/LhNoNp9qEiQ"
+target="_blank"
+rel="noopener"
+onclick="this.href='youtube://watch?v=LhNoNp9qEiQ';">
 <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
 </a>
 
@@ -161,15 +165,6 @@ target="_blank" rel="noopener">
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
-
-<script>
-function abrirYouTube(){
-  var appLink="youtube://watch?v=LhNoNp9qEiQ";
-  var webLink="https://youtu.be/LhNoNp9qEiQ";
-  window.location.href=appLink;
-  setTimeout(function(){window.open(webLink,"_blank");},900);
-}
-</script>
 
 </body>
 </html>
