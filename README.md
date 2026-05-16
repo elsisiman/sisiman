@@ -1,5 +1,5 @@
 boton youtube
-<img width="1536" height="1024" alt="ChatGPT Image 16 may 2026, 01_28_31" src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930" />
+<img width="1436" height="924" alt="ChatGPT Image 16 may 2026, 01_28_31" src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930" />
 
 boton spotify
 <img width="500" height="250" alt="3" src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662" />
