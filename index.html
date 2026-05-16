@@ -44,10 +44,10 @@ body{
   transform:scale(1.08);
 }
 
-/* 🟥 BOTON YOUTUBE NUEVO */
+/* BOTON YOUTUBE */
 .botonYoutube{
   position:fixed;
-  top:320px;   /* debajo del de Spotify */
+  top:320px;
   right:56px;
   z-index:9999;
 }
@@ -87,7 +87,7 @@ body{
   }
 }
 
-/* 📱 CELULAR */
+/* CELULAR */
 @media (max-width: 768px){
 
   body{
@@ -137,14 +137,14 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- SPOTIFY ORIGINAL (NO TOCADO) -->
+<!-- SPOTIFY ORIGINAL -->
 <a class="botonSpotify"
 href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
 target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- 🟥 BOTON YOUTUBE -->
+<!-- BOTON YOUTUBE -->
 <a class="botonYoutube" href="#" onclick="abrirYouTube(); return false;">
 <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
 </a>
@@ -167,7 +167,7 @@ function abrirYouTube(){
   var appLink="youtube://watch?v=LhNoNp9qEiQ";
   var webLink="https://youtu.be/LhNoNp9qEiQ";
   window.location.href=appLink;
-  setTimeout(function(){window.location.href=webLink;},900);
+  setTimeout(function(){window.open(webLink,"_blank");},900);
 }
 </script>
 
