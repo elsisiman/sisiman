@@ -63,6 +63,25 @@ body{
   transform:scale(1.08);
 }
 
+/* NUEVO BOTON APPLE MUSIC */
+.botonApple{
+  position:fixed;
+  top:430px;
+  right:151px;
+  z-index:9999;
+}
+
+.botonApple img{
+  width:280px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.botonApple img:hover{
+  transform:scale(1.08);
+}
+
 /* LOGO */
 .logoFijo{
   position:fixed;
@@ -103,7 +122,8 @@ body{
   }
 
   .botonSpotify,
-  .botonYoutube{
+  .botonYoutube,
+  .botonApple{
     position:static;
     display:block;
     margin:auto;
@@ -111,7 +131,8 @@ body{
   }
 
   .botonSpotify img,
-  .botonYoutube img{
+  .botonYoutube img,
+  .botonApple img{
     width:300px;
     border-radius:18px;
   }
@@ -137,20 +158,27 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- SPOTIFY ORIGINAL -->
+<!-- SPOTIFY -->
 <a class="botonSpotify"
 href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
 target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- BOTON YOUTUBE CON TU IMAGEN -->
+<!-- YOUTUBE -->
 <a class="botonYoutube"
 href="https://youtu.be/LhNoNp9qEiQ"
 target="_blank"
 rel="noopener"
 onclick="abrirYT(event)">
 <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
+</a>
+
+<!-- 🍎 APPLE MUSIC NUEVO -->
+<a class="botonApple"
+href="https://music.apple.com/mx/song/solo/1706135810"
+onclick="abrirApple(event)">
+<img src="https://github.com/user-attachments/assets/5077c28c-49e7-4f69-b0d2-f0145ff95cc8">
 </a>
 
 <!-- EMBED SPOTIFY -->
@@ -169,11 +197,18 @@ onclick="abrirYT(event)">
 <script>
 function abrirYT(e){
   var esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
   if(esMovil){
     e.preventDefault();
     window.location.href = "youtube://watch?v=LhNoNp9qEiQ";
   }
+}
+
+function abrirApple(e){
+  e.preventDefault();
+  window.location = "music://music.apple.com/mx/song/solo/1706135810";
+  setTimeout(function(){
+    window.location = "https://music.apple.com/mx/song/solo/1706135810";
+  },1500);
 }
 </script>
 
