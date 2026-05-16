@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -63,7 +63,7 @@ body{
   transform:scale(1.08);
 }
 
-/* NUEVO BOTON APPLE MUSIC */
+/* 🍎 BOTON APPLE MUSIC */
 .botonApple{
   position:fixed;
   top:430px;
@@ -174,10 +174,11 @@ onclick="abrirYT(event)">
 <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- 🍎 APPLE MUSIC NUEVO -->
+<!-- 🍎 APPLE MUSIC (abre en nueva pestaña) -->
 <a class="botonApple"
 href="https://music.apple.com/mx/song/solo/1706135810"
-onclick="abrirApple(event)">
+target="_blank"
+rel="noopener">
 <img src="https://github.com/user-attachments/assets/5077c28c-49e7-4f69-b0d2-f0145ff95cc8">
 </a>
 
@@ -201,14 +202,6 @@ function abrirYT(e){
     e.preventDefault();
     window.location.href = "youtube://watch?v=LhNoNp9qEiQ";
   }
-}
-
-function abrirApple(e){
-  e.preventDefault();
-  window.location = "music://music.apple.com/mx/song/solo/1706135810";
-  setTimeout(function(){
-    window.location = "https://music.apple.com/mx/song/solo/1706135810";
-  },1500);
 }
 </script>
 
