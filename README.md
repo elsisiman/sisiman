@@ -1,5 +1,5 @@
 boton apple music
-<img width="1536" height="1024" alt="ChatGPT Image 17 may 2026, 00_13_49" src="https://github.com/user-attachments/assets/5077c28c-49e7-4f69-b0d2-f0145ff95cc8" />
+<img width="500" height="250" alt="6558" src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470" />
 
 boton youtube
 <img width="1436" height="924" alt="ChatGPT Image 16 may 2026, 01_28_31" src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930" />
