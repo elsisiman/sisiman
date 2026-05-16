@@ -25,7 +25,7 @@ body{
   top:20px;
 }
 
-/* BOTON SPOTIFY PC */
+/* BOTON YOUTUBE PC */
 .botonSpotify{
   position:fixed;
   top:100px;
@@ -64,14 +64,13 @@ body{
 
 /* 🎚️ PC CONTROL */
 @media (min-width: 769px){
-
   .spotifyEmbed{
     transform: translate(-217px, 33px);
     transition: 0.3s;
   }
 }
 
-/* 📱 CELULAR CONTROL (ARREGLADO) */
+/* 📱 CELULAR */
 @media (max-width: 768px){
 
   body{
@@ -109,10 +108,8 @@ body{
     width:65px;
   }
 
-  /* 🎧 EMBED MOVIBLE REAL EN CELULAR */
   .spotifyEmbed{
     transform: translate(0px, 350px);
-
     display:flex;
     justify-content:center;
   }
@@ -125,13 +122,12 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a class="botonSpotify"
-href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank" rel="noopener">
+<!-- 🔥 BOTON YOUTUBE HIBRIDO -->
+<a class="botonSpotify" href="#" onclick="abrirYouTube(); return false;">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- 🎧 EMBED DE SPOTIFY -->
+<!-- 🎧 EMBED SPOTIFY -->
 <div class="spotifyEmbed">
   <iframe style="border-radius:12px" 
   src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
@@ -145,6 +141,21 @@ target="_blank" rel="noopener">
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
+
+<!-- 🚀 SCRIPT DEEP LINK YOUTUBE -->
+<script>
+function abrirYouTube() {
+
+  var appLink = "youtube://watch?v=LhNoNp9qEiQ";
+  var webLink = "https://youtu.be/LhNoNp9qEiQ";
+
+  window.location.href = appLink;
+
+  setTimeout(function(){
+      window.location.href = webLink;
+  }, 900);
+}
+</script>
 
 </body>
 </html>
