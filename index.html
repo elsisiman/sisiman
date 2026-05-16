@@ -25,7 +25,7 @@ body{
   top:20px;
 }
 
-/* BOTON SPOTIFY PC */
+/* BOTON SPOTIFY */
 .botonSpotify{
   position:fixed;
   top:100px;
@@ -44,7 +44,26 @@ body{
   transform:scale(1.08);
 }
 
-/* LOGO PC */
+/* 🟥 BOTON YOUTUBE NUEVO */
+.botonYoutube{
+  position:fixed;
+  top:320px;   /* debajo del de Spotify */
+  right:56px;
+  z-index:9999;
+}
+
+.botonYoutube img{
+  width:450px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.botonYoutube img:hover{
+  transform:scale(1.08);
+}
+
+/* LOGO */
 .logoFijo{
   position:fixed;
   top:4px;
@@ -56,65 +75,58 @@ body{
   width:110px;
 }
 
-/* 🎧 EMBED BASE */
+/* EMBED */
 .spotifyEmbed{
   display:flex;
   justify-content:center;
 }
 
-/* 🎚️ PC CONTROL */
 @media (min-width: 769px){
-
   .spotifyEmbed{
     transform: translate(-217px, 33px);
-    transition: 0.3s;
   }
 }
 
-/* 📱 CELULAR CONTROL (ARREGLADO) */
+/* 📱 CELULAR */
 @media (max-width: 768px){
 
   body{
-    min-height: 180vh;
-    overflow-x: hidden;
+    min-height:180vh;
+    overflow-x:hidden;
   }
 
   .fotoCentral{
     width:85vw;
     margin-top:81px;
-    left:0px;
-    top:0px;
+    left:0;
+    top:0;
   }
 
-  .botonSpotify{
+  .botonSpotify,
+  .botonYoutube{
     position:static;
     display:block;
     margin:auto;
-    margin-top:0px;
     width:300px;
   }
 
-  .botonSpotify img{
+  .botonSpotify img,
+  .botonYoutube img{
     width:300px;
     border-radius:18px;
   }
 
   .logoFijo{
-    position:fixed;
     top:10px;
-    left:0px;
+    left:0;
   }
 
   .logoFijo img{
     width:65px;
   }
 
-  /* 🎧 EMBED MOVIBLE REAL EN CELULAR */
   .spotifyEmbed{
     transform: translate(0px, 350px);
-
-    display:flex;
-    justify-content:center;
   }
 }
 </style>
@@ -125,19 +137,23 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
+<!-- SPOTIFY ORIGINAL (NO TOCADO) -->
 <a class="botonSpotify"
 href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
 target="_blank" rel="noopener">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- 🎧 EMBED DE SPOTIFY -->
+<!-- 🟥 BOTON YOUTUBE -->
+<a class="botonYoutube" href="#" onclick="abrirYouTube(); return false;">
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+</a>
+
+<!-- EMBED SPOTIFY -->
 <div class="spotifyEmbed">
   <iframe style="border-radius:12px" 
   src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
-  width="60%" 
-  height="80" 
-  frameborder="0" 
+  width="60%" height="80" frameborder="0"
   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
   </iframe>
 </div>
@@ -145,6 +161,15 @@ target="_blank" rel="noopener">
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
+
+<script>
+function abrirYouTube(){
+  var appLink="youtube://watch?v=LhNoNp9qEiQ";
+  var webLink="https://youtu.be/LhNoNp9qEiQ";
+  window.location.href=appLink;
+  setTimeout(function(){window.location.href=webLink;},900);
+}
+</script>
 
 </body>
 </html>
