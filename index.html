@@ -91,15 +91,17 @@ body{
 
 /* CELULAR */
 @media (max-width:768px){
-  body{ min-height:210vh; overflow-x:hidden; }
+  /* AUMENTADO: Le damos más altura al fondo de la página para que puedas bajar libremente */
+  body{ min-height:280vh; overflow-x:hidden; }
+  
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
 
   /* 1. CONTROL PARA EL BOTÓN DE SPOTIFY EN CELULAR */
   .botonSpotify {
     position: absolute;
-    top: 200px;          /* Ajusta la altura */
-    right: 20px;         /* Ajusta posición derecha */
-    width: 280px;        /* Ajusta el ancho */
+    top: 200px;          
+    right: 20px;         
+    width: 280px;        
     display: block;
     margin: 0;
   }
@@ -117,9 +119,9 @@ body{
   /* 3. CONTROL PARA EL BOTÓN DE APPLE MUSIC EN CELULAR */
   .botonApple {
     position: absolute;
-    top: 440px;          /* Ajusta la altura */
-    right: 30px;         /* Ajusta posición derecha */
-    width: 260px;        /* Ajusta el ancho */
+    top: 440px;          
+    right: 30px;         
+    width: 260px;        
     display: block;
     margin: 0;
   }
@@ -127,9 +129,9 @@ body{
   /* 4. CONTROL PARA EL BOTÓN DE DESCARGA EN CELULAR */
   .botonDescarga {
     position: absolute;
-    top: 560px;          /* Ajusta la altura */
-    right: 35px;         /* Ajusta posición derecha */
-    width: 260px;        /* Ajusta el ancho */
+    top: 560px;          
+    right: 35px;         
+    width: 260px;        
     display: block;
     margin: 0;
   }
@@ -144,14 +146,26 @@ body{
 
   .spotifyEmbed{ transform: translate(0px, 350px); }
 
-  /* Acomodo automático en celular uno abajo del otro */
+  /* NUEVO CONTROL EXCLUSIVO PARA EL PRIMER TEXTO (CORREO) EN CELULAR */
   .seccionTexto {
-    margin: 900px auto 0px auto; 
+    position: absolute;
+    
+    /* MODIFICA ESTOS VALORES PARA MOVER EL CORREO: */
+    top: 1050px;         /* Sube este número (ej. 1200px) para bajarlo todo lo que quieras */
+    left: 7.5vw;        /* Lo centra perfectamente en pantallas de cel */
+    
     width: 85vw;
     text-align: center;
   }
+
+  /* NUEVO CONTROL EXCLUSIVO PARA EL SEGUNDO TEXTO (TELÉFONO) EN CELULAR */
   .seccionTexto2 {
-    margin: 300px auto 50px auto; 
+    position: absolute;
+    
+    /* MODIFICA ESTOS VALORES PARA MOVER EL TELÉFONO: */
+    top: 1100px;         /* Controla la altura del teléfono en el celular */
+    left: 7.5vw;        /* Lo centra perfectamente en pantallas de cel */
+    
     width: 85vw;
     text-align: center;
   }
