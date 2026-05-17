@@ -76,11 +76,12 @@ body{
   .spotifyEmbed{ transform: translate(0px, 350px); }
 }
 
-/* ===== MINI VENTANA DESCARGA ===== */
-.modalDescarga{
+/* ===== POPUP DESCARGA (NUEVO SIN ROMPER NADA) ===== */
+.popup{
   display:none;
   position:fixed;
-  top:0; left:0;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.75);
@@ -89,18 +90,18 @@ body{
   align-items:center;
 }
 
-.modalBox{
-  width:90%;
-  max-width:500px;
+.popup-box{
   background:#111;
-  border-radius:15px;
   padding:25px;
+  border-radius:15px;
+  width:90%;
+  max-width:400px;
   text-align:center;
   color:white;
-  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  box-shadow:0 0 30px rgba(0,0,0,0.6);
 }
 
-.modalBox a{
+.popup-box a{
   display:inline-block;
   margin-top:15px;
   padding:12px 18px;
@@ -111,12 +112,12 @@ body{
   font-weight:bold;
 }
 
-.closeBtn{
+.close{
   position:absolute;
-  top:15px;
-  right:20px;
-  font-size:22px;
+  margin-left:340px;
+  margin-top:-10px;
   cursor:pointer;
+  font-size:22px;
   color:white;
 }
 </style>
@@ -142,7 +143,7 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 <div class="botonDescarga">
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
-  onclick="abrirDescarga()">
+  onclick="abrirPopup()">
 </div>
 
 <div class="spotifyEmbed">
@@ -157,89 +158,27 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
 
-<!-- MODAL DESCARGA -->
-<div id="modalDescarga" class="modalDescarga">
-  <div class="modalBox">
-    <div class="closeBtn" onclick="cerrarDescarga()">✕</div>
-    <h2>🚀 DESCARGA DESBLOQUEADA</h2>
-    <p>Ya puedes continuar sin salir del sitio</p>
+<!-- POPUP -->
+<div id="popup" class="popup">
+  <div class="popup-box">
+    <div class="close" onclick="cerrarPopup()">✕</div>
+    <h2>🎉 DESCARGA LISTA</h2>
+    <p>Ya puedes abrir sin salir del sitio</p>
     <a id="linkFinal" href="#" target="_blank">IR A DESCARGA</a>
   </div>
 </div>
 
 <script>
 
-const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
-const redirect_uri = "https://sisiman.vercel.app";
-const artist_id = "5KeX79pQzo2M92PKqjOhxo";
-const playlist_id = "5H4YBJmZKajvJnANiswCvX";
-
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
-const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
-let tokenSpotify = localStorage.getItem("spotify_token");
-
-/* LOGIN */
-function seguirSpotify(){
-  const scope = "user-follow-read playlist-read-private";
-
-  const auth_url =
-  "https://accounts.spotify.com/authorize"+
-  "?client_id="+client_id+
-  "&response_type=code"+
-  "&redirect_uri="+encodeURIComponent(redirect_uri)+
-  "&scope="+encodeURIComponent(scope)+
-  "&show_dialog=true";
-
-  window.location = auth_url;
-}
-
-/* AL VOLVER */
-window.onload = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const code = urlParams.get("code");
-
-  if(code){
-    intercambiarCodePorToken(code);
-  }
-}
-
-/* TOKEN */
-async function intercambiarCodePorToken(code){
-
-  const body = new URLSearchParams({
-    grant_type: "authorization_code",
-    code: code,
-    redirect_uri: redirect_uri,
-    client_id: client_id
-  });
-
-  const respuesta = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body
-  });
-
-  const data = await respuesta.json();
-
-  tokenSpotify = data.access_token;
-
-  localStorage.setItem("spotify_token", tokenSpotify);
-
-  window.history.replaceState({}, document.title, "/");
-
-  abrirDescarga();
-}
-
-/* ABRIR MINI VENTANA */
-function abrirDescarga(){
-  document.getElementById("modalDescarga").style.display = "flex";
+function abrirPopup(){
+  document.getElementById("popup").style.display = "flex";
   document.getElementById("linkFinal").href = linkDescarga;
 }
 
-/* CERRAR */
-function cerrarDescarga(){
-  document.getElementById("modalDescarga").style.display = "none";
+function cerrarPopup(){
+  document.getElementById("popup").style.display = "none";
 }
 
 </script>
