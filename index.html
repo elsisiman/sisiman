@@ -49,6 +49,7 @@ body{
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
+
 @media (min-width:769px){
   .spotifyEmbed{ transform: translate(-217px, 33px); }
 }
@@ -121,10 +122,10 @@ const playlist_id = "5H4YBJmZKajvJnANiswCvX";
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
 const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
-/* 🔥 IMPORTANTE: ahora el token vive aunque regreses */
+/* 🔥 TOKEN PERSISTENTE */
 let tokenSpotify = localStorage.getItem("spotify_token");
 
-/* BOTON LOGIN */
+/* LOGIN */
 function seguirSpotify(){
   const scope = "user-follow-read playlist-read-private";
 
@@ -139,16 +140,15 @@ function seguirSpotify(){
   window.location = auth_url;
 }
 
-/* RECIBIR CODE */
+/* AL VOLVER */
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
 
   if(code){
     intercambiarCodePorToken(code);
-  }
-  else if(tokenSpotify){
-    verificarArtista(); // 🔥 si ya hay token, desbloquea directo
+  } else if(tokenSpotify){
+    verificarArtista(); // 🔥 esto es lo que te faltaba
   }
 }
 
@@ -172,13 +172,12 @@ async function intercambiarCodePorToken(code){
 
   tokenSpotify = data.access_token;
 
-  /* 🔥 guardarlo para cuando regrese */
   localStorage.setItem("spotify_token", tokenSpotify);
 
   verificarArtista();
 }
 
-/* VERIFICAR ARTISTA */
+/* VERIFICAR */
 function verificarArtista(){
   fetch("https://api.spotify.com/v1/me/following?type=artist&ids="+artist_id,{
     headers:{ "Authorization":"Bearer "+tokenSpotify }
@@ -189,12 +188,10 @@ function verificarArtista(){
       verificarPlaylist();
     } else {
       alert("Debes seguir al artista ❤️");
-      window.open("https://open.spotify.com/artist/"+artist_id);
     }
   });
 }
 
-/* VERIFICAR PLAYLIST */
 function verificarPlaylist(){
   fetch("https://api.spotify.com/v1/playlists/"+playlist_id+"/followers/contains?ids=me",{
     headers:{ "Authorization":"Bearer "+tokenSpotify }
@@ -205,12 +202,11 @@ function verificarPlaylist(){
       desbloquearDescarga();
     } else {
       alert("Sigue la playlist 🔥");
-      window.open("https://open.spotify.com/playlist/"+playlist_id);
     }
   });
 }
 
-/* DESBLOQUEAR */
+/* DESBLOQUEO */
 function desbloquearDescarga(){
   const img=document.getElementById("imgDescarga");
   img.src=imgDesbloqueado;
