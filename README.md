@@ -1,3 +1,9 @@
+imagen descarga 1
+<img width="500" height="250" alt="oiuhuihiu" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" />
+
+imagen descarga 2
+<img width="350" height="250" alt="opijpoi" src="https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0" />
+
 boton apple music
 <img width="500" height="250" alt="6558" src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470" />
 
