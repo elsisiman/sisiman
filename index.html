@@ -50,12 +50,38 @@ body{
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
 
+
+/* =======================================================
+   ESTILOS BASE DEL PRIMER TEXTO (AHORA TEXTO NORMAL)
+   ======================================================= */
+.seccionTexto {
+  color: #e0e0e0;        /* Color gris claro muy limpio */
+  font-size: 16px;       /* Tamaño de texto normal y cómodo */
+  line-height: 1.6;      /* Espacio entre renglones */
+  z-index: 1;
+  
+  /* CAMBIA LA LETRA AQUÍ SI QUIERES (Ejemplos: 'Arial', 'Courier New') */
+  font-family: 'Arial', sans-serif; 
+}
+
+
+/* AJUSTES PARA PC */
 @media (min-width:769px){
   .spotifyEmbed{ transform: translate(-216px, 28px); }
 
   /* CONTROL DE SCROLL EXCLUSIVO PARA PC */
   body { 
-    min-height: 250vh; /* Cambia este número a tu gusto para aumentar o reducir el scroll de la PC */
+    min-height: 250vh; 
+  }
+
+  /* MUEVE TU TEXTO NORMAL LIBREMENTE EN PC DESDE AQUÍ */
+  .seccionTexto {
+    width: 400px;
+    text-align: left;      /* Alineado a la izquierda */
+    
+    /* MODIFICA ESTOS DOS VALORES A TU GUSTO: */
+    margin-top: 60px;      /* Espacio hacia abajo desde el embed de Spotify */
+    margin-left: 150px;    /* Espacio desde la orilla izquierda de la pantalla */
   }
 }
 
@@ -79,6 +105,13 @@ body{
   .logoFijo img{ width:65px; }
 
   .spotifyEmbed{ transform: translate(0px, 350px); }
+
+  /* En celular se centra abajo de todo automáticamente */
+  .seccionTexto {
+    margin: 390px auto 50px auto; 
+    width: 85vw;
+    text-align: center;
+  }
 }
 </style>
 </head>
@@ -107,6 +140,11 @@ body{
   <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
 
+<!-- TU TEXTO NORMAL -->
+<div class="seccionTexto">
+  cantondecarton
+</div>
+
 <div class="logoFijo">
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
@@ -133,23 +171,19 @@ function seguirSpotify(){
   "&scope="+encodeURIComponent(scope)+
   "&show_dialog=true";
 
-  // Configuración del tamaño y posición de la mini ventana flotante (Popup)
   const ancho = 500;
   const alto = 650;
   const izquierda = (screen.width / 2) - (ancho / 2);
   const arriba = (screen.height / 2) - (alto / 2);
 
-  // Abre la ventana de Spotify de forma externa pero controlada
   window.open(auth_url, "SpotifyAuth", `width=${ancho},height=${alto},top=${arriba},left=${izquierda}`);
 }
 
-// Escuchar cuando el proceso termine (ya sea en carga inicial o mediante redirección del popup)
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
 
   if(code){
-    // Si estamos dentro del popup, mandamos el código a la ventana padre y cerramos
     if (window.opener) {
       window.opener.postMessage({ tipo: "SPOTIFY_CODE", code: code }, "*");
       window.close();
@@ -159,7 +193,6 @@ window.onload = () => {
   }
 }
 
-// Escuchar mensajes provenientes del popup flotante
 window.addEventListener("message", (evento) => {
   if (evento.data && evento.data.tipo === "SPOTIFY_CODE") {
     intercambiarCodePorToken(evento.data.code);
@@ -185,7 +218,6 @@ async function intercambiarCodePorToken(code){
     tokenSpotify = data.access_token;
     localStorage.setItem("spotify_token", tokenSpotify);
     
-    // Limpiar la URL de códigos limpios
     window.history.replaceState({}, document.title, "/");
     desbloquearDescarga();
   } catch (error) {
