@@ -25,64 +25,20 @@ body{
   top:20px;
 }
 
-/* BOTON SPOTIFY */
-.botonSpotify{
-  position:fixed;
-  top:40px;
-  right:56px;
-  z-index:9999;
-}
+/* BOTONES EXISTENTES */
+.botonSpotify{ position:fixed; top:40px; right:56px; z-index:9999;}
+.botonSpotify img{ width:450px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
+.botonSpotify img:hover{ transform:scale(1.08);}
 
-.botonSpotify img{
-  width:450px;
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
+.botonYoutube{ position:fixed; top:238px; right:151px; z-index:9999;}
+.botonYoutube img{ width:280px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
+.botonYoutube img:hover{ transform:scale(1.08);}
 
-.botonSpotify img:hover{
-  transform:scale(1.08);
-}
+.botonApple{ position:fixed; top:396px; right:132px; z-index:9999;}
+.botonApple img{ width:305px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
+.botonApple img:hover{ transform:scale(1.08);}
 
-/* BOTON YOUTUBE */
-.botonYoutube{
-  position:fixed;
-  top:238px;
-  right:151px;
-  z-index:9999;
-}
-
-.botonYoutube img{
-  width:280px;
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
-
-.botonYoutube img:hover{
-  transform:scale(1.08);
-}
-
-/* 🍎 BOTON APPLE MUSIC */
-.botonApple{
-  position:fixed;
-  top:396px;
-  right:132px;
-  z-index:9999;
-}
-
-.botonApple img{
-  width:305px;
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
-
-.botonApple img:hover{
-  transform:scale(1.08);
-}
-
-/* 🔒 BOTON DESCARGA NUEVO */
+/* 🔥 NUEVO BOTON DESCARGA CON IMAGEN */
 .botonDescarga{
   position:fixed;
   top:540px;
@@ -90,101 +46,39 @@ body{
   z-index:9999;
 }
 
-.botonDescarga button{
+.botonDescarga img{
   width:305px;
-  height:85px;
-  border:none;
-  border-radius:20px;
-  font-size:20px;
-  font-weight:bold;
   cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#555,#333);
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
   transition:0.3s;
 }
 
-.botonDescarga button:hover{
+.botonDescarga img:hover{
   transform:scale(1.08);
 }
 
-.desbloqueado{
-  background:linear-gradient(45deg,#00ff88,#00c853) !important;
-}
-
 /* LOGO */
-.logoFijo{
-  position:fixed;
-  top:4px;
-  left:-10px;
-  z-index:99999;
-}
-
-.logoFijo img{
-  width:110px;
-}
-
-/* EMBED */
-.spotifyEmbed{
-  display:flex;
-  justify-content:center;
-}
-
-@media (min-width: 769px){
-  .spotifyEmbed{
-    transform: translate(-217px, 33px);
-  }
-}
+.logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
+.logoFijo img{ width:110px; }
 
 /* CELULAR */
-@media (max-width: 768px){
+@media (max-width:768px){
+  body{ min-height:180vh; overflow-x:hidden; }
 
-  body{
-    min-height:180vh;
-    overflow-x:hidden;
-  }
+  .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
 
-  .fotoCentral{
-    width:85vw;
-    margin-top:81px;
-    left:0;
-    top:0;
-  }
-
-  .botonSpotify,
-  .botonYoutube,
-  .botonApple,
-  .botonDescarga{
+  .botonSpotify,.botonYoutube,.botonApple,.botonDescarga{
     position:static;
     display:block;
     margin:auto;
     width:300px;
   }
 
-  .botonSpotify img,
-  .botonYoutube img,
-  .botonApple img{
+  .botonSpotify img,.botonYoutube img,.botonApple img,.botonDescarga img{
     width:300px;
-    border-radius:18px;
   }
 
-  .botonDescarga button{
-    width:300px;
-    height:75px;
-  }
-
-  .logoFijo{
-    top:10px;
-    left:0;
-  }
-
-  .logoFijo img{
-    width:65px;
-  }
-
-  .spotifyEmbed{
-    transform: translate(0px, 350px);
-  }
+  .logoFijo{ top:10px; left:0; }
+  .logoFijo img{ width:65px; }
 }
 </style>
 </head>
@@ -196,42 +90,30 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 
 <!-- SPOTIFY -->
 <a class="botonSpotify"
-href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q"
-target="_blank" rel="noopener">
+href="https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs"
+target="_blank">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
 <!-- YOUTUBE -->
 <a class="botonYoutube"
 href="https://youtu.be/LhNoNp9qEiQ"
-target="_blank"
-rel="noopener"
-onclick="abrirYT(event)">
+target="_blank">
 <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- APPLE MUSIC -->
+<!-- APPLE -->
 <a class="botonApple"
 href="https://music.apple.com/mx/song/solo/1706135810"
-target="_blank"
-rel="noopener">
+target="_blank">
 <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
-<!-- 🔒 BOTON DESBLOQUEABLE -->
+<!-- 🔒 BOTON DESCARGA CON IMAGENES -->
 <div class="botonDescarga">
-  <button id="btnDescarga" onclick="seguirSpotify()">
-    🔒 Seguir en Spotify para desbloquear MP3
-  </button>
-</div>
-
-<!-- EMBED SPOTIFY -->
-<div class="spotifyEmbed">
-  <iframe style="border-radius:12px" 
-  src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
-  width="60%" height="80" frameborder="0"
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
+  <img id="imgDescarga"
+  src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
+  onclick="seguirSpotify()">
 </div>
 
 <div class="logoFijo">
@@ -239,16 +121,11 @@ rel="noopener">
 </div>
 
 <script>
-function abrirYT(e){
-  var esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  if(esMovil){
-    e.preventDefault();
-    window.location.href = "youtube://watch?v=LhNoNp9qEiQ";
-  }
-}
-
 const linkSpotify = "https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs";
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
+
+const imgBloqueado = "https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f";
+const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
 window.onload = function(){
   if(localStorage.getItem("spotifyFollow") === "si"){
@@ -267,10 +144,9 @@ function seguirSpotify(){
 }
 
 function desbloquear(){
-  const btn = document.getElementById("btnDescarga");
-  btn.innerHTML = "⬇ DESCARGAR MP3";
-  btn.classList.add("desbloqueado");
-  btn.onclick = function(){
+  const img = document.getElementById("imgDescarga");
+  img.src = imgDesbloqueado;
+  img.onclick = function(){
     window.open(linkDescarga,"_blank");
   }
 }
