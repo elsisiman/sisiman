@@ -43,19 +43,6 @@ body{
 .botonDescarga img{ width:305px; cursor:pointer; transition:0.3s;}
 .botonDescarga img:hover{ transform:scale(1.08);}
 
-/* CONTADOR (ya no se usa pero lo dejamos intacto) */
-#contadorSpotify{
-  position:absolute;
-  width:305px;
-  text-align:center;
-  margin-top:-55px;
-  font-size:22px;
-  font-weight:bold;
-  color:white;
-  text-shadow:0 0 10px black;
-  display:none;
-}
-
 /* LOGO */
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
@@ -111,7 +98,6 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
   onclick="seguirSpotify()">
-  <div id="contadorSpotify"></div>
 </div>
 
 <div class="spotifyEmbed">
@@ -127,43 +113,57 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 </div>
 
 <script>
-/* ===== SPOTIFY LOGIN REAL ===== */
+/* ===== LOGIN SPOTIFY REAL FUNCIONANDO ===== */
 const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
 const redirect_uri = "https://elsisiman.github.io/sisiman/";
-
 const artist_id = "5KeX79pQzo2M92PKqjOhxo";
 const playlist_id = "5H4YBJmZKajvJnANiswCvX";
 
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
-const imgBloqueado = "https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f";
 const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
 let tokenSpotify = null;
 
-/* LOGIN */
+/* BOTON LOGIN */
 function seguirSpotify(){
   const scope = "user-follow-read playlist-read-private";
+
   const auth_url =
   "https://accounts.spotify.com/authorize"+
-  "?response_type=token"+
-  "&client_id="+client_id+
+  "?client_id="+client_id+
+  "&response_type=code"+
+  "&redirect_uri="+encodeURIComponent(redirect_uri)+
   "&scope="+encodeURIComponent(scope)+
-  "&redirect_uri="+encodeURIComponent(redirect_uri);
+  "&show_dialog=true";
 
   window.location = auth_url;
 }
 
-/* AL VOLVER DE SPOTIFY */
+/* RECIBIR CODE */
 window.onload = () => {
-  if(window.location.hash){
-    tokenSpotify = window.location.hash
-      .substring(1)
-      .split("&")
-      .find(x => x.startsWith("access_token"))
-      .split("=")[1];
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get("code");
+  if(code){ intercambiarCodePorToken(code); }
+}
 
-    verificarArtista();
-  }
+/* CODE → TOKEN */
+async function intercambiarCodePorToken(code){
+  const body = new URLSearchParams({
+    grant_type: "authorization_code",
+    code: code,
+    redirect_uri: redirect_uri,
+    client_id: client_id
+  });
+
+  const respuesta = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body
+  });
+
+  const data = await respuesta.json();
+  tokenSpotify = data.access_token;
+  verificarArtista();
 }
 
 /* VERIFICAR FOLLOW ARTISTA */
@@ -173,25 +173,23 @@ function verificarArtista(){
   })
   .then(res=>res.json())
   .then(data=>{
-    if(data.artists.items.length > 0){
-      verificarPlaylist();
-    } else {
+    if(data.artists.items.length > 0){ verificarPlaylist(); }
+    else{
       alert("Debes seguir al artista ❤️");
       window.open("https://open.spotify.com/artist/"+artist_id);
     }
   });
 }
 
-/* VERIFICAR FOLLOW PLAYLIST */
+/* VERIFICAR PLAYLIST */
 function verificarPlaylist(){
   fetch("https://api.spotify.com/v1/playlists/"+playlist_id+"/followers/contains?ids=me",{
     headers:{ "Authorization":"Bearer "+tokenSpotify }
   })
   .then(res=>res.json())
   .then(data=>{
-    if(data[0] === true){
-      desbloquearDescarga();
-    } else {
+    if(data[0] === true){ desbloquearDescarga(); }
+    else{
       alert("Sigue la playlist 🔥");
       window.open("https://open.spotify.com/playlist/"+playlist_id);
     }
@@ -202,9 +200,7 @@ function verificarPlaylist(){
 function desbloquearDescarga(){
   const img=document.getElementById("imgDescarga");
   img.src=imgDesbloqueado;
-  img.onclick=function(){
-    window.open(linkDescarga,"_blank");
-  }
+  img.onclick=function(){ window.open(linkDescarga,"_blank"); }
   alert("DESCARGA DESBLOQUEADA 🚀");
 }
 </script>
