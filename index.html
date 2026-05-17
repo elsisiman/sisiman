@@ -39,22 +39,9 @@ body{
 .botonApple img:hover{ transform:scale(1.08);}
 
 /* BOTON DESCARGA */
-.botonDescarga{
-  position:fixed;
-  top:540px;
-  right:132px;
-  z-index:9999;
-}
-
-.botonDescarga img{
-  width:305px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.botonDescarga img:hover{
-  transform:scale(1.08);
-}
+.botonDescarga{ position:fixed; top:540px; right:132px; z-index:9999;}
+.botonDescarga img{ width:305px; cursor:pointer; transition:0.3s;}
+.botonDescarga img:hover{ transform:scale(1.08);}
 
 /* CONTADOR */
 #contadorSpotify{
@@ -108,22 +95,18 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- SPOTIFY -->
 <a class="botonSpotify" href="https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs" target="_blank">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- YOUTUBE -->
 <a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank">
 <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- APPLE -->
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank">
 <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
-<!-- BOTON DESCARGA -->
 <div class="botonDescarga">
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
@@ -131,7 +114,6 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
   <div id="contadorSpotify">Siguiendo en Spotify… 5</div>
 </div>
 
-<!-- SPOTIFY EMBED -->
 <div class="spotifyEmbed">
   <iframe style="border-radius:12px" 
   src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
@@ -147,24 +129,26 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 <script>
 const linkSpotify = "https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs";
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
+const imgBloqueado = "https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f";
 const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
-window.onload = function(){
-  if(localStorage.getItem("spotifyFollow") === "si"){
-    desbloquear();
-  }
-}
+let verificado = false;
 
 function seguirSpotify(){
-  window.open(linkSpotify,"spotifyPopup","width=500,height=650,left=200,top=100");
+  const ancho=500, alto=720;
+  const izquierda=(screen.width/2)-(ancho/2);
+  const arriba=(screen.height/2)-(alto/2);
+
+  window.open(linkSpotify,"spotifyLogin",
+  `width=${ancho},height=${alto},left=${izquierda},top=${arriba}`);
+
   iniciarContador();
 }
 
 function iniciarContador(){
-  let tiempo = 5;
-  const contador = document.getElementById("contadorSpotify");
+  let tiempo=5;
+  const contador=document.getElementById("contadorSpotify");
   contador.style.display="block";
-  contador.innerHTML="Siguiendo en Spotify… "+tiempo;
 
   const intervalo=setInterval(()=>{
     tiempo--;
@@ -173,17 +157,30 @@ function iniciarContador(){
     if(tiempo<=0){
       clearInterval(intervalo);
       contador.innerHTML="✔ Verificado";
-      localStorage.setItem("spotifyFollow","si");
-      desbloquear();
-      setTimeout(()=>{contador.style.display="none";},1500);
+      verificado=true;
+      desbloquearTemporal();
+      setTimeout(()=>contador.style.display="none",1500);
     }
   },1000);
 }
 
-function desbloquear(){
+function desbloquearTemporal(){
   const img=document.getElementById("imgDescarga");
   img.src=imgDesbloqueado;
-  img.onclick=function(){ window.open(linkDescarga,"_blank"); }
+
+  img.onclick=function(){
+    if(verificado){
+      window.open(linkDescarga,"_blank");
+      setTimeout(bloquearDeNuevo,3000);
+    }
+  }
+}
+
+function bloquearDeNuevo(){
+  const img=document.getElementById("imgDescarga");
+  img.src=imgBloqueado;
+  img.onclick=seguirSpotify;
+  verificado=false;
 }
 </script>
 
