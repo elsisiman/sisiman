@@ -82,6 +82,36 @@ body{
   transform:scale(1.08);
 }
 
+/* 🔒 BOTON DESCARGA NUEVO */
+.botonDescarga{
+  position:fixed;
+  top:540px;
+  right:132px;
+  z-index:9999;
+}
+
+.botonDescarga button{
+  width:305px;
+  height:85px;
+  border:none;
+  border-radius:20px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(45deg,#555,#333);
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.botonDescarga button:hover{
+  transform:scale(1.08);
+}
+
+.desbloqueado{
+  background:linear-gradient(45deg,#00ff88,#00c853) !important;
+}
+
 /* LOGO */
 .logoFijo{
   position:fixed;
@@ -123,7 +153,8 @@ body{
 
   .botonSpotify,
   .botonYoutube,
-  .botonApple{
+  .botonApple,
+  .botonDescarga{
     position:static;
     display:block;
     margin:auto;
@@ -135,6 +166,11 @@ body{
   .botonApple img{
     width:300px;
     border-radius:18px;
+  }
+
+  .botonDescarga button{
+    width:300px;
+    height:75px;
   }
 
   .logoFijo{
@@ -174,13 +210,20 @@ onclick="abrirYT(event)">
 <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- 🍎 APPLE MUSIC (imagen nueva puesta) -->
+<!-- APPLE MUSIC -->
 <a class="botonApple"
 href="https://music.apple.com/mx/song/solo/1706135810"
 target="_blank"
 rel="noopener">
 <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
+
+<!-- 🔒 BOTON DESBLOQUEABLE -->
+<div class="botonDescarga">
+  <button id="btnDescarga" onclick="seguirSpotify()">
+    🔒 Seguir en Spotify para desbloquear MP3
+  </button>
+</div>
 
 <!-- EMBED SPOTIFY -->
 <div class="spotifyEmbed">
@@ -201,6 +244,34 @@ function abrirYT(e){
   if(esMovil){
     e.preventDefault();
     window.location.href = "youtube://watch?v=LhNoNp9qEiQ";
+  }
+}
+
+const linkSpotify = "https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs";
+const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
+
+window.onload = function(){
+  if(localStorage.getItem("spotifyFollow") === "si"){
+    desbloquear();
+  }
+}
+
+function seguirSpotify(){
+  window.open(linkSpotify, "_blank");
+  alert("Sígueme en Spotify y regresa para desbloquear la descarga");
+
+  setTimeout(()=>{
+    localStorage.setItem("spotifyFollow","si");
+    desbloquear();
+  },6000);
+}
+
+function desbloquear(){
+  const btn = document.getElementById("btnDescarga");
+  btn.innerHTML = "⬇ DESCARGAR MP3";
+  btn.classList.add("desbloqueado");
+  btn.onclick = function(){
+    window.open(linkDescarga,"_blank");
   }
 }
 </script>
