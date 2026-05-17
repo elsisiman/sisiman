@@ -52,15 +52,13 @@ body{
 
 
 /* =======================================================
-   ESTILOS BASE DEL PRIMER TEXTO (AHORA TEXTO NORMAL)
+   ESTILOS BASE DE LOS DOS TEXTOS NORMALES
    ======================================================= */
-.seccionTexto {
-  color: #e0e0e0;        /* Color gris claro muy limpio */
-  font-size: 16px;       /* Tamaño de texto normal y cómodo */
-  line-height: 1.6;      /* Espacio entre renglones */
+.seccionTexto, .seccionTexto2 {
+  color: #e0e0e0;        
+  font-size: 16px;       
+  line-height: 1.6;      
   z-index: 1;
-  
-  /* CAMBIA LA LETRA AQUÍ SI QUIERES (Ejemplos: 'Arial', 'Courier New') */
   font-family: 'Arial', sans-serif; 
 }
 
@@ -74,14 +72,20 @@ body{
     min-height: 250vh; 
   }
 
-  /* MUEVE TU TEXTO NORMAL LIBREMENTE EN PC DESDE AQUÍ */
+  /* TEXTO 1: Mueve libremente "cantondecarton" */
   .seccionTexto {
     width: 400px;
-    text-align: left;      /* Alineado a la izquierda */
-    
-    /* MODIFICA ESTOS DOS VALORES A TU GUSTO: */
-    margin-top: 60px;      /* Espacio hacia abajo desde el embed de Spotify */
-    margin-left: 150px;    /* Espacio desde la orilla izquierda de la pantalla */
+    text-align: left;      
+    margin-top: 60px;      /* Espacio abajo desde el embed */
+    margin-left: 150px;    /* Espacio desde la orilla izquierda */
+  }
+
+  /* TEXTO 2: Mueve libremente "3125951818" */
+  .seccionTexto2 {
+    width: 400px;
+    text-align: left;      
+    margin-top: 20px;      /* Espacio abajo desde el primer texto */
+    margin-left: 150px;    /* Espacio desde la orilla izquierda */
   }
 }
 
@@ -106,9 +110,14 @@ body{
 
   .spotifyEmbed{ transform: translate(0px, 350px); }
 
-  /* En celular se centra abajo de todo automáticamente */
+  /* Acomodo automático en celular uno abajo del otro */
   .seccionTexto {
-    margin: 390px auto 50px auto; 
+    margin: 390px auto 0px auto; 
+    width: 85vw;
+    text-align: center;
+  }
+  .seccionTexto2 {
+    margin: 15px auto 50px auto; 
     width: 85vw;
     text-align: center;
   }
@@ -140,10 +149,14 @@ body{
   <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
 
-<!-- TU TEXTO NORMAL -->
+<!-- TU PRIMER TEXTO -->
 <div class="seccionTexto">
-cantondecarton@hotmail.com
-  
+  cantondecarton
+</div>
+
+<!-- TU SEGUNDO TEXTO -->
+<div class="seccionTexto2">
+  3125951818
 </div>
 
 <div class="logoFijo">
