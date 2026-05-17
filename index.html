@@ -144,7 +144,27 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-  .spotifyEmbed{ transform: translate(0px, 350px); }
+
+  /* =======================================================
+     NUEVO CONTROL TOTAL DEL EMBED DE SPOTIFY EN CELULAR
+     ======================================================= */
+  .spotifyEmbed { 
+    position: absolute;
+    transform: none; /* Elimina herencias del diseño de PC */
+    display: block;
+
+    /* MODIFICA ESTOS VALORES PARA MOVER Y REDIMENSIONAR EL REPRODUCTOR: */
+    top: 750px;       /* Controla la altura en la página (bájalo o súbelo aquí) */
+    left: 10vw;       /* Margen desde la izquierda (usa 'vw' o 'px') */
+    width: 80vw;      /* Cambia el ANCHO total del reproductor en el cel */
+  }
+  
+  /* Fuerza al cuadro interno del reproductor a obedecer al control de arriba */
+  .spotifyEmbed iframe {
+    width: 100% !important;
+    height: 80px;     /* Cambia este número si quieres modificar la ALTURA del reproductor */
+  }
+
 
   /* NUEVO CONTROL EXCLUSIVO PARA EL PRIMER TEXTO (CORREO) EN CELULAR */
   .seccionTexto {
