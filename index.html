@@ -113,7 +113,6 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 </div>
 
 <script>
-/* ===== LOGIN SPOTIFY REAL FUNCIONANDO */
 const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
 const redirect_uri = "https://sisiman.vercel.app";
 const artist_id = "5KeX79pQzo2M92PKqjOhxo";
@@ -122,7 +121,8 @@ const playlist_id = "5H4YBJmZKajvJnANiswCvX";
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
 const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
-let tokenSpotify = null;
+/* 🔥 IMPORTANTE: ahora el token vive aunque regreses */
+let tokenSpotify = localStorage.getItem("spotify_token");
 
 /* BOTON LOGIN */
 function seguirSpotify(){
@@ -143,11 +143,18 @@ function seguirSpotify(){
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
-  if(code){ intercambiarCodePorToken(code); }
+
+  if(code){
+    intercambiarCodePorToken(code);
+  }
+  else if(tokenSpotify){
+    verificarArtista(); // 🔥 si ya hay token, desbloquea directo
+  }
 }
 
 /* CODE → TOKEN */
 async function intercambiarCodePorToken(code){
+
   const body = new URLSearchParams({
     grant_type: "authorization_code",
     code: code,
@@ -162,19 +169,25 @@ async function intercambiarCodePorToken(code){
   });
 
   const data = await respuesta.json();
+
   tokenSpotify = data.access_token;
+
+  /* 🔥 guardarlo para cuando regrese */
+  localStorage.setItem("spotify_token", tokenSpotify);
+
   verificarArtista();
 }
 
-/* VERIFICAR FOLLOW ARTISTA */
+/* VERIFICAR ARTISTA */
 function verificarArtista(){
   fetch("https://api.spotify.com/v1/me/following?type=artist&ids="+artist_id,{
     headers:{ "Authorization":"Bearer "+tokenSpotify }
   })
   .then(res=>res.json())
   .then(data=>{
-    if(data.artists.items.length > 0){ verificarPlaylist(); }
-    else{
+    if(data.artists.items.length > 0){
+      verificarPlaylist();
+    } else {
       alert("Debes seguir al artista ❤️");
       window.open("https://open.spotify.com/artist/"+artist_id);
     }
@@ -188,8 +201,9 @@ function verificarPlaylist(){
   })
   .then(res=>res.json())
   .then(data=>{
-    if(data[0] === true){ desbloquearDescarga(); }
-    else{
+    if(data[0] === true){
+      desbloquearDescarga();
+    } else {
       alert("Sigue la playlist 🔥");
       window.open("https://open.spotify.com/playlist/"+playlist_id);
     }
@@ -201,6 +215,7 @@ function desbloquearDescarga(){
   const img=document.getElementById("imgDescarga");
   img.src=imgDesbloqueado;
   img.onclick=function(){ window.open(linkDescarga,"_blank"); }
+
   alert("DESCARGA DESBLOQUEADA 🚀");
 }
 </script>
