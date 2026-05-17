@@ -76,12 +76,11 @@ body{
   .spotifyEmbed{ transform: translate(0px, 350px); }
 }
 
-/* ===== MINI VENTANA SPOTIFY ===== */
-.spotifyModal{
+/* ===== MINI VENTANA DESCARGA ===== */
+.modalDescarga{
   display:none;
   position:fixed;
-  top:0;
-  left:0;
+  top:0; left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.75);
@@ -90,24 +89,35 @@ body{
   align-items:center;
 }
 
-.spotifyBox{
+.modalBox{
   width:90%;
   max-width:500px;
-  height:600px;
   background:#111;
   border-radius:15px;
-  overflow:hidden;
-  position:relative;
+  padding:25px;
+  text-align:center;
+  color:white;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+
+.modalBox a{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 18px;
+  background:#1db954;
+  color:black;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
 }
 
 .closeBtn{
   position:absolute;
-  top:10px;
-  right:15px;
-  color:white;
+  top:15px;
+  right:20px;
   font-size:22px;
   cursor:pointer;
-  z-index:10;
+  color:white;
 }
 </style>
 </head>
@@ -117,7 +127,7 @@ body{
 <img class="fotoCentral"
 src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a class="botonSpotify" href="javascript:void(0)" onclick="abrirSpotify()">
+<a class="botonSpotify" href="https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs" target="_blank">
 <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
@@ -132,7 +142,7 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 <div class="botonDescarga">
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
-  onclick="seguirSpotify()">
+  onclick="abrirDescarga()">
 </div>
 
 <div class="spotifyEmbed">
@@ -147,37 +157,18 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
 
-<!-- MINI SPOTIFY WINDOW -->
-<div id="spotifyModal" class="spotifyModal">
-  <div class="spotifyBox">
-    <div class="closeBtn" onclick="cerrarSpotify()">✕</div>
-
-    <iframe 
-      id="spotifyFrame"
-      width="100%"
-      height="100%"
-      style="border-radius:12px"
-      frameborder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
+<!-- MODAL DESCARGA -->
+<div id="modalDescarga" class="modalDescarga">
+  <div class="modalBox">
+    <div class="closeBtn" onclick="cerrarDescarga()">✕</div>
+    <h2>🚀 DESCARGA DESBLOQUEADA</h2>
+    <p>Ya puedes continuar sin salir del sitio</p>
+    <a id="linkFinal" href="#" target="_blank">IR A DESCARGA</a>
   </div>
 </div>
 
 <script>
 
-function abrirSpotify(){
-  document.getElementById("spotifyFrame").src =
-    "https://open.spotify.com/artist/1YTUjUT54hysCojyJUrCRs";
-
-  document.getElementById("spotifyModal").style.display = "flex";
-}
-
-function cerrarSpotify(){
-  document.getElementById("spotifyModal").style.display = "none";
-  document.getElementById("spotifyFrame").src = "";
-}
-
-/* TU SISTEMA ORIGINAL */
 const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
 const redirect_uri = "https://sisiman.vercel.app";
 const artist_id = "5KeX79pQzo2M92PKqjOhxo";
@@ -188,6 +179,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 
 let tokenSpotify = localStorage.getItem("spotify_token");
 
+/* LOGIN */
 function seguirSpotify(){
   const scope = "user-follow-read playlist-read-private";
 
@@ -202,6 +194,7 @@ function seguirSpotify(){
   window.location = auth_url;
 }
 
+/* AL VOLVER */
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
@@ -211,6 +204,7 @@ window.onload = () => {
   }
 }
 
+/* TOKEN */
 async function intercambiarCodePorToken(code){
 
   const body = new URLSearchParams({
@@ -234,15 +228,18 @@ async function intercambiarCodePorToken(code){
 
   window.history.replaceState({}, document.title, "/");
 
-  desbloquearDescarga();
+  abrirDescarga();
 }
 
-function desbloquearDescarga(){
-  const img = document.getElementById("imgDescarga");
-  img.src = imgDesbloqueado;
-  img.onclick = () => window.open(linkDescarga, "_blank");
+/* ABRIR MINI VENTANA */
+function abrirDescarga(){
+  document.getElementById("modalDescarga").style.display = "flex";
+  document.getElementById("linkFinal").href = linkDescarga;
+}
 
-  alert("DESCARGA DESBLOQUEADA 🚀");
+/* CERRAR */
+function cerrarDescarga(){
+  document.getElementById("modalDescarga").style.display = "none";
 }
 
 </script>
