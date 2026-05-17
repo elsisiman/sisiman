@@ -76,48 +76,38 @@ body{
   .spotifyEmbed{ transform: translate(0px, 350px); }
 }
 
-/* ===== MINI VENTANA DESCARGA ===== */
-.modalDescarga{
+/* ===== MINI VENTANA REAL (NO MOLESTA) ===== */
+.miniVentana{
   display:none;
   position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.75);
-  z-index:999999;
-  justify-content:center;
-  align-items:center;
-}
-
-.modalBox{
-  width:90%;
-  max-width:500px;
+  bottom:25px;
+  right:25px;
+  width:260px;
   background:#111;
-  border-radius:15px;
-  padding:25px;
-  text-align:center;
   color:white;
-  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  padding:14px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+  z-index:999999;
+  font-size:14px;
 }
 
-.modalBox a{
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 18px;
+.miniVentana a{
+  display:block;
+  margin-top:10px;
+  padding:10px;
   background:#1db954;
   color:black;
+  text-align:center;
   text-decoration:none;
-  border-radius:10px;
+  border-radius:8px;
   font-weight:bold;
 }
 
-.closeBtn{
-  position:absolute;
-  top:15px;
-  right:20px;
-  font-size:22px;
+.cerrar{
+  float:right;
   cursor:pointer;
-  color:white;
+  font-size:16px;
 }
 </style>
 </head>
@@ -142,7 +132,7 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
 <div class="botonDescarga">
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
-  onclick="abrirDescarga()">
+  onclick="abrirMini()">
 </div>
 
 <div class="spotifyEmbed">
@@ -157,89 +147,25 @@ src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66
   <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
 </div>
 
-<!-- MODAL DESCARGA -->
-<div id="modalDescarga" class="modalDescarga">
-  <div class="modalBox">
-    <div class="closeBtn" onclick="cerrarDescarga()">✕</div>
-    <h2>🚀 DESCARGA DESBLOQUEADA</h2>
-    <p>Ya puedes continuar sin salir del sitio</p>
-    <a id="linkFinal" href="#" target="_blank">IR A DESCARGA</a>
-  </div>
+<!-- MINI VENTANA -->
+<div id="miniVentana" class="miniVentana">
+  <span class="cerrar" onclick="cerrarMini()">✕</span>
+  <b>DESCARGA DESBLOQUEADA 🚀</b>
+
+  <a id="linkFinal" href="#" target="_blank">IR A DESCARGA</a>
 </div>
 
 <script>
 
-const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
-const redirect_uri = "https://sisiman.vercel.app";
-const artist_id = "5KeX79pQzo2M92PKqjOhxo";
-const playlist_id = "5H4YBJmZKajvJnANiswCvX";
-
 const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
-const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
 
-let tokenSpotify = localStorage.getItem("spotify_token");
-
-/* LOGIN */
-function seguirSpotify(){
-  const scope = "user-follow-read playlist-read-private";
-
-  const auth_url =
-  "https://accounts.spotify.com/authorize"+
-  "?client_id="+client_id+
-  "&response_type=code"+
-  "&redirect_uri="+encodeURIComponent(redirect_uri)+
-  "&scope="+encodeURIComponent(scope)+
-  "&show_dialog=true";
-
-  window.location = auth_url;
-}
-
-/* AL VOLVER */
-window.onload = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const code = urlParams.get("code");
-
-  if(code){
-    intercambiarCodePorToken(code);
-  }
-}
-
-/* TOKEN */
-async function intercambiarCodePorToken(code){
-
-  const body = new URLSearchParams({
-    grant_type: "authorization_code",
-    code: code,
-    redirect_uri: redirect_uri,
-    client_id: client_id
-  });
-
-  const respuesta = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body
-  });
-
-  const data = await respuesta.json();
-
-  tokenSpotify = data.access_token;
-
-  localStorage.setItem("spotify_token", tokenSpotify);
-
-  window.history.replaceState({}, document.title, "/");
-
-  abrirDescarga();
-}
-
-/* ABRIR MINI VENTANA */
-function abrirDescarga(){
-  document.getElementById("modalDescarga").style.display = "flex";
+function abrirMini(){
+  document.getElementById("miniVentana").style.display = "block";
   document.getElementById("linkFinal").href = linkDescarga;
 }
 
-/* CERRAR */
-function cerrarDescarga(){
-  document.getElementById("modalDescarga").style.display = "none";
+function cerrarMini(){
+  document.getElementById("miniVentana").style.display = "none";
 }
 
 </script>
