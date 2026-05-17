@@ -94,34 +94,48 @@ body{
   body{ min-height:180vh; overflow-x:hidden; }
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
 
-  /* Separamos los otros botones para dejar que modifiques el de YouTube solo */
-  .botonSpotify, .botonApple, .botonDescarga{
-    position:static;
-    display:block;
-    margin:auto;
-    width:300px;
-  }
-
-  /* NUEVO: CÓDIGO DE CONTROL EXCLUSIVO PARA EL BOTÓN DE YOUTUBE EN CELULAR */
-  .botonYoutube {
-    position: absolute;   /* Permite moverlo libremente con top y right */
-    
-    /* MODIFICA ESTOS TRES VALORES A TU GUSTO EN EL CELULAR: */
-    top: 320px;          /* Controla la distancia desde arriba */
-    right: 40px;         /* Controla la distancia desde la derecha */
-    width: 250px;        /* Controla el ancho del botón en el celular */
-    
+  /* 1. CONTROL PARA EL BOTÓN DE SPOTIFY EN CELULAR */
+  .botonSpotify {
+    position: absolute;
+    top: 200px;          /* Ajusta la altura */
+    right: 20px;         /* Ajusta posición derecha */
+    width: 280px;        /* Ajusta el ancho */
     display: block;
     margin: 0;
   }
 
-  /* Ajuste de tamaños de imagen de los otros botones */
-  .botonSpotify img, .botonApple img, .botonDescarga img{
-    width:300px;
+  /* 2. CONTROL PARA EL BOTÓN DE YOUTUBE EN CELULAR */
+  .botonYoutube {
+    position: absolute;   
+    top: 320px;          
+    right: 40px;         
+    width: 250px;        
+    display: block;
+    margin: 0;
   }
 
-  /* NUEVO: Hace que la imagen de YouTube obedezca al ancho (width) que pongas arriba */
-  .botonYoutube img {
+  /* 3. CONTROL PARA EL BOTÓN DE APPLE MUSIC EN CELULAR */
+  .botonApple {
+    position: absolute;
+    top: 440px;          /* Ajusta la altura */
+    right: 30px;         /* Ajusta posición derecha */
+    width: 260px;        /* Ajusta el ancho */
+    display: block;
+    margin: 0;
+  }
+
+  /* 4. CONTROL PARA EL BOTÓN DE DESCARGA EN CELULAR */
+  .botonDescarga {
+    position: absolute;
+    top: 560px;          /* Ajusta la altura */
+    right: 35px;         /* Ajusta posición derecha */
+    width: 260px;        /* Ajusta el ancho */
+    display: block;
+    margin: 0;
+  }
+
+  /* Hace que todas las imágenes obedezcan al ancho (width) asignado arriba */
+  .botonSpotify img, .botonYoutube img, .botonApple img, .botonDescarga img {
     width: 100%;
   }
 
