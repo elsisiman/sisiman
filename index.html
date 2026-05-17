@@ -140,19 +140,17 @@ function seguirSpotify(){
   window.location = auth_url;
 }
 
-/* AL VOLVER */
+/* SOLO CUANDO REGRESA */
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
 
   if(code){
     intercambiarCodePorToken(code);
-  } else if(tokenSpotify){
-    verificarArtista();
   }
 }
 
-/* CODE → TOKEN */
+/* TOKEN */
 async function intercambiarCodePorToken(code){
 
   const body = new URLSearchParams({
@@ -174,47 +172,16 @@ async function intercambiarCodePorToken(code){
 
   localStorage.setItem("spotify_token", tokenSpotify);
 
-  // 🔥 QUITAR code de la URL para evitar bugs al recargar
   window.history.replaceState({}, document.title, "/");
 
-  verificarArtista();
+  desbloquearDescarga();
 }
 
-/* VERIFICAR ARTISTA */
-function verificarArtista(){
-  fetch("https://api.spotify.com/v1/me/following?type=artist&ids="+artist_id,{
-    headers:{ "Authorization":"Bearer "+tokenSpotify }
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    if(data.artists?.items?.length > 0){
-      verificarPlaylist();
-    } else {
-      alert("Debes seguir al artista ❤️");
-    }
-  });
-}
-
-/* VERIFICAR PLAYLIST */
-function verificarPlaylist(){
-  fetch("https://api.spotify.com/v1/playlists/"+playlist_id+"/followers/contains?ids=me",{
-    headers:{ "Authorization":"Bearer "+tokenSpotify }
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    if(data[0] === true){
-      desbloquearDescarga();
-    } else {
-      alert("Sigue la playlist 🔥");
-    }
-  });
-}
-
-/* DESBLOQUEO */
+/* DESBLOQUEO SIMPLE Y ESTABLE */
 function desbloquearDescarga(){
-  const img=document.getElementById("imgDescarga");
-  img.src=imgDesbloqueado;
-  img.onclick=function(){ window.open(linkDescarga,"_blank"); }
+  const img = document.getElementById("imgDescarga");
+  img.src = imgDesbloqueado;
+  img.onclick = () => window.open(linkDescarga, "_blank");
 
   alert("DESCARGA DESBLOQUEADA 🚀");
 }
