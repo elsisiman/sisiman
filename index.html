@@ -60,6 +60,18 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
+/* 🎧 SPOTIFY EMBED (lo que faltaba) */
+.spotifyEmbed{
+  display:flex;
+  justify-content:center;
+}
+
+@media (min-width:769px){
+  .spotifyEmbed{
+    transform: translate(-217px, 33px);
+  }
+}
+
 /* CELULAR */
 @media (max-width:768px){
   body{ min-height:180vh; overflow-x:hidden; }
@@ -79,6 +91,10 @@ body{
 
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
+
+  .spotifyEmbed{
+    transform: translate(0px, 350px);
+  }
 }
 </style>
 </head>
@@ -109,11 +125,20 @@ target="_blank">
 <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
-<!-- 🔒 BOTON DESCARGA CON IMAGENES -->
+<!-- 🔒 BOTON DESCARGA -->
 <div class="botonDescarga">
   <img id="imgDescarga"
   src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"
   onclick="seguirSpotify()">
+</div>
+
+<!-- 🎧 SPOTIFY EMBED RESTAURADO -->
+<div class="spotifyEmbed">
+  <iframe style="border-radius:12px" 
+  src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" 
+  width="60%" height="80" frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
 </div>
 
 <div class="logoFijo">
