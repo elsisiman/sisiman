@@ -91,8 +91,8 @@ body{
 
 /* CELULAR */
 @media (max-width:768px){
-  /* MODIFICA ESTE NÚMERO (ej. 190vh, 180vh, etc.) PARA QUITAR O AGREGAR SCROLL A TU GUSTO */
-  body{ min-height:221vh; overflow-x:hidden; }
+  /* MODIFICA ESTE NÚMERO PARA QUITAR O AGREGAR SCROLL A TU GUSTO */
+  body{ min-height:190vh; overflow-x:hidden; }
   
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
 
@@ -150,30 +150,26 @@ body{
      ======================================================= */
   .spotifyEmbed { 
     position: absolute;
-    transform: none; /* Elimina herencias del diseño de PC */
+    transform: none; 
     display: block;
 
     /* MODIFICA ESTOS VALORES PARA MOVER Y REDIMENSIONAR EL REPRODUCTOR: */
-    top: 1254px;       /* Controla la altura en la página (bájalo o súbelo aquí) */
-    left: 2vw;       /* Margen desde la izquierda (usa 'vw' o 'px') */
-    width: 90vw;      /* Cambia el ANCHO total del reproductor en el cel */
+    top: 1254px;       
+    left: 2vw;       
+    width: 90vw;      
   }
   
-  /* Fuerza al cuadro interno del reproductor a obedecer al control de arriba */
   .spotifyEmbed iframe {
     width: 105% !important;
-    height: 80px;     /* Cambia este número si quieres modificar la ALTURA del reproductor */
+    height: 80px;     
   }
 
 
   /* NUEVO CONTROL EXCLUSIVO PARA EL PRIMER TEXTO (CORREO) EN CELULAR */
   .seccionTexto {
     position: absolute;
-    
-    /* MODIFICA ESTOS VALORES PARA MOVER EL CORREO: */
-    top: 1338px;         /* Sube este número (ej. 1200px) para bajarlo todo lo que quieras */
-    left: -8vw;        /* Lo centra perfectamente en pantallas de cel */
-    
+    top: 1338px;         
+    left: -8vw;        
     width: 85vw;
     text-align: center;
   }
@@ -181,16 +177,32 @@ body{
   /* NUEVO CONTROL EXCLUSIVO PARA EL SEGUNDO TEXTO (TELÉFONO) EN CELULAR */
   .seccionTexto2 {
     position: absolute;
-    
-    /* MODIFICA ESTOS VALORES PARA MOVER EL TELÉFONO: */
-    top: 1359px;         /* Controla la altura del teléfono en el celular */
-    left: -26vw;        /* Lo centra perfectamente en pantallas de cel */
-    
+    top: 1359px;         
+    left: -26vw;        
     width: 83vw;
     text-align: center;
   }
 }
 </style>
+
+<!-- CÓDIGO DEL PÍXEL DE FACEBOOK INSTALADO -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1574777457157001'); 
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
+/></noscript>
+<!-- FIN DEL CÓDIGO DEL PÍXEL -->
+
 </head>
 
 <body>
