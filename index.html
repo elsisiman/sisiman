@@ -235,7 +235,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA FILTRADA: SE MANITIENE EL DETECTOR DE CHROME MOVIL INTACTO
+// LOGICA FILTRADA: SE MANTIENE EL DETECTOR DE CHROME MOVIL INTACTO
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
@@ -265,61 +265,13 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   }
 }
 
-// CORREGIDA: Optimización estricta de envío para asegurar la captura en navegadores móviles
+// SOLUCIÓN DEFINITIVA: Integración limpia con el objeto global fbq nativo de Meta
 function enviarA_API(nombreEvento) {
-  const pixelId = '1574777457157001';
-  const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
-  
   if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
-  }
-
-  const obtenerCookie = (nombre) => {
-    const valor = `; ${document.cookie}`;
-    const partes = valor.split(`; ${nombre}=`);
-    if (partes.length === 2) return partes.pop().split(';').shift();
-    return null;
-  };
-
-  let fbp = obtenerCookie('_fbp') || null;
-  let fbc = obtenerCookie('_fbc') || new URLSearchParams(window.location.search).get('fbclid') || null;
-
-  const datosEvento = {
-    data: [{
-      event_name: nombreEvento,
-      event_time: Math.floor(Date.now() / 1000),
-      event_source_url: window.location.href,
-      action_source: 'website',
-      user_data: {
-        client_user_agent: navigator.userAgent,
-        fbp: fbp,
-        fbc: fbc
-      }
-    }]
-  };
-
-  const url = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`;
-  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  // En celulares usamos FETCH directo obligatorio para evitar bloqueos del navegador móvil
-  if (esMovil) {
-    fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(datosEvento)
-    }).catch(err => console.log("Error API Móvil:", err));
+    console.log("Evento enviado exitosamente a Meta:", nombreEvento);
   } else {
-    // En PC mantenemos sendBeacon para ligereza
-    if (navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
-      navigator.sendBeacon(url, blob);
-    } else {
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datosEvento)
-      }).catch(err => console.log("Error API PC:", err));
-    }
+    console.log("El script base de Meta aún no se ha cargado.");
   }
 }
 
