@@ -199,7 +199,6 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- CORREGIDO: Se removió el parámetro itmss:// que congelaba Google Chrome en celulares -->
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'ViewContent')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
@@ -236,22 +235,30 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA AJUSTADA: RESPALDO DE REDIRECCIÓN CONDICIONAL SÓLO PARA APPLE MUSIC
+// LOGICA FILTRADA: SE AGREGO EL DETECTOR EXCLUSIVO PARA CHROME MOVIL EN APPLE MUSIC
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
 
-  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const ua = navigator.userAgent;
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
+  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
 
+  // SI ES CHROME EN CELULAR Y ES EL BOTÓN DE APPLE MUSIC, FUERZA OTRA PESTAÑA
+  if (esChromeMovil && urlApp.startsWith('music:')) {
+    e.preventDefault();
+    window.open(urlWeb, '_blank');
+    return;
+  }
+
+  // TODO LO DEMÁS (NAVEGADOR FACEBOOK, PC, SPOTIFY, YOUTUBE) SE QUEDA IGUAL QUE ANTES
   if (esMovil) {
     e.preventDefault(); 
 
-    // Intenta abrir la app nativa correspondiente
     setTimeout(() => {
       window.location.href = urlApp;
     }, 100);
 
-    // El temporizador de respaldo SOLO se activará para Apple Music
     if (urlApp.startsWith('music:')) {
       setTimeout(() => {
         window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
