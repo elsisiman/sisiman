@@ -235,7 +235,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA OPTIMIZADA: CORREGIDO EL PROBLEMA DE LA PESTAÑA EXTRA EN CHROME MÓVIL
+// LOGICA AJUSTADA: RESPALDO DE REDIRECCIÓN CONDICIONAL SÓLO PARA APPLE MUSIC
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
@@ -245,10 +245,17 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   if (esMovil) {
     e.preventDefault(); 
 
-    // Abrimos la aplicación nativa de forma limpia
+    // Intenta abrir la app nativa correspondiente
     setTimeout(() => {
       window.location.href = urlApp;
     }, 100);
+
+    // El temporizador de respaldo SOLO se activará para Apple Music
+    if (urlApp.startsWith('music:')) {
+      setTimeout(() => {
+        window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+      }, 1300);
+    }
   }
 }
 
