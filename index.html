@@ -91,12 +91,10 @@ body{
 
 /* CELULAR */
 @media (max-width:768px){
-  /* MODIFICA ESTE NÚMERO (ej. 190vh, 180vh, etc.) PARA QUITAR O AGREGAR SCROLL A TU GUSTO */
   body{ min-height:221vh; overflow-x:hidden; }
   
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
 
-  /* 1. CONTROL PARA EL BOTÓN DE SPOTIFY EN CELULAR */
   .botonSpotify {
     position: absolute;
     top: 570px;          
@@ -106,7 +104,6 @@ body{
     margin: 0;
   }
 
-  /* 2. CONTROL PARA EL BOTÓN DE YOUTUBE EN CELULAR */
   .botonYoutube {
     position: absolute;   
     top: 743px;          
@@ -116,7 +113,6 @@ body{
     margin: 0;
   }
 
-  /* 3. CONTROL PARA EL BOTÓN DE APPLE MUSIC EN CELULAR */
   .botonApple {
     position: absolute;
     top: 903px;          
@@ -126,7 +122,6 @@ body{
     margin: 0;
   }
 
-  /* 4. CONTROL PARA EL BOTÓN DE DESCARGA EN CELULAR */
   .botonDescarga {
     position: absolute;
     top: 1043px;          
@@ -136,7 +131,6 @@ body{
     margin: 0;
   }
 
-  /* Hace que todas las imágenes obedezcan al ancho (width) asignado arriba */
   .botonSpotify img, .botonYoutube img, .botonApple img, .botonDescarga img {
     width: 100%;
   }
@@ -144,48 +138,32 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-
-  /* =======================================================
-     NUEVO CONTROL TOTAL DEL EMBED DE SPOTIFY EN CELULAR
-     ======================================================= */
   .spotifyEmbed { 
     position: absolute;
-    transform: none; /* Elimina herencias del diseño de PC */
+    transform: none; 
     display: block;
-
-    /* MODIFICA ESTOS VALORES PARA MOVER Y REDIMENSIONAR EL REPRODUCTOR: */
-    top: 1254px;       /* Controla la altura en la página (bájalo o súbelo aquí) */
-    left: 2vw;       /* Margen desde la izquierda (usa 'vw' o 'px') */
-    width: 90vw;      /* Cambia el ANCHO total del reproductor en el cel */
+    top: 1254px;       
+    left: 2vw;       
+    width: 90vw;      
   }
   
-  /* Fuerza al cuadro interno del reproductor a obedecer al control de arriba */
   .spotifyEmbed iframe {
     width: 105% !important;
-    height: 80px;     /* Cambia este número si quieres modificar la ALTURA del reproductor */
+    height: 80px;     
   }
 
-
-  /* NUEVO CONTROL EXCLUSIVO PARA EL PRIMER TEXTO (CORREO) EN CELULAR */
   .seccionTexto {
     position: absolute;
-    
-    /* MODIFICA ESTOS VALORES PARA MOVER EL CORREO: */
-    top: 1338px;         /* Sube este número (ej. 1200px) para bajarlo todo lo que quieras */
-    left: -8vw;        /* Lo centra perfectamente en pantallas de cel */
-    
+    top: 1338px;         
+    left: -8vw;        
     width: 85vw;
     text-align: center;
   }
 
-  /* NUEVO CONTROL EXCLUSIVO PARA EL SEGUNDO TEXTO (TELÉFONO) EN CELULAR */
   .seccionTexto2 {
     position: absolute;
-    
-    /* MODIFICA ESTOS VALORES PARA MOVER EL TELÉFONO: */
-    top: 1359px;         /* Controla la altura del teléfono en el celular */
-    left: -26vw;        /* Lo centra perfectamente en pantallas de cel */
-    
+    top: 1359px;         
+    left: -26vw;        
     width: 83vw;
     text-align: center;
   }
@@ -213,7 +191,6 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- SE ACTUALIZÓ EL MANEJO DEL CLICK EN LOS BOTONES PARA ABRIRE DEEP LINKS NATIVOS -->
 <a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP', this.href, 'Lead')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
@@ -222,7 +199,8 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'musics://music.apple.com/mx/song/solo/1706135810', this.href, 'ViewContent')">
+<!-- CORRECCIÓN DE DEEP LINK PARA APPLE MUSIC (music:// e itmss:// de respaldo seguro) -->
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'itmss://music.apple.com/mx/song/solo/1706135810', 'ViewContent')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -258,24 +236,28 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// CONTROLADOR LOGICO PARA DETECTAR CELULARES Y FORZAR LA APERTURA DIRECTA DE APPS
+// LOGICA REVISADA: SI FALLA EL DEEP LINK, LANZA EL ENLACE UNIVERSAL SEGURO
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
-  // Enviar evento de analítica de inmediato
   enviarA_API(eventoMeta);
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (esMovil) {
-    e.preventDefault(); // Evita que Facebook intente abrir el link web normal en su navegador
+    e.preventDefault(); 
 
-    // Intentar abrir la aplicación nativa usando su deep link directo
+    // Intenta abrir el protocolo de la app nativa
     window.location.href = urlApp;
 
-    // Respaldo secundario: Si en 1.5 segundos la app no responde (porque no está instalada), abre la web
+    // Si no responde en 1.2 segundos, redirecciona al enlace web seguro de respaldo
     setTimeout(() => {
-      window.open(urlWeb, '_blank');
-    }, 1500);
+      // Si venía de Apple Music, usamos la ruta alternativa que sí reconoce el navegador interno
+      if (urlApp.startsWith('music:')) {
+        window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+      } else {
+        window.open(urlWeb, '_blank');
+      }
+    }, 1200);
   }
 }
 
