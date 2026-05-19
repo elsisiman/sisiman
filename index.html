@@ -265,14 +265,21 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   }
 }
 
-// SOLUCIÓN DEFINITIVA: Integración limpia con el objeto global fbq nativo de Meta
+// SOLUCIÓN HÍBRIDA INMUNE A BLOQUEOS: Ejecuta el script local y fuerza una petición de imagen (img beacon)
 function enviarA_API(nombreEvento) {
+  const pixelId = '1574777457157001';
+  
+  // 1. Intentar por el método estándar del Pixel cargado
   if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
-    console.log("Evento enviado exitosamente a Meta:", nombreEvento);
-  } else {
-    console.log("El script base de Meta aún no se ha cargado.");
   }
+
+  // 2. Método de Respaldo Forzado (Image Beacon): Meta procesa esto sí o sí desde cualquier navegador
+  const cacheBuster = Math.floor(Math.random() * 1000000);
+  const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&ev=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
+  
+  const imgTracker = new Image();
+  imgTracker.src = urlFallback;
 }
 
 enviarA_API('PageView');
