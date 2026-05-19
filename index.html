@@ -265,25 +265,30 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   }
 }
 
-// SOLUCIÓN INTELIGENTE CONTROL DE DUPLICADOS
+// SOLUCIÓN CORREGIDA PARA DISPARO CORRECTO DE EVENTOS
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   
-  // 1. Si el Pixel estándar está activo y cargó bien, úsalo y detén el resto
-  if (typeof fbq === 'function' && window.google_tag_manager === undefined) {
+  // 1. Verificamos de forma limpia si el Pixel normal (fbq) está disponible
+  if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
-    return; // Evita que se dispare el de respaldo si este ya funcionó
+  } else {
+    // 2. Si el Pixel fue bloqueado (por Adblockers), usamos el Image Beacon de respaldo
+    const cacheBuster = Math.floor(Math.random() * 1000000);
+    
+    // Lista de eventos oficiales de Meta
+    const eventosEstandar = ['PageView', 'ViewContent', 'Search', 'AddToCart', 'AddToWishlist', 'InitiateCheckout', 'AddPaymentInfo', 'Purchase', 'Lead', 'CompleteRegistration', 'Subscribe', 'Contact', 'CustomizeProduct', 'FindLocation', 'Schedule', 'StartTrial', 'SubmitApplication'];
+    
+    // Si el evento no está en la lista estándar, Meta pide que el parámetro se declare como 'CustomEvent' en el tracking sin JS
+    const parametroEvento = eventosEstandar.includes(nombreEvento) ? `ev=${nombreEvento}` : `ev=CustomEvent&cd[custom_event_name]=${nombreEvento}`;
+    
+    const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&${parametroEvento}&noscript=1&cb=${cacheBuster}`;
+    
+    const imgTracker = new Image();
+    imgTracker.src = urlFallback;
   }
-
-  // 2. Si el Pixel normal fue bloqueado, se activa el Image Beacon como salvavidas
-  const cacheBuster = Math.floor(Math.random() * 1000000);
-  const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&ev=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
-  
-  const imgTracker = new Image();
-  imgTracker.src = urlFallback;
 }
 
-// Eliminado el PageView duplicado que tenías colgado aquí abajo
 // ==================================================================================
 
 function seguirSpotify(){
