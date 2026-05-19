@@ -235,10 +235,9 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA REVISADA Y OPTIMIZADA PARA ASEGURAR EVENTOS EN CELULAR
+// LOGICA OPTIMIZADA: CORREGIDO EL PROBLEMA DE LA PESTAÑA EXTRA EN CHROME MÓVIL
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
-  // Enviar el evento primero
   enviarA_API(eventoMeta);
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -246,18 +245,10 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   if (esMovil) {
     e.preventDefault(); 
 
-    // Agregamos un pequeñísimo retraso de 100ms para asegurar que el hilo de ejecución de la API procese el envío
+    // Abrimos la aplicación nativa de forma limpia
     setTimeout(() => {
       window.location.href = urlApp;
     }, 100);
-
-    setTimeout(() => {
-      if (urlApp.startsWith('music:')) {
-        window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
-      } else {
-        window.open(urlWeb, '_blank');
-      }
-    }, 1300);
   }
 }
 
@@ -265,7 +256,6 @@ function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
   
-  // Ejecutar el pixel normal del navegador si está disponible
   if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
   }
@@ -277,7 +267,6 @@ function enviarA_API(nombreEvento) {
     return null;
   };
 
-  // Limpieza de parámetros móvil
   let fbp = obtenerCookie('_fbp') || null;
   let fbc = obtenerCookie('_fbc') || new URLSearchParams(window.location.search).get('fbclid') || null;
 
@@ -297,7 +286,6 @@ function enviarA_API(nombreEvento) {
 
   const url = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`;
 
-  // OPTIMIZACIÓN MÓVIL: Forzar Beacon para evitar pérdidas de datos en saltos de apps
   if (navigator.sendBeacon) {
     const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
     navigator.sendBeacon(url, blob);
