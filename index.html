@@ -257,12 +257,17 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// FUNCIÓN DIRECTA DE LA API DE CONVERSIONES
+// FUNCIÓN MEJORADA: AHORA SOPORTA CORRECTAMENTE EL CAMBIO DE APP EN CELULARES
 // ==================================================================================
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
   
+  // Registrar localmente en el Pixel clásico de Facebook (si está disponible)
+  if (typeof fbq === 'function') {
+    fbq('track', nombreEvento);
+  }
+
   const datosEvento = {
     data: [{
       event_name: nombreEvento,
@@ -275,11 +280,20 @@ function enviarA_API(nombreEvento) {
     }]
   };
 
-  fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(datosEvento)
-  }).catch(err => console.log("Error API:", err));
+  const url = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`;
+
+  // Usar sendBeacon si el navegador lo soporta (Ideal para clicks salientes en celular)
+  if (navigator.sendBeacon) {
+    const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
+    navigator.sendBeacon(url, blob);
+  } else {
+    // Alternativa tradicional por si es un navegador muy antiguo
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datosEvento)
+    }).catch(err => console.log("Error API:", err));
+  }
 }
 
 // Dispara automáticamente la visita en la API al cargar la página
