@@ -235,17 +235,20 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN OPTIMIZADA PARA DETENER CANCELACIONES DE EVENTOS
+// LOGICA DE REDIRECCIÓN CORREGIDA PARA PERMITIR VISITAS DE ENTRADA AUTOMÁTICAS
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
-  e.preventDefault(); // Pausamos la navegación inmediata para asegurar el rastreo
+  // CORRECCIÓN: Validamos que el evento exista antes de frenarlo para que no rompa la carga inicial
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault(); 
+  }
+  
   enviarA_API(eventoMeta);
 
   const ua = navigator.userAgent;
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
   const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
 
-  // Un pequeño retraso de 250ms le da tiempo al Pixel de salir del navegador antes de cambiar de app
   setTimeout(() => {
     if (esChromeMovil && urlApp.startsWith('music:')) {
       window.open(urlWeb, '_blank');
@@ -260,7 +263,6 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
         }, 1200);
       }
     } else {
-      // Si está en PC, abre el enlace web normal en pestaña nueva
       window.open(urlWeb, '_blank');
     }
   }, 250);
@@ -269,12 +271,10 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   
-  // Enviamos por el método estándar del script
   if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
   }
   
-  // Enviamos EN SIMULTÁNEO por el Beacon de imagen para asegurar recepción ante bloqueos parciales o cargas lentas
   const cacheBuster = Math.floor(Math.random() * 1000000);
   const eventosEstandar = ['PageView', 'ViewContent', 'Search', 'AddToCart', 'AddToWishlist', 'InitiateCheckout', 'AddPaymentInfo', 'Purchase', 'Lead', 'CompleteRegistration', 'Subscribe', 'Contact', 'CustomizeProduct', 'FindLocation', 'Schedule', 'StartTrial', 'SubmitApplication'];
   const parametroEvento = eventosEstandar.includes(nombreEvento) ? `ev=${nombreEvento}` : `ev=CustomEvent&cd[custom_event_name]=${nombreEvento}`;
