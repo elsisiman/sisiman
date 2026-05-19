@@ -192,7 +192,6 @@ body{
 }
 </style>
 
-<!-- CÓDIGO DEL PÍXEL DE FACEBOOK INSTALADO -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -208,23 +207,21 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 /></noscript>
-<!-- FIN DEL CÓDIGO DEL PÍXEL -->
-
 </head>
 
 <body>
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank">
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="enviarA_API('Lead')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank">
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="enviarA_API('ViewContent')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank">
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="enviarA_API('ViewContent')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -236,12 +233,10 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
   <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
 
-<!-- TU PRIMER TEXTO -->
 <div class="seccionTexto">
   cantondecarton@hotmail.com
 </div>
 
-<!-- TU SEGUNDO TEXTO -->
 <div class="seccionTexto2">
   3125951818
 </div>
@@ -261,7 +256,39 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 
 let tokenSpotify = localStorage.getItem("spotify_token");
 
+// ==================================================================================
+// FUNCIÓN DIRECTA DE LA API DE CONVERSIONES
+// ==================================================================================
+function enviarA_API(nombreEvento) {
+  const pixelId = '1574777457157001';
+  const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
+  
+  const datosEvento = {
+    data: [{
+      event_name: nombreEvento,
+      event_time: Math.floor(Date.now() / 1000),
+      event_source_url: window.location.href,
+      action_source: 'website',
+      user_data: {
+        client_user_agent: navigator.userAgent
+      }
+    }]
+  };
+
+  fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datosEvento)
+  }).catch(err => console.log("Error API:", err));
+}
+
+// Dispara automáticamente la visita en la API al cargar la página
+enviarA_API('PageView');
+// ==================================================================================
+
 function seguirSpotify(){
+  enviarA_API('SubmitApplication');
+
   const scope = "user-follow-read playlist-read-private";
 
   const auth_url =
@@ -327,6 +354,8 @@ async function intercambiarCodePorToken(code){
 }
 
 function desbloquearDescarga(){
+  enviarA_API('CompleteRegistration');
+
   const img = document.getElementById("imgDescarga");
   img.src = imgDesbloqueado;
   img.onclick = () => window.open(linkDescarga, "_blank");
