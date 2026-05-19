@@ -235,7 +235,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA FILTRADA: SE AGREGO EL DETECTOR EXCLUSIVO PARA CHROME MOVIL EN APPLE MUSIC
+// LOGICA FILTRADA: SE MANITIENE EL DETECTOR DE CHROME MOVIL INTACTO
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
@@ -244,14 +244,12 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
   const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
 
-  // SI ES CHROME EN CELULAR Y ES EL BOTÓN DE APPLE MUSIC, FUERZA OTRA PESTAÑA
   if (esChromeMovil && urlApp.startsWith('music:')) {
     e.preventDefault();
     window.open(urlWeb, '_blank');
     return;
   }
 
-  // TODO LO DEMÁS (NAVEGADOR FACEBOOK, PC, SPOTIFY, YOUTUBE) SE QUEDA IGUAL QUE ANTES
   if (esMovil) {
     e.preventDefault(); 
 
@@ -267,6 +265,7 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   }
 }
 
+// CORREGIDA: Optimización estricta de envío para asegurar la captura en navegadores móviles
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
@@ -300,16 +299,27 @@ function enviarA_API(nombreEvento) {
   };
 
   const url = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`;
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if (navigator.sendBeacon) {
-    const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
-    navigator.sendBeacon(url, blob);
-  } else {
+  // En celulares usamos FETCH directo obligatorio para evitar bloqueos del navegador móvil
+  if (esMovil) {
     fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(datosEvento)
-    }).catch(err => console.log("Error API:", err));
+    }).catch(err => console.log("Error API Móvil:", err));
+  } else {
+    // En PC mantenemos sendBeacon para ligereza
+    if (navigator.sendBeacon) {
+      const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
+      navigator.sendBeacon(url, blob);
+    } else {
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datosEvento)
+      }).catch(err => console.log("Error API PC:", err));
+    }
   }
 }
 
