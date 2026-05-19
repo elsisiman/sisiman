@@ -179,8 +179,14 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+
 fbq('init', '1574777457157001');
 fbq('track', 'PageView');
+
+// SOLUCIÓN ENTRADA AUTOMÁTICA: Si el script de arriba falla o se retrasa, forzamos un disparo inicial por imagen inmediato
+const cbInicio = Math.floor(Math.random() * 1000000);
+const imgInicio = new Image();
+imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1&cb=${cbInicio}`;
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
@@ -238,7 +244,6 @@ let tokenSpotify = localStorage.getItem("spotify_token");
 // LOGICA DE REDIRECCIÓN CORREGIDA PARA PERMITIR VISITAS DE ENTRADA AUTOMÁTICAS
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
-  // CORRECCIÓN: Validamos que el evento exista antes de frenarlo para que no rompa la carga inicial
   if (e && typeof e.preventDefault === 'function') {
     e.preventDefault(); 
   }
