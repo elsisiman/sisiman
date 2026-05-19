@@ -265,16 +265,17 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   }
 }
 
-// SOLUCIÓN HÍBRIDA INMUNE A BLOQUEOS: Ejecuta el script local y fuerza una petición de imagen (img beacon)
+// SOLUCIÓN INTELIGENTE CONTROL DE DUPLICADOS
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   
-  // 1. Intentar por el método estándar del Pixel cargado
-  if (typeof fbq === 'function') {
+  // 1. Si el Pixel estándar está activo y cargó bien, úsalo y detén el resto
+  if (typeof fbq === 'function' && window.google_tag_manager === undefined) {
     fbq('track', nombreEvento);
+    return; // Evita que se dispare el de respaldo si este ya funcionó
   }
 
-  // 2. Método de Respaldo Forzado (Image Beacon): Meta procesa esto sí o sí desde cualquier navegador
+  // 2. Si el Pixel normal fue bloqueado, se activa el Image Beacon como salvavidas
   const cacheBuster = Math.floor(Math.random() * 1000000);
   const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&ev=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
   
@@ -282,7 +283,7 @@ function enviarA_API(nombreEvento) {
   imgTracker.src = urlFallback;
 }
 
-enviarA_API('PageView');
+// Eliminado el PageView duplicado que tenías colgado aquí abajo
 // ==================================================================================
 
 function seguirSpotify(){
