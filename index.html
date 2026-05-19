@@ -91,6 +91,7 @@ body{
 
 /* CELULAR */
 @media (max-width:768px){
+  /* MODIFICA ESTE NÚMERO (ej. 190vh, 180vh, etc.) PARA QUITAR O AGREGAR SCROLL A TU GUSTO */
   body{ min-height:221vh; overflow-x:hidden; }
   
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
@@ -149,24 +150,30 @@ body{
      ======================================================= */
   .spotifyEmbed { 
     position: absolute;
-    transform: none; 
+    transform: none; /* Elimina herencias del diseño de PC */
     display: block;
-    top: 1254px;       
-    left: 2vw;       
-    width: 90vw;      
+
+    /* MODIFICA ESTOS VALORES PARA MOVER Y REDIMENSIONAR EL REPRODUCTOR: */
+    top: 1254px;       /* Controla la altura en la página (bájalo o súbelo aquí) */
+    left: 2vw;       /* Margen desde la izquierda (usa 'vw' o 'px') */
+    width: 90vw;      /* Cambia el ANCHO total del reproductor en el cel */
   }
   
+  /* Fuerza al cuadro interno del reproductor a obedecer al control de arriba */
   .spotifyEmbed iframe {
     width: 105% !important;
-    height: 80px;     
+    height: 80px;     /* Cambia este número si quieres modificar la ALTURA del reproductor */
   }
 
 
   /* NUEVO CONTROL EXCLUSIVO PARA EL PRIMER TEXTO (CORREO) EN CELULAR */
   .seccionTexto {
     position: absolute;
-    top: 1338px;         
-    left: -8vw;        
+    
+    /* MODIFICA ESTOS VALORES PARA MOVER EL CORREO: */
+    top: 1338px;         /* Sube este número (ej. 1200px) para bajarlo todo lo que quieras */
+    left: -8vw;        /* Lo centra perfectamente en pantallas de cel */
+    
     width: 85vw;
     text-align: center;
   }
@@ -174,14 +181,18 @@ body{
   /* NUEVO CONTROL EXCLUSIVO PARA EL SEGUNDO TEXTO (TELÉFONO) EN CELULAR */
   .seccionTexto2 {
     position: absolute;
-    top: 1359px;         
-    left: -26vw;        
+    
+    /* MODIFICA ESTOS VALORES PARA MOVER EL TELÉFONO: */
+    top: 1359px;         /* Controla la altura del teléfono en el celular */
+    left: -26vw;        /* Lo centra perfectamente en pantallas de cel */
+    
     width: 83vw;
     text-align: center;
   }
 }
 </style>
 
+<!-- CÓDIGO DEL PÍXEL DE FACEBOOK INSTALADO -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -197,6 +208,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 /></noscript>
+<!-- FIN DEL CÓDIGO DEL PÍXEL -->
 
 </head>
 
@@ -204,15 +216,15 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="enviarA_API('Lead')">
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="enviarA_API('ViewContent')">
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="enviarA_API('ViewContent')">
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -224,10 +236,12 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
   <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
 
+<!-- TU PRIMER TEXTO -->
 <div class="seccionTexto">
   cantondecarton@hotmail.com
 </div>
 
+<!-- TU SEGUNDO TEXTO -->
 <div class="seccionTexto2">
   3125951818
 </div>
@@ -247,50 +261,29 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 
 let tokenSpotify = localStorage.getItem("spotify_token");
 
-// ==================================================================================
-// API DE CONVERSIONES DIRECTA (Para registrar los clics de forma limpia y única)
-// ==================================================================================
-function enviarA_API(nombreEvento) {
-  const pixelId = '1574777457157001';
-  const tokenAPI = 'EAAWm16Lyo2wBRbcLdS4m0TzjVhjvUW3afumlQpLkZBP8uxxhhN6LGezRA3ZBaj510ulqr7M4Ry2dmfjXW3jhFuiR9dJyUh92QjpADbUCjZAgoYZCoKZA7xUANoTCnxi5T9GyIbqZCUNPDESqsfyUdpTztNucmd6sQzaTZBywm0AKeUh6GwASlX8SYDRTWeYtw6NDwZDZD';
-  
-  const datosEvento = {
-    data: [{
-      event_name: nombreEvento,
-      event_time: Math.floor(Date.now() / 1000),
-      event_source_url: window.location.href,
-      action_source: 'website',
-      user_data: {
-        client_user_agent: navigator.userAgent
-      }
-    }]
-  };
-
-  fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(datosEvento)
-  }).catch(err => console.log("Error API:", err));
-}
-// ==================================================================================
-
 function seguirSpotify(){
-  // Registra el clic en la descarga usando únicamente la API
-  enviarA_API('SubmitApplication');
-
   const scope = "user-follow-read playlist-read-private";
-  const auth_url = "https://accounts.spotify.com/authorize?client_id="+client_id+"&response_type=code&redirect_uri="+encodeURIComponent(redirect_uri)+"&scope="+encodeURIComponent(scope)+"&show_dialog=true";
+
+  const auth_url =
+  "https://accounts.spotify.com/authorize"+
+  "?client_id="+client_id+
+  "&response_type=code"+
+  "&redirect_uri="+encodeURIComponent(redirect_uri)+
+  "&scope="+encodeURIComponent(scope)+
+  "&show_dialog=true";
 
   const ancho = 500;
   const alto = 650;
   const izquierda = (screen.width / 2) - (ancho / 2);
   const arriba = (screen.height / 2) - (alto / 2);
+
   window.open(auth_url, "SpotifyAuth", `width=${ancho},height=${alto},top=${arriba},left=${izquierda}`);
 }
 
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
+
   if(code){
     if (window.opener) {
       window.opener.postMessage({ tipo: "SPOTIFY_CODE", code: code }, "*");
@@ -325,6 +318,7 @@ async function intercambiarCodePorToken(code){
     const data = await respuesta.json();
     tokenSpotify = data.access_token;
     localStorage.setItem("spotify_token", tokenSpotify);
+    
     window.history.replaceState({}, document.title, "/");
     desbloquearDescarga();
   } catch (error) {
@@ -333,9 +327,6 @@ async function intercambiarCodePorToken(code){
 }
 
 function desbloquearDescarga(){
-  // Registra el éxito de la descarga usando únicamente la API
-  enviarA_API('CompleteRegistration');
-
   const img = document.getElementById("imgDescarga");
   img.src = imgDesbloqueado;
   img.onclick = () => window.open(linkDescarga, "_blank");
