@@ -199,7 +199,6 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- CORRECCIÓN DE DEEP LINK PARA APPLE MUSIC (music:// e itmss:// de respaldo seguro) -->
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'itmss://music.apple.com/mx/song/solo/1706135810', 'ViewContent')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
@@ -236,9 +235,10 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA REVISADA: SI FALLA EL DEEP LINK, LANZA EL ENLACE UNIVERSAL SEGURO
+// LOGICA REVISADA Y OPTIMIZADA PARA ASEGURAR EVENTOS EN CELULAR
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
+  // Enviar el evento primero
   enviarA_API(eventoMeta);
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -246,18 +246,18 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   if (esMovil) {
     e.preventDefault(); 
 
-    // Intenta abrir el protocolo de la app nativa
-    window.location.href = urlApp;
-
-    // Si no responde en 1.2 segundos, redirecciona al enlace web seguro de respaldo
+    // Agregamos un pequeñísimo retraso de 100ms para asegurar que el hilo de ejecución de la API procese el envío
     setTimeout(() => {
-      // Si venía de Apple Music, usamos la ruta alternativa que sí reconoce el navegador interno
+      window.location.href = urlApp;
+    }, 100);
+
+    setTimeout(() => {
       if (urlApp.startsWith('music:')) {
         window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
       } else {
         window.open(urlWeb, '_blank');
       }
-    }, 1200);
+    }, 1300);
   }
 }
 
@@ -265,6 +265,7 @@ function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
   
+  // Ejecutar el pixel normal del navegador si está disponible
   if (typeof fbq === 'function') {
     fbq('track', nombreEvento);
   }
@@ -276,8 +277,9 @@ function enviarA_API(nombreEvento) {
     return null;
   };
 
-  const fbp = obtenerCookie('_fbp');
-  const fbc = obtenerCookie('_fbc') || new URLSearchParams(window.location.search).get('fbclid');
+  // Limpieza de parámetros móvil
+  let fbp = obtenerCookie('_fbp') || null;
+  let fbc = obtenerCookie('_fbc') || new URLSearchParams(window.location.search).get('fbclid') || null;
 
   const datosEvento = {
     data: [{
@@ -295,6 +297,7 @@ function enviarA_API(nombreEvento) {
 
   const url = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${tokenAPI}`;
 
+  // OPTIMIZACIÓN MÓVIL: Forzar Beacon para evitar pérdidas de datos en saltos de apps
   if (navigator.sendBeacon) {
     const blob = new Blob([JSON.stringify(datosEvento)], { type: 'application/json' });
     navigator.sendBeacon(url, blob);
