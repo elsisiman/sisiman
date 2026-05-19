@@ -213,15 +213,16 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="enviarA_API('Lead')">
+<!-- SE ACTUALIZÓ EL MANEJO DEL CLICK EN LOS BOTONES PARA ABRIRE DEEP LINKS NATIVOS -->
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP', this.href, 'Lead')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="enviarA_API('ViewContent')">
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'ViewContent')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="enviarA_API('ViewContent')">
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'musics://music.apple.com/mx/song/solo/1706135810', this.href, 'ViewContent')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -257,8 +258,27 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// FUNCIÓN DE API OPTIMIZADA CON IDENTIFICADORES DE NAVEGACIÓN MÓVIL
+// CONTROLADOR LOGICO PARA DETECTAR CELULARES Y FORZAR LA APERTURA DIRECTA DE APPS
 // ==================================================================================
+function forzarApp(e, urlApp, urlWeb, eventoMeta) {
+  // Enviar evento de analítica de inmediato
+  enviarA_API(eventoMeta);
+
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (esMovil) {
+    e.preventDefault(); // Evita que Facebook intente abrir el link web normal en su navegador
+
+    // Intentar abrir la aplicación nativa usando su deep link directo
+    window.location.href = urlApp;
+
+    // Respaldo secundario: Si en 1.5 segundos la app no responde (porque no está instalada), abre la web
+    setTimeout(() => {
+      window.open(urlWeb, '_blank');
+    }, 1500);
+  }
+}
+
 function enviarA_API(nombreEvento) {
   const pixelId = '1574777457157001';
   const tokenAPI = 'EAAWm16Lyo2wBRWyDZCwk0bXFCZAI7KRqqVk2xtQURtRp55vTTOSaIlzDAAXdC1uvn1yZBPmBZBLPGBhvL8QCJBMbGiuQqVB674llYdW1OEW7RAAavRs40KjTYf8ZA0DA8lZCeffi9IFG0Jcz6yiM2iOe3vQQJPs7v224u2uCSQZBEp7s4jgoRo7FDrx07ZCcEYZCFDwZDZD';
@@ -267,7 +287,6 @@ function enviarA_API(nombreEvento) {
     fbq('track', nombreEvento);
   }
 
-  // Extrae cookies críticas de Meta esenciales en entornos móviles
   const obtenerCookie = (nombre) => {
     const valor = `; ${document.cookie}`;
     const partes = valor.split(`; ${nombre}=`);
@@ -306,7 +325,6 @@ function enviarA_API(nombreEvento) {
   }
 }
 
-// Dispara automáticamente la visita en la API al cargar la página
 enviarA_API('PageView');
 // ==================================================================================
 
