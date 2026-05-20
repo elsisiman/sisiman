@@ -182,6 +182,9 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 
 fbq('init', '1574777457157001');
 
+/* CAMBIO CLAVE: Desactiva por completo el rastro automático de clics molestos de Meta */
+fbq('set', 'autoConfig', false, '1574777457157001');
+
 /* EVENTO PERSONALIZADO 'VISITA PAGINA' */
 fbq('track', 'VISITA PAGINA');
 
@@ -199,12 +202,12 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- ENLACE CORREGIDO: Se quitó el rastro que activaba falsos eventos en Meta -->
+<!-- BOTÓN SPOTIFY: 'CLIK SPOTIFY' -->
 <a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP', this.href, 'CLIK SPOTIFY')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- EVENTO PERSONALIZADO 'CLIK YOUTUBE' -->
+<!-- BOTÓN YOUTUBE: 'CLIK YOUTUBE' -->
 <a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'CLIK YOUTUBE')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
