@@ -182,16 +182,16 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 
 fbq('init', '1574777457157001');
 
-// ENTRADA PERSONALIZADA: Registramos el evento inicial como 'vista de pagina'
-fbq('trackCustom', 'vista de pagina');
+/* CAMBIO: Enviamos PageView de forma estándar para evitar duplicados y marcas feas */
+fbq('track', 'PageView');
 
-// RESPALDO DE ENTRADA: Si el script oficial se frena, disparamos la imagen con el nombre exacto
+// Respaldo de imagen limpio
 const cbInicio = Math.floor(Math.random() * 1000000);
 const imgInicio = new Image();
-imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=vista+de+pagina&noscript=1&cb=${cbInicio}`;
+imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1&cb=${cbInicio}`;
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=vista+de+pagina&noscript=1"
+src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
 /></noscript>
 </head>
 
