@@ -182,7 +182,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 
 fbq('init', '1574777457157001');
 
-/* CAMBIO CLAVE: Desactiva por completo el rastro automático de clics molestos de Meta */
+/* Desactiva por completo el rastro automático de clics molestos de Meta */
 fbq('set', 'autoConfig', false, '1574777457157001');
 
 /* EVENTO PERSONALIZADO 'VISITA PAGINA' */
@@ -202,13 +202,13 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTÓN SPOTIFY: 'CLIK SPOTIFY' -->
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP', this.href, 'CLIK SPOTIFY')">
+<!-- BOTÓN SPOTIFY: Evento simplificado a 'SPOTIFY' -->
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP', this.href, 'SPOTIFY')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- BOTÓN YOUTUBE: 'CLIK YOUTUBE' -->
-<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'CLIK YOUTUBE')">
+<!-- BOTÓN YOUTUBE: Evento simplificado a 'YOUTUBE' -->
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'YOUTUBE')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
@@ -249,7 +249,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN CORREGIDA PARA PERMITIR VISITAS DE ENTRADA AUTOMÁTICAS
+// LOGICA DE REDIRECCIÓN
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   if (e && typeof e.preventDefault === 'function') {
