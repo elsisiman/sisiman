@@ -182,16 +182,16 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 
 fbq('init', '1574777457157001');
 
-/* CAMBIO: Enviamos PageView de forma estándar para evitar duplicados y marcas feas */
-fbq('track', 'PageView');
+/* AQUÍ SE CAMBIÓ EL EVENTO ESTÁNDAR 'PageView' POR EL PERSONALIZADO 'VISITA PAGINA' */
+fbq('track', 'VISITA PAGINA');
 
-// Respaldo de imagen limpio
+// Respaldo de imagen limpio configurado para evento personalizado 'VISITA PAGINA'
 const cbInicio = Math.floor(Math.random() * 1000000);
 const imgInicio = new Image();
-imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1&cb=${cbInicio}`;
+imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1"
 /></noscript>
 </head>
 
@@ -296,7 +296,7 @@ function enviarA_API(nombreEvento) {
 // ==================================================================================
 
 function seguirSpotify(){
-  /* AQUÍ SE CAMBIÓ 'SubmitApplication' POR EL EVENTO PERSONALIZADO 'CLIK DESCARGA' */
+  /* EVENTO PERSONALIZADO: 'CLIK DESCARGA' */
   enviarA_API('CLIK DESCARGA');
 
   const scope = "user-follow-read playlist-read-private";
@@ -364,7 +364,7 @@ async function intercambiarCodePorToken(code){
 }
 
 function desbloquearDescarga(){
-  /* AQUÍ SE CAMBIÓ 'CompleteRegistration' POR EL EVENTO PERSONALIZADO 'DESCARGA COMPLETADA' */
+  /* EVENTO PERSONALIZADO: 'DESCARGA COMPLETADA' */
   enviarA_API('DESCARGA COMPLETADA');
 
   const img = document.getElementById("imgDescarga");
