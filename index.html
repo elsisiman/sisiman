@@ -202,17 +202,14 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<!-- BOTÓN SPOTIFY: Evento simplificado a 'SPOTIFY' -->
 <a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q', this.href, 'SPOTIFY')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<!-- BOTÓN YOUTUBE: Evento simplificado a 'YOUTUBE' -->
 <a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'YOUTUBE')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<!-- EVENTO PERSONALIZADO: 'APPLE' -->
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
@@ -249,7 +246,7 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN
+// LOGICA DE REDIRECCIÓN (CORREGIDA PARA IPHONE)
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   if (e && typeof e.preventDefault === 'function') {
@@ -260,8 +257,21 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 
   const ua = navigator.userAgent;
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
+  const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
   const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
 
+  // Solución directa para iPhone/iOS: Ejecutar la apertura de la app inmediatamente sin setTimeout
+  if (esAppleMovil) {
+    window.location.href = urlApp;
+    if (urlApp.startsWith('music:')) {
+      setTimeout(() => {
+        window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+      }, 1200);
+    }
+    return;
+  }
+
+  // Comportamiento original intacto para Android y PC
   setTimeout(() => {
     if (esChromeMovil && urlApp.startsWith('music:')) {
       window.open(urlWeb, '_blank');
@@ -355,12 +365,6 @@ async function intercambiarCodePorToken(code){
       body: body
     });
 
-    const data = await respuesta.json();
-    tokenSpotify = data.access_token;
-    localStorage.setItem("spotify_token", tokenSpotify);
-    
-    window.history.replaceState({}, document.title, "/");
-    desbloquearDescarga();
   } catch (error) {
     console.error("Error al obtener el token:", error);
   }
