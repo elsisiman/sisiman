@@ -245,39 +245,38 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 
 let tokenSpotify = localStorage.getItem("spotify_token");
 
-// ==================================================================================
-// APARTADO EXCLUSIVO PARA IPHONE: Corrige enlaces al cargar solo en iOS e IAB de Facebook
-// ==================================================================================
+// El apartado exclusivo en JS que modificaba dinámicamente Apple Music ha sido removido para evitar bloqueos en Facebook
+
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   window.addEventListener("DOMContentLoaded", () => {
-    // Corrección aislada para Spotify
     const botonSp = document.getElementById("lnkSpotify");
     if (botonSp) {
       botonSp.setAttribute("href", "spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q");
-    }
-    
-    // Corrección aislada para Apple Music (Para abrir directo desde Facebook)
-    const botonAp = document.getElementById("lnkApple");
-    if (botonAp) {
-      botonAp.setAttribute("href", "music://music.apple.com/mx/song/solo/1706135810");
     }
   });
 }
 
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN (OPTIMIZADA SIN AFECTAR AL RESTO)
+// LOGICA DE REDIRECCIÓN RESTAURADA
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   const ua = navigator.userAgent;
   const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
+  const esFacebook = /FB_IAB|FBAN|FBAV/i.test(ua);
 
-  // EN IPHONE: Dejamos que actúe el enlace nativo inyectado arriba para evitar bloqueos de Facebook
-  if (esAppleMovil && (urlApp.startsWith('spotify:') || urlApp.startsWith('music:'))) {
+  // Tratamiento directo para Apple Music si detecta el entorno interno de Facebook en iPhone
+  if (urlApp.startsWith('music:') && esAppleMovil && esFacebook) {
+    enviarA_API(eventoMeta);
+    // Abre el enlace web en una nueva pestaña/navegador interno de respaldo de Facebook sin congelarse
+    window.open(urlWeb, '_blank');
+    return;
+  }
+
+  if (esAppleMovil && urlApp.startsWith('spotify:')) {
     enviarA_API(eventoMeta);
     return; 
   }
 
-  // COMPORTAMIENTO ORIGINAL INTACTO PARA ANDROID, PC Y EL RESTO DE PLATAFORMAS
   if (e && typeof e.preventDefault === 'function') {
     e.preventDefault(); 
   }
@@ -285,7 +284,15 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
-  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
+  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !esFacebook;
+
+  if (esAppleMovil && urlApp.startsWith('music:')) {
+    window.location.href = urlApp;
+    setTimeout(() => {
+      window.location.href = urlWeb;
+    }, 1200);
+    return;
+  }
 
   setTimeout(() => {
     if (esChromeMovil && urlApp.startsWith('music:')) {
