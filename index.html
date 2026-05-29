@@ -202,7 +202,7 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
-<a id="lnkSpotify" class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q', this.href, 'SPOTIFY')">
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q', this.href, 'SPOTIFY')">
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
@@ -210,7 +210,7 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a id="lnkApple" class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -245,36 +245,18 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 
 let tokenSpotify = localStorage.getItem("spotify_token");
 
-// El apartado exclusivo en JS que modificaba dinámicamente Apple Music ha sido removido para evitar bloqueos en Facebook
-
-if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-  window.addEventListener("DOMContentLoaded", () => {
-    const botonSp = document.getElementById("lnkSpotify");
-    if (botonSp) {
-      botonSp.setAttribute("href", "spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q");
-    }
-  });
-}
-
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN RESTAURADA
+// LOGICA DE REDIRECCIÓN (SOLO SE CORRIGE EL CASO SPOTIFY EN IPHONE)
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   const ua = navigator.userAgent;
   const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
-  const esFacebook = /FB_IAB|FBAN|FBAV/i.test(ua);
 
-  // Tratamiento directo para Apple Music si detecta el entorno interno de Facebook en iPhone
-  if (urlApp.startsWith('music:') && esAppleMovil && esFacebook) {
-    enviarA_API(eventoMeta);
-    // Abre el enlace web en una nueva pestaña/navegador interno de respaldo de Facebook sin congelarse
-    window.open(urlWeb, '_blank');
-    return;
-  }
-
+  // AJUSTE EXCLUSIVO PARA SPOTIFY EN IPHONE: Evita que e.preventDefault() bloquee la app nativa
   if (esAppleMovil && urlApp.startsWith('spotify:')) {
     enviarA_API(eventoMeta);
-    return; 
+    window.location.href = urlApp;
+    return;
   }
 
   if (e && typeof e.preventDefault === 'function') {
@@ -284,15 +266,7 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   enviarA_API(eventoMeta);
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
-  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !esFacebook;
-
-  if (esAppleMovil && urlApp.startsWith('music:')) {
-    window.location.href = urlApp;
-    setTimeout(() => {
-      window.location.href = urlWeb;
-    }, 1200);
-    return;
-  }
+  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
 
   setTimeout(() => {
     if (esChromeMovil && urlApp.startsWith('music:')) {
@@ -302,6 +276,11 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 
     if (esMovil) {
       window.location.href = urlApp;
+      if (urlApp.startsWith('music:')) {
+        setTimeout(() => {
+          window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+        }, 1200);
+      }
     } else {
       window.open(urlWeb, '_blank');
     }
