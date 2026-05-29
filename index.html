@@ -210,7 +210,7 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
+<a id="lnkApple" class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
   <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
 </a>
 
@@ -246,32 +246,38 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 // ==================================================================================
-// APARTADO EXCLUSIVO PARA IPHONE: Corrige el enlace al cargar solo en iOS
+// APARTADO EXCLUSIVO PARA IPHONE: Corrige enlaces al cargar solo en iOS e IAB de Facebook
 // ==================================================================================
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   window.addEventListener("DOMContentLoaded", () => {
+    // Corrección aislada para Spotify
     const botonSp = document.getElementById("lnkSpotify");
     if (botonSp) {
-      // Inyecta directamente el enlace profundo con tu contexto de playlist solo para iPhone
       botonSp.setAttribute("href", "spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q");
+    }
+    
+    // Corrección aislada para Apple Music (Para abrir directo desde Facebook)
+    const botonAp = document.getElementById("lnkApple");
+    if (botonAp) {
+      botonAp.setAttribute("href", "music://music.apple.com/mx/song/solo/1706135810");
     }
   });
 }
 
 // ==================================================================================
-// LOGICA DE REDIRECCIÓN (RESTAURADA Y SEPARADA)
+// LOGICA DE REDIRECCIÓN (OPTIMIZADA SIN AFECTAR AL RESTO)
 // ==================================================================================
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   const ua = navigator.userAgent;
   const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
 
-  // AISLADO PARA SPOTIFY EN IPHONE: Deja actuar el href nativo modificado arriba
-  if (esAppleMovil && urlApp.startsWith('spotify:')) {
+  // EN IPHONE: Dejamos que actúe el enlace nativo inyectado arriba para evitar bloqueos de Facebook
+  if (esAppleMovil && (urlApp.startsWith('spotify:') || urlApp.startsWith('music:'))) {
     enviarA_API(eventoMeta);
     return; 
   }
 
-  // COMPORTAMIENTO COMPLETAMENTE ORIGINAL RESTAURADO PARA COMPATIBILIDAD (APPLE, YT, ETC.)
+  // COMPORTAMIENTO ORIGINAL INTACTO PARA ANDROID, PC Y EL RESTO DE PLATAFORMAS
   if (e && typeof e.preventDefault === 'function') {
     e.preventDefault(); 
   }
@@ -280,15 +286,6 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
   const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
-
-  // Tratamiento original exacto para Apple Music en iOS e IAB de Facebook
-  if (esAppleMovil && urlApp.startsWith('music:')) {
-    window.location.href = urlApp;
-    setTimeout(() => {
-      window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
-    }, 1200);
-    return;
-  }
 
   setTimeout(() => {
     if (esChromeMovil && urlApp.startsWith('music:')) {
