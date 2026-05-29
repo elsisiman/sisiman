@@ -365,6 +365,12 @@ async function intercambiarCodePorToken(code){
       body: body
     });
 
+    const data = await respuesta.json();
+    tokenSpotify = data.access_token;
+    localStorage.setItem("spotify_token", tokenSpotify);
+    
+    window.history.replaceState({}, document.title, "/");
+    desbloquearDescarga();
   } catch (error) {
     console.error("Error al obtener el token:", error);
   }
