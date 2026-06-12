@@ -48,7 +48,7 @@ body{
 .logoFijo img{ width:110px; }
 
 /* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
-.botonTienda{ position:fixed; top:128px; left:6; z-index:99999; text-align: left;}
+.botonTienda{ position:fixed; top:128px; left:6px; z-index:99999; text-align: left;}
 .botonTienda a{
   display: inline-block;
   text-decoration: none;
@@ -159,8 +159,8 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-  /* AJUSTE BOTON TIENDA EN CELULAR */
-  .botonTienda{ position: absolute; top: 48px; left: -60; }
+  /* CORREGIDO: Ahora usa position fixed y lleva 'px' para que te deje moverlo hacia los lados libremente */
+  .botonTienda{ position: fixed; top: 80px; left: 10px; }
   .botonTienda a{ padding: 8px 15px; font-size: 12px; }
   .botonTienda a:hover{ transform: scale(1.08); }
 
