@@ -47,23 +47,27 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* NUEVO BOTON TIENDA (PUERTA) */
-.botonTienda{ position:fixed; top:140px; left:12px; z-index:99999;}
+/* NUEVO BOTON TIENDA (PUERTA) - ESTILO MINIMALISTA */
+.botonTienda{ position:fixed; top:135px; left:0; z-index:99999; text-align: left;}
 .botonTienda a{
   display: inline-block;
   text-decoration: none;
-  background-color: #1a1a1a;
+  background-color: transparent; /* Sin fondo */
   color: #ffffff;
-  padding: 8px 16px;
+  padding: 10px 20px; /* Espacio para hacer clic más fácil */
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
-  border: 2px solid #ffffff;
-  border-radius: 5px;
+  border: none; /* Sin borde */
+  border-radius: 0;
   text-transform: uppercase;
   transition: 0.3s;
+  letter-spacing: 1px; /* Un poco más de espacio entre letras */
 }
-.botonTienda a:hover{ transform:scale(1.05); background-color: #333333;}
+.botonTienda a:hover{ 
+  color: #bbbbbb; /* Efecto sutil al pasar el ratón */
+  transform: translateX(5px); /* Se mueve un poquito a la derecha */
+}
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
@@ -156,9 +160,9 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-  /* AJUSTE BOTON TIENDA EN CELULAR */
-  .botonTienda{ position: absolute; top: 85px; left: 10px; }
-  .botonTienda a{ padding: 5px 10px; font-size: 11px; }
+  /* AJUSTE BOTON TIENDA EN CELULAR (Minimalista) */
+  .botonTienda{ position: absolute; top: 80px; left: 0; }
+  .botonTienda a{ padding: 8px 15px; font-size: 12px; }
 
   .spotifyEmbed { 
     position: absolute;
@@ -257,7 +261,7 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 </div>
 
 <div class="botonTienda">
-  <a href="tienda.html">🛒 TIENDA</a>
+  <a href="tienda.html">TIENDA</a>
 </div>
 
 <script>
