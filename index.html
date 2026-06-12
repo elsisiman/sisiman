@@ -47,26 +47,25 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* NUEVO BOTON TIENDA (PUERTA) - ESTILO MINIMALISTA */
+/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN IGUAL A LOS OTROS BOTONES */
 .botonTienda{ position:fixed; top:135px; left:0; z-index:99999; text-align: left;}
 .botonTienda a{
   display: inline-block;
   text-decoration: none;
-  background-color: transparent; /* Sin fondo */
+  background-color: transparent; 
   color: #ffffff;
-  padding: 10px 20px; /* Espacio para hacer clic más fácil */
+  padding: 10px 20px; 
   font-family: Arial, sans-serif;
   font-size: 14px;
   font-weight: bold;
-  border: none; /* Sin borde */
+  border: none; 
   border-radius: 0;
   text-transform: uppercase;
-  transition: 0.3s;
-  letter-spacing: 1px; /* Un poco más de espacio entre letras */
+  transition: 0.3s; /* Misma velocidad de transición */
+  letter-spacing: 1px; 
 }
 .botonTienda a:hover{ 
-  color: #bbbbbb; /* Efecto sutil al pasar el ratón */
-  transform: translateX(5px); /* Se mueve un poquito a la derecha */
+  transform: scale(1.08); /* Hace que las letras "salgan" sutilmente al tamaño de tus otros botones */
 }
 
 /* SPOTIFY EMBED */
@@ -160,9 +159,10 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-  /* AJUSTE BOTON TIENDA EN CELULAR (Minimalista) */
+  /* AJUSTE BOTON TIENDA EN CELULAR (Con animación) */
   .botonTienda{ position: absolute; top: 80px; left: 0; }
   .botonTienda a{ padding: 8px 15px; font-size: 12px; }
+  .botonTienda a:hover{ transform: scale(1.08); }
 
   .spotifyEmbed { 
     position: absolute;
