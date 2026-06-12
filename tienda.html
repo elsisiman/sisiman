@@ -49,6 +49,14 @@
             font-size: 18px;
             font-weight: bold;
             margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* TEXTO QUE MUESTRA LAS PIEZAS QUE QUEDAN */
+        .textoStock {
+            color: #aaa;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
             margin-bottom: 20px;
         }
 
@@ -68,24 +76,32 @@
             transition: 0.3s;
         }
 
-        .botonComprar:hover {
+        .botonComprar:hover:not(:disabled) {
             transform: scale(1.08);
             background-color: white;
             color: black; 
+        }
+
+        /* ESTILO PARA CUANDO SE AGOTE (BOTÓN DESACTIVADO) */
+        .botonComprar:disabled {
+            border-color: #444;
+            color: #444;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* =======================================================
            ESTILOS DE LA VENTANA DE PAGOS (MODAL)
            ======================================================= */
         .ventanaPagos {
-            display: none; /* Oculta la ventana por defecto */
+            display: none; 
             position: fixed;
             z-index: 999999;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro transparente atrás */
+            background-color: rgba(0, 0, 0, 0.85); 
         }
 
         .contenidoVentana {
@@ -100,7 +116,6 @@
             position: relative;
         }
 
-        /* Botón para cerrar (X) */
         .cerrarVentana {
             color: #aaa;
             position: absolute;
@@ -124,7 +139,6 @@
             letter-spacing: 1px;
         }
 
-        /* BOTONES DE LOS MÉTODOS DE PAGO */
         .opcionPago {
             display: block;
             text-decoration: none;
@@ -140,10 +154,9 @@
             transition: 0.3s;
         }
 
-        /* Colores chidos al pasar el mouse por cada uno */
-        .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } /* Azul Mercado Pago */
-        .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } /* Azul PayPal */
-        .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } /* Amarillo Crypto/Binance */
+        .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } 
+        .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
+        .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
         /* SI ENTRAN DESDE CELULAR */
         @media (max-width:768px){
@@ -152,7 +165,7 @@
                 margin-top: 100px; 
             }
             .contenidoVentana {
-                margin: 40% auto; /* Baja un poco la ventana en el cel */
+                margin: 40% auto; 
             }
         }
     </style>
@@ -168,8 +181,10 @@
 
     <div class="nombreProducto">Playera Sisiman</div>
     <div class="precioProducto">$250</div>
+    
+    <div id="contadorStock" class="textoStock"></div>
 
-    <button class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
+    <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
 
 
     <div id="miVentana" class="ventanaPagos">
@@ -185,6 +200,27 @@
 
 
     <script>
+        // =======================================================
+        // 🔥 TU CONTROL DE EXISTENCIAS AQUÍ ABAJO:
+        // Cambia este número por la cantidad de playeras que te queden.
+        // Si le pones 0, el botón se bloqueará automáticamente.
+        // =======================================================
+        var piezasDisponibles = 5; 
+
+
+        // Lógica para revisar el stock al cargar la página
+        var boton = document.getElementById("btnComprar");
+        var textoContador = document.getElementById("contadorStock");
+
+        if (piezasDisponibles > 0) {
+            textoContador.innerHTML = "Quedan sólo " + piezasDisponibles + " piezas disponibles";
+        } else {
+            textoContador.innerHTML = "Edición Limitada Agotada";
+            boton.innerHTML = "AGOTADO";
+            boton.disabled = true; // Aquí es donde se desactiva el botón por completo
+        }
+
+        // Funciones de la ventana
         function abrirPagos() {
             document.getElementById("miVentana").style.display = "block";
         }
@@ -193,7 +229,6 @@
             document.getElementById("miVentana").style.display = "none";
         }
 
-        // Si le pican afuera de la ventanita negra, también se cierra
         window.onclick = function(event) {
             var ventana = document.getElementById("miVentana");
             if (event.target == ventana) {
