@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Tienda</title>
     
     <style>
@@ -11,10 +12,24 @@
             margin: 0;               /* Quita bordes blancos molestos */
             height: 100vh;           /* Cubre todo el alto de la pantalla */
         }
+
+        /* LOGO (Extraído exactamente de tu página principal) */
+        .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
+        .logoFijo img{ width:110px; }
+
+        /* AJUSTE DEL LOGO PARA CELULAR */
+        @media (max-width:768px){
+            .logoFijo{ top:10px; left:0; }
+            .logoFijo img{ width:65px; }
+        }
     </style>
 
 </head>
 <body>
     
-    </body>
+    <div class="logoFijo">
+        <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+    </div>
+
+</body>
 </html>
