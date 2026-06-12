@@ -11,6 +11,7 @@
             background-color: black; /* Esto lo hace negro sólido */
             margin: 0;               /* Quita bordes blancos molestos */
             height: 100vh;           /* Cubre todo el alto de la pantalla */
+            text-align: center;      /* Centra todo el contenido de la tienda */
         }
 
         /* LOGO (Extraído exactamente de tu página principal) */
@@ -31,6 +32,47 @@
             border-radius: 10px;  
         }
 
+        /* ESTILOS DEL TEXTO Y EL BOTÓN */
+        .nombreProducto {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .precioProducto {
+            color: #00ff66; 
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .botonComprar {
+            display: inline-block;
+            text-decoration: none;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white; 
+            padding: 10px 30px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .botonComprar:hover {
+            transform: scale(1.08);
+            background-color: white;
+            color: black; 
+        }
+
         /* SI ENTRAN DESDE CELULAR */
         @media (max-width:768px){
             .fotoCamisa {
@@ -48,6 +90,11 @@
     </div>
 
     <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="IMG-20250526-WA0020">
+
+    <div class="nombreProducto">Playera Sisiman</div>
+    <div class="precioProducto">$250</div>
+
+    <a class="botonComprar" href="TU_LINK_DE_WHATSAPP_O_PAGO" target="_blank">Comprar Ahora</a>
 
 </body>
 </html>
