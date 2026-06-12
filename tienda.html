@@ -32,7 +32,7 @@
             border-radius: 10px;  
         }
 
-        /* ESTILOS DEL TEXTO Y EL BOTÓN */
+        /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
         .nombreProducto {
             color: white;
             font-family: Arial, sans-serif;
@@ -64,6 +64,7 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
             transition: 0.3s;
         }
 
@@ -73,11 +74,85 @@
             color: black; 
         }
 
+        /* =======================================================
+           ESTILOS DE LA VENTANA DE PAGOS (MODAL)
+           ======================================================= */
+        .ventanaPagos {
+            display: none; /* Oculta la ventana por defecto */
+            position: fixed;
+            z-index: 999999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro transparente atrás */
+        }
+
+        .contenidoVentana {
+            background-color: #0a0a0a;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #333;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Botón para cerrar (X) */
+        .cerrarVentana {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cerrarVentana:hover {
+            color: white;
+        }
+
+        .tituloPagos {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* BOTONES DE LOS MÉTODOS DE PAGO */
+        .opcionPago {
+            display: block;
+            text-decoration: none;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid #444;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        /* Colores chidos al pasar el mouse por cada uno */
+        .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } /* Azul Mercado Pago */
+        .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } /* Azul PayPal */
+        .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } /* Amarillo Crypto/Binance */
+
         /* SI ENTRAN DESDE CELULAR */
         @media (max-width:768px){
             .fotoCamisa {
                 width: 80vw;      
                 margin-top: 100px; 
+            }
+            .contenidoVentana {
+                margin: 40% auto; /* Baja un poco la ventana en el cel */
             }
         }
     </style>
@@ -94,7 +169,38 @@
     <div class="nombreProducto">Playera Sisiman</div>
     <div class="precioProducto">$250</div>
 
-    <a class="botonComprar" href="TU_LINK_DE_WHATSAPP_O_PAGO" target="_blank">Comprar Ahora</a>
+    <button class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
+
+
+    <div id="miVentana" class="ventanaPagos">
+        <div class="contenidoVentana">
+            <span class="cerrarVentana" onclick="cerrarPagos()">&times;</span>
+            <div class="tituloPagos">Selecciona tu método de pago</div>
+            
+            <a class="opcionPago mp" href="TU_LINK_DE_MERCADO_PAGO_O_OXXO" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
+            <a class="opcionPago pp" href="TU_LINK_DE_PAYPAL" target="_blank">PayPal</a>
+            <a class="opcionPago crypto" href="TU_LINK_DE_BINANCE_O_WALLETS" target="_blank">Criptomonedas</a>
+        </div>
+    </div>
+
+
+    <script>
+        function abrirPagos() {
+            document.getElementById("miVentana").style.display = "block";
+        }
+
+        function cerrarPagos() {
+            document.getElementById("miVentana").style.display = "none";
+        }
+
+        // Si le pican afuera de la ventanita negra, también se cierra
+        window.onclick = function(event) {
+            var ventana = document.getElementById("miVentana");
+            if (event.target == ventana) {
+                ventana.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
