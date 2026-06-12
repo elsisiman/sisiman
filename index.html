@@ -47,7 +47,7 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN IGUAL A LOS OTROS BOTONES */
+/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
 .botonTienda{ position:fixed; top:135px; left:0; z-index:99999; text-align: left;}
 .botonTienda a{
   display: inline-block;
@@ -61,11 +61,11 @@ body{
   border: none; 
   border-radius: 0;
   text-transform: uppercase;
-  transition: 0.3s; /* Misma velocidad de transición */
+  transition: 0.3s; 
   letter-spacing: 1px; 
 }
 .botonTienda a:hover{ 
-  transform: scale(1.08); /* Hace que las letras "salgan" sutilmente al tamaño de tus otros botones */
+  transform: scale(1.08); 
 }
 
 /* SPOTIFY EMBED */
@@ -159,7 +159,7 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
 
-  /* AJUSTE BOTON TIENDA EN CELULAR (Con animación) */
+  /* AJUSTE BOTON TIENDA EN CELULAR */
   .botonTienda{ position: absolute; top: 80px; left: 0; }
   .botonTienda a{ padding: 8px 15px; font-size: 12px; }
   .botonTienda a:hover{ transform: scale(1.08); }
@@ -261,7 +261,7 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
 </div>
 
 <div class="botonTienda">
-  <a href="tienda.html">TIENDA</a>
+  <a href="tienda.html" target="_blank">TIENDA</a>
 </div>
 
 <script>
