@@ -1,3 +1,6 @@
+imagen camiseta
+<img width="646" height="712" alt="IMG-20250526-WA0020" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" />
+
 imagen descarga 1
 <img width="500" height="250" alt="oiuhuihiu" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" />
 
