@@ -230,7 +230,7 @@
         
         <div id="contadorStock" class="textoStock"></div>
 
-        <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
+        <button id="btnComprar" class="botonComprar" onclick="abrirPagosPlayera()">Comprar Ahora</button>
     </div>
 
     <div class="caja-foto-gorra">
@@ -239,19 +239,30 @@
         <div class="precioProducto">$250</div>
         
         <div id="contadorGorra" class="textoStock"></div>
+
+        <button id="btnComprarGorra" class="botonComprar" onclick="abrirPagosGorra()">Comprar Ahora</button>
     </div>
 
 
-    <div id="miVentana" class="ventanaPagos">
+    <div id="ventanaPlayera" class="ventanaPagos">
         <div class="contenidoVentana">
-            <span class="cerrarVentana" onclick="cerrarPagos()">&times;</span>
-            <div class="tituloPagos">Selecciona tu método de pago</div>
+            <span class="cerrarVentana" onclick="cerrarPagosPlayera()">&times;</span>
+            <div class="tituloPagos">Pagar Playera Sisiman</div>
             
             <a class="opcionPago mp" href="https://mpago.la/2vykypR" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
-            
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/5MXXHA8MQZ3QE" target="_blank">PayPal</a>
-            
             <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas,%20p%C3%A1same%20la%20wallet" target="_blank">Criptomonedas</a>
+        </div>
+    </div>
+
+    <div id="ventanaGorra" class="ventanaPagos">
+        <div class="contenidoVentana">
+            <span class="cerrarVentana" onclick="cerrarPagosGorra()">&times;</span>
+            <div class="tituloPagos">Pagar Gorra Sisiman</div>
+            
+            <a class="opcionPago mp" href="AQUÍ_VA_TU_LINK_DE_MERCADOPAGO_GORRA" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
+            <a class="opcionPago pp" href="AQUÍ_VA_TU_LINK_DE_PAYPAL_GORRA" target="_blank">PayPal</a>
+            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Gorra%20Sisiman%20y%20pagar%20con%20Criptomonedas" target="_blank">Criptomonedas</a>
         </div>
     </div>
 
@@ -260,7 +271,7 @@
         // =======================================================
         // 👕 CONTROL DE STOCK DE LA PLAYERA
         // =======================================================
-        var piezasPlayera = 10; // <- CAMBIA ESTE NÚMERO PARA LA PLAYERA
+        var piezasPlayera = 10; 
 
         var btnPlayera = document.getElementById("btnComprar");
         var txtPlayera = document.getElementById("contadorStock");
@@ -275,37 +286,40 @@
 
 
         // =======================================================
-        // 🧢 CONTROL DE STOCK DE LA GORRA (NUEVO)
+        // 🧢 CONTROL DE STOCK DE LA GORRA
         // =======================================================
-        var piezasGorra = 10; // <- 🔥 CAMBIA ESTE NÚMERO PARA LA GORRA
+        var piezasGorra = 5; 
 
+        var btnGorra = document.getElementById("btnComprarGorra"); // Vinculado al nuevo botón
         var txtGorra = document.getElementById("contadorGorra");
 
         if (piezasGorra > 0) {
             txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles";
         } else {
             txtGorra.innerHTML = "Edición Limitada Agotada";
-            // Nota: Como la gorra aún no tiene botón propio, cuando se lo pongamos
-            // aquí programaremos que se desactive automáticamente.
+            btnGorra.innerHTML = "AGOTADO";
+            btnGorra.disabled = true; // Desactiva el botón de la gorra automáticamente
         }
 
 
         // =======================================================
-        // 🛠️ FUNCIONES DE LA VENTANA DE PAGOS (MODAL)
+        // 🛠️ FUNCIONES DE APERTURA Y CIERRE (MODALES)
         // =======================================================
-        function abrirPagos() {
-            document.getElementById("miVentana").style.display = "block";
-        }
+        
+        // Modales Playera
+        function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
+        function cerrarPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "none"; }
 
-        function cerrarPagos() {
-            document.getElementById("miVentana").style.display = "none";
-        }
+        // Modales Gorra
+        function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
+        function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
+        // Cerrar al dar clic afuera de cualquier ventana
         window.onclick = function(event) {
-            var ventana = document.getElementById("miVentana");
-            if (event.target == ventana) {
-                ventana.style.display = "none";
-            }
+            var vPlayera = document.getElementById("ventanaPlayera");
+            var vGorra = document.getElementById("ventanaGorra");
+            if (event.target == vPlayera) { vPlayera.style.display = "none"; }
+            if (event.target == vGorra) { vGorra.style.display = "none"; }
         }
     </script>
 
