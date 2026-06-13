@@ -69,10 +69,12 @@
             width: 100%;
             border-radius: 10px;
             
-            /* 📐 SI QUISIERAS OBLIGAR A LA FOTO A TENER UN ALTO FIJO:
-               Puedes cambiar 'auto' por una medida en px (ejemplo: height: 400px;), 
-               aunque dejarlo en 'auto' evita que la foto se mire estirada o aplastada. */
-            height: 100; 
+            /* 📐 🔥 AQUÍ ESTÁ TU CONTROL DE ALTO CORREGIDO:
+               Cambia el '520px' por el número de alto que tú quieras para estirarla más o menos. */
+            height: 520px; 
+
+            /* 🛠️ Esto obliga a la foto a estirarse a la fuerza para cumplir el 'height' que le diste */
+            object-fit: fill; 
         }
 
         /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
