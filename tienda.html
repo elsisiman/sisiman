@@ -237,6 +237,8 @@
         <img alt="uiio" src="https://github.com/user-attachments/assets/85ef5a17-fe41-4897-a6ac-f5d9aa4ae679" />
         <div class="nombreProducto">GORRA SISIMAN</div>
         <div class="precioProducto">$250</div>
+        
+        <div id="contadorGorra" class="textoStock"></div>
     </div>
 
 
@@ -255,19 +257,42 @@
 
 
     <script>
-        var piezasDisponibles = 10; 
+        // =======================================================
+        // 👕 CONTROL DE STOCK DE LA PLAYERA
+        // =======================================================
+        var piezasPlayera = 10; // <- CAMBIA ESTE NÚMERO PARA LA PLAYERA
 
-        var boton = document.getElementById("btnComprar");
-        var textoContador = document.getElementById("contadorStock");
+        var btnPlayera = document.getElementById("btnComprar");
+        var txtPlayera = document.getElementById("contadorStock");
 
-        if (piezasDisponibles > 0) {
-            textoContador.innerHTML = "Quedan sólo " + piezasDisponibles + " piezas disponibles";
+        if (piezasPlayera > 0) {
+            txtPlayera.innerHTML = "Quedan sólo " + piezasPlayera + " piezas disponibles";
         } else {
-            textoContador.innerHTML = "Edición Limitada Agotada";
-            boton.innerHTML = "AGOTADO";
-            boton.disabled = true; 
+            txtPlayera.innerHTML = "Edición Limitada Agotada";
+            btnPlayera.innerHTML = "AGOTADO";
+            btnPlayera.disabled = true; 
         }
 
+
+        // =======================================================
+        // 🧢 CONTROL DE STOCK DE LA GORRA (NUEVO)
+        // =======================================================
+        var piezasGorra = 5; // <- 🔥 CAMBIA ESTE NÚMERO PARA LA GORRA
+
+        var txtGorra = document.getElementById("contadorGorra");
+
+        if (piezasGorra > 0) {
+            txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles";
+        } else {
+            txtGorra.innerHTML = "Edición Limitada Agotada";
+            // Nota: Como la gorra aún no tiene botón propio, cuando se lo pongamos
+            // aquí programaremos que se desactive automáticamente.
+        }
+
+
+        // =======================================================
+        // 🛠️ FUNCIONES DE LA VENTANA DE PAGOS (MODAL)
+        // =======================================================
         function abrirPagos() {
             document.getElementById("miVentana").style.display = "block";
         }
