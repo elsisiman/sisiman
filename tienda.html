@@ -33,251 +33,65 @@
     /></noscript>
     
     <style>
-        /* Este es el truco para el color negro */
-        body {
-            background-color: black; /* Esto lo hace negro sólido */
-            margin: 0;               /* Quita bordes blancos molestos */
-            height: 100vh;           /* Cubre todo el alto de la pantalla */
-            text-align: center;      /* Centra todo el contenido de la tienda */
-        }
-
-        /* LOGO (Extraído exactamente de tu página principal) */
+        body { background-color: black; margin: 0; height: 100vh; text-align: center; }
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
+        @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
 
-        /* AJUSTE DEL LOGO PARA CELULAR */
-        @media (max-width:768px){
-            .logoFijo{ top:10px; left:0; }
-            .logoFijo img{ width:65px; }
-        }
+        .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
+        .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
+        
+        .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
+        .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
 
-        /* =======================================================
-           👕 CAJA CONTENEDORA DE LA PLAYERA (INDEPENDIENTE)
-           ======================================================= */
-        .caja-completa-playera {
-            display: block;
-            text-align: center;   
-            
-            /* 📐 AQUÍ MUEVES EL WIDTH Y MARGIN A TU GUSTO: */
-            width: 435px;         
-            margin: 10px auto 20px auto; 
+        .nombreProducto { color: white; font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; text-transform: uppercase; margin-top: 15px; letter-spacing: 1px; }
+        .precioProducto { color: #00ff66; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; margin-top: 5px; margin-bottom: 10px; }
+        .textoStock { color: #aaa; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
 
-            /* 🔥 CONTROLES DE MOVIMIENTO LIBRE PARA LA CAMISA: */
-            position: relative;   
-            top: 0px;             
-            left: 0px;            
-        }
+        .botonComprar { display: inline-block; text-decoration: none; background-color: transparent; color: white; border: 2px solid white; padding: 10px 30px; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; }
+        .botonComprar:hover:not(:disabled) { transform: scale(1.08); background-color: white; color: black; }
+        .botonComprar:disabled { border-color: #444; color: #444; cursor: not-allowed; transform: none; }
 
-        /* ESTILO PARA LA IMAGEN ADENTRO DE LA CAJA */
-        .fotoCamisa {
-            display: block;
-            width: 100%;          /* Toma el ancho total de su caja contenedora */
-            border-radius: 10px;  
-        }
-
-        /* =======================================================
-           🧢 CAJA CONTENEDORA DE LA GORRA (EN SU LUGAR ORIGINAL)
-           ======================================================= */
-        .caja-foto-gorra {
-            display: block;
-            text-align: center;
-            width: 435px;         
-            margin: 40px auto;    
-
-            /* 🔥 REGRESADA A SU LADO IZQUIERDO ORIGINAL: */
-            position: relative;   
-            top: -672px;             
-            left: -447px;            
-        }
-
-        /* Asegura que la foto herede el ancho de su propia caja */
-        .caja-foto-gorra img {
-            display: block;
-            width: 100%;
-            border-radius: 10px;
-            
-            /* 📐 🔥 TU CONTROL DE ALTO PARA LA FOTO DE LA GORRA: */
-            height: 479px; 
-
-            /* 🛠️ Esto obliga a la foto a estirarse a la fuerza para cumplir el 'height' que le diste */
-            object-fit: fill; 
-        }
-
-        /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
-        .nombreProducto {
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 22px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 15px;
-            letter-spacing: 1px;
-        }
-
-        .precioProducto {
-            color: #00ff66; 
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-
-        /* TEXTO QUE MUESTRA LAS PIEZAS QUE QUEDAN */
-        .textoStock {
-            color: #aaa;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .botonComprar {
-            display: inline-block;
-            text-decoration: none;
-            background-color: transparent;
-            color: white;
-            border: 2px solid white; 
-            padding: 10px 30px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .botonComprar:hover:not(:disabled) {
-            transform: scale(1.08);
-            background-color: white;
-            color: black; 
-        }
-
-        /* ESTILO PARA CUANDO SE AGOTE (BOTÓN DESACTIVADO) */
-        .botonComprar:disabled {
-            border-color: #444;
-            color: #444;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* =======================================================
-           ESTILOS DE LA VENTANA DE PAGOS (MODAL)
-           ======================================================= */
-        .ventanaPagos {
-            display: none; 
-            position: fixed;
-            z-index: 999999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); 
-        }
-
-        .contenidoVentana {
-            background-color: #0a0a0a;
-            margin: 15% auto;
-            padding: 30px;
-            border: 1px solid #333;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 15px;
-            text-align: center;
-            position: relative;
-        }
-
-        .cerrarVentana {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .cerrarVentana:hover {
-            color: white;
-        }
-
-        .tituloPagos {
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .opcionPago {
-            display: block;
-            text-decoration: none;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border: 1px solid #444;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
+        .ventanaPagos { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
+        .contenidoVentana { background-color: #0a0a0a; margin: 15% auto; padding: 30px; border: 1px solid #333; width: 80%; max-width: 400px; border-radius: 15px; text-align: center; position: relative; }
+        .cerrarVentana { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .cerrarVentana:hover { color: white; }
+        .tituloPagos { color: white; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .opcionPago { display: block; text-decoration: none; color: white; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-transform: uppercase; border: 1px solid #444; padding: 12px; margin-bottom: 12px; border-radius: 8px; transition: 0.3s; }
         .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } 
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* SI ENTRAN DESDE CELULAR */
-        @media (max-width:768px){
-            .caja-completa-playera, .caja-foto-gorra {
-                width: 80vw;      
-                margin-top: 100px; 
-            }
-            .contenidoVentana {
-                margin: 40% auto; 
-            }
-        }
+        @media (max-width:768px){ .caja-completa-playera, .caja-foto-gorra { width: 80vw; margin-top: 100px; } .contenidoVentana { margin: 40% auto; } }
     </style>
-
 </head>
 <body>
     
-    <div class="logoFijo">
-        <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
-    </div>
+    <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
     <div class="caja-completa-playera">
-        <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="IMG-20250526-WA0020">
-
+        <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
         <div class="nombreProducto">Playera Sisiman</div>
         <div class="precioProducto">$250</div>
-        
         <div id="contadorStock" class="textoStock"></div>
-
-        <button id="btnComprar" class="botonComprar" onclick="abrirPagosPlayera()">Comprar Ahora</button>
+        <button id="btnComprar" class="botonComprar" onclick="enviarA_API('CAMISA'); abrirPagosPlayera();">Comprar Ahora</button>
     </div>
 
     <div class="caja-foto-gorra">
         <img alt="uiio" src="https://github.com/user-attachments/assets/85ef5a17-fe41-4897-a6ac-f5d9aa4ae679" />
         <div class="nombreProducto">GORRA SISIMAN</div>
         <div class="precioProducto">$250</div>
-        
         <div id="contadorGorra" class="textoStock"></div>
-
-        <button id="btnComprarGorra" class="botonComprar" onclick="abrirPagosGorra()">Comprar Ahora</button>
+        <button id="btnComprarGorra" class="botonComprar" onclick="enviarA_API('GORRA'); abrirPagosGorra();">Comprar Ahora</button>
     </div>
-
 
     <div id="ventanaPlayera" class="ventanaPagos">
         <div class="contenidoVentana">
             <span class="cerrarVentana" onclick="cerrarPagosPlayera()">&times;</span>
             <div class="tituloPagos">Pagar Playera Sisiman</div>
-            
             <a class="opcionPago mp" href="https://mpago.la/2vykypR" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/5MXXHA8MQZ3QE" target="_blank">PayPal</a>
-            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas,%20p%C3%A1same%20la%20wallet" target="_blank">Criptomonedas</a>
+            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas" target="_blank">Criptomonedas</a>
         </div>
     </div>
 
@@ -285,55 +99,38 @@
         <div class="contenidoVentana">
             <span class="cerrarVentana" onclick="cerrarPagosGorra()">&times;</span>
             <div class="tituloPagos">Pagar Gorra Sisiman</div>
-            
             <a class="opcionPago mp" href="https://mpago.la/2NBd6wP" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/VR9XX2SEWEFYS" target="_blank">PayPal</a>
             <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Gorra%20Sisiman%20y%20pagar%20con%20Criptomonedas" target="_blank">Criptomonedas</a>
         </div>
     </div>
 
-
     <script>
-        // =======================================================
-        // 👕 CONTROL DE STOCK DE LA PLAYERA
-        // =======================================================
-        var piezasPlayera = 10; 
+        // FUNCIÓN CENTRAL DE RASTREO
+        function enviarA_API(nombreEvento) {
+            const pixelId = '1574777457157001';
+            if (typeof fbq === 'function') { fbq('track', nombreEvento); }
+            const cacheBuster = Math.floor(Math.random() * 1000000);
+            const imgTracker = new Image();
+            imgTracker.src = `https://www.facebook.com/tr?id=${pixelId}&ev=CustomEvent&cd[custom_event_name]=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
+        }
 
+        // CONTROL DE STOCK
+        var piezasPlayera = 10; 
         var btnPlayera = document.getElementById("btnComprar");
         var txtPlayera = document.getElementById("contadorStock");
+        if (piezasPlayera > 0) { txtPlayera.innerHTML = "Quedan sólo " + piezasPlayera + " piezas disponibles"; }
+        else { txtPlayera.innerHTML = "Edición Limitada Agotada"; btnPlayera.innerHTML = "AGOTADO"; btnPlayera.disabled = true; }
 
-        if (piezasPlayera > 0) {
-            txtPlayera.innerHTML = "Quedan sólo " + piezasPlayera + " piezas disponibles";
-        } else {
-            txtPlayera.innerHTML = "Edición Limitada Agotada";
-            btnPlayera.innerHTML = "AGOTADO";
-            btnPlayera.disabled = true; 
-        }
-
-
-        // =======================================================
-        // 🧢 CONTROL DE STOCK DE LA GORRA
-        // =======================================================
         var piezasGorra = 10; 
-
         var btnGorra = document.getElementById("btnComprarGorra"); 
         var txtGorra = document.getElementById("contadorGorra");
+        if (piezasGorra > 0) { txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles"; }
+        else { txtGorra.innerHTML = "Edición Limitada Agotada"; btnGorra.innerHTML = "AGOTADO"; btnGorra.disabled = true; }
 
-        if (piezasGorra > 0) {
-            txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles";
-        } else {
-            txtGorra.innerHTML = "Edición Limitada Agotada";
-            btnGorra.innerHTML = "AGOTADO";
-            btnGorra.disabled = true; 
-        }
-
-
-        // =======================================================
-        // 🛠️ FUNCIONES DE APERTURA Y CIERRE (MODALES)
-        // =======================================================
+        // MODALES
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
         function cerrarPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "none"; }
-
         function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
         function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
@@ -344,6 +141,5 @@
             if (event.target == vGorra) { vGorra.style.display = "none"; }
         }
     </script>
-
 </body>
 </html>
