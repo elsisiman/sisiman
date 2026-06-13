@@ -30,12 +30,7 @@
             display: block;
             width: 435px;
             text-align: center;
-            
-            /* LO QUE SE MUEVE: Cambia estos números para mover la PLAYERA con todo y sus letras */
-            margin-top: 20px;     /* Espacio arriba */
-            margin-bottom: 40px;  /* Espacio abajo */
-            margin-left: auto;    /* Centrado automático izquierda */
-            margin-right: auto;   /* Centrado automático derecha */
+            margin: 20px auto 40px auto; 
         }
         .foto-de-la-playera {
             display: block;
@@ -45,18 +40,18 @@
         }
 
         /* =======================================================
-           🧢 SECCIÓN EXCLUSIVA DE LA GORRA
+           Cap SECCIÓN EXCLUSIVA DE LA GORRA (SIN LÍMITES DE MOVIMIENTO)
            ======================================================= */
         .caja-completa-gorra {
             display: block;
             width: 425px;
             text-align: center;
+            margin: 20px auto 40px auto; /* Mantiene el centrado base en la pantalla */
             
-            /* LO QUE SE MUEVE: Cambia estos números para mover la GORRA con todo y sus letras */
-            margin-top: -750px;     /* Espacio arriba */
-            margin-bottom: 40px;  /* Espacio abajo */
-            margin-left: 10;    /* Centrado automático izquierda */
-            margin-right: auto;   /* Centrado automático derecha */
+            /* 🔥 CONTROLES DE MOVIMIENTO LIBRE DESDE AQUÍ: */
+            position: relative;   /* Activa el movimiento libre */
+            top: 0px;             /* Muévela hacia ABAJO (ej: 50px) o hacia ARRIBA (ej: -100px) */
+            left: 0px;            /* Muévela hacia la DERECHA (ej: 40px) o hacia la IZQUIERDA (ej: -40px) */
         }
         .foto-de-la-gorra {
             display: block;
