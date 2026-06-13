@@ -46,6 +46,28 @@
             border-radius: 10px;  
         }
 
+        /* =======================================================
+           📦 NUEVA CAJA INDEPENDIENTE PARA EL SEGUNDO PRODUCTO
+           ======================================================= */
+        .caja-producto-dos {
+            display: block;
+            width: 425px;         /* Su propio ancho asignado */
+            text-align: center;
+            margin: 40px auto;    /* Separación base con el producto de arriba */
+
+            /* 🔥 CONTROLES PARA MOVER EL SEGUNDO PRODUCTO LIBREMENTE: */
+            position: relative;   
+            top: 0px;             /* Modifica aquí para subir (-) o bajar (+) la pura foto nueva */
+            left: 0px;            /* Modifica aquí para mover a la izquierda (-) o derecha (+) */
+        }
+
+        /* Asegura que la foto nueva herede el ancho de su propia caja */
+        .caja-producto-dos img {
+            display: block;
+            width: 100%;
+            border-radius: 10px;
+        }
+
         /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
         .nombreProducto {
             color: white;
@@ -174,7 +196,7 @@
 
         /* SI ENTRAN DESDE CELULAR */
         @media (max-width:768px){
-            .caja-completa-playera {
+            .caja-completa-playera, .caja-producto-dos {
                 width: 80vw;      
                 margin-top: 100px; 
             }
@@ -201,6 +223,12 @@
 
         <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
     </div>
+
+    <div class="caja-producto-dos">
+        <img alt="Gemini_Generated_Image_98vtde98vtde98vt" src="https://github.com/user-attachments/assets/df154711-4a6d-404e-bda6-a93981692340" />
+    </div>
+
+
     <div id="miVentana" class="ventanaPagos">
         <div class="contenidoVentana">
             <span class="cerrarVentana" onclick="cerrarPagos()">&times;</span>
