@@ -1,5 +1,5 @@
 imagen gorra
-<img width="646" height="712" alt="Gemini_Generated_Image_98vtde98vtde98vt" src="https://github.com/user-attachments/assets/df154711-4a6d-404e-bda6-a93981692340" />
+<img width="500" height="500" alt="uiio" src="https://github.com/user-attachments/assets/85ef5a17-fe41-4897-a6ac-f5d9aa4ae679" />
 
 imagen camiseta
 <img width="646" height="712" alt="IMG-20250526-WA0020" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" />
