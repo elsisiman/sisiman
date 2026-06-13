@@ -51,14 +51,16 @@
            ======================================================= */
         .caja-foto-gorra {
             display: block;
-            width: 425px;         /* Su propio ancho asignado */
             text-align: center;
             margin: 40px auto;    /* Separación base con el producto de arriba */
 
+            /* 📐 CAMBIA EL ANCHO DE LA FOTO DESDE AQUÍ: */
+            width: 425px;         /* Pon un número más grande o más chico para cambiar el tamaño */
+
             /* 🔥 CONTROLES PARA MOVER LA GORRA LIBREMENTE: */
             position: relative;   
-            top: -674px;             /* Modifica aquí para subir (-) o bajar (+) la pura foto de la gorra */
-            left: -447px;            /* Modifica aquí para mover a la izquierda (-) o derecha (+) */
+            top: -674px;             
+            left: -447px;            
         }
 
         /* Asegura que la foto herede el ancho de su propia caja */
@@ -66,6 +68,11 @@
             display: block;
             width: 100%;
             border-radius: 10px;
+            
+            /* 📐 SI QUISIERAS OBLIGAR A LA FOTO A TENER UN ALTO FIJO:
+               Puedes cambiar 'auto' por una medida en px (ejemplo: height: 400px;), 
+               aunque dejarlo en 'auto' evita que la foto se mire estirada o aplastada. */
+            height: auto; 
         }
 
         /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
