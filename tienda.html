@@ -50,23 +50,28 @@
         <div class="nombreProducto">Playera Sisiman</div>
         <div class="precioProducto">$250</div>
         <div id="contadorStock" class="textoStock"></div>
-        <button id="btnComprar" class="botonComprar" onclick="enviarA_API('PLAYERA'); abrirPagosPlayera();">Comprar Ahora</button>
+        <button id="btnComprar" class="botonComprar" onclick="enviarA_API('PLAYERA', 250); abrirPagosPlayera();">Comprar Ahora</button>
     </div>
     <div class="caja-foto-gorra">
         <img alt="uiio" src="https://github.com/user-attachments/assets/85ef5a17-fe41-4897-a6ac-f5d9aa4ae679" />
         <div class="nombreProducto">GORRA SISIMAN</div>
         <div class="precioProducto">$250</div>
         <div id="contadorGorra" class="textoStock"></div>
-        <button id="btnComprarGorra" class="botonComprar" onclick="enviarA_API('GORRA'); abrirPagosGorra();">Comprar Ahora</button>
+        <button id="btnComprarGorra" class="botonComprar" onclick="enviarA_API('GORRA', 250); abrirPagosGorra();">Comprar Ahora</button>
     </div>
 
+    <div id="ventanaPlayera" class="ventanaPagos"><div class="contenidoVentana"><span class="cerrarVentana" onclick="document.getElementById('ventanaPlayera').style.display='none'">&times;</span><div class="tituloPagos">Pagar Playera</div><a class="opcionPago" href="https://mpago.la/2vykypR" target="_blank">Mercado Pago</a></div></div>
+    <div id="ventanaGorra" class="ventanaPagos"><div class="contenidoVentana"><span class="cerrarVentana" onclick="document.getElementById('ventanaGorra').style.display='none'">&times;</span><div class="tituloPagos">Pagar Gorra</div><a class="opcionPago" href="https://mpago.la/2NBd6wP" target="_blank">Mercado Pago</a></div></div>
+
     <script>
-        function enviarA_API(nombreEvento) {
+        function enviarA_API(nombreEvento, precio) {
             const pixelId = '1574777457157001';
             const accessToken = 'EAAWm16Lyo2wBRjqYGbWHJIbQ5fl2TtB1QLVYXLEqSV02xAnfYHE8OEZBjC2ldulTYoZBFwBubnL04AexJWq3YgQ3jL6VGWZBMbDPRFeZB71ArUDYhYmd5aczZAc6O9iAZAxQwUo1ZC2DbSRl4Io2OCElq03hCMRZAZAwWqvLAjAB7mZB67BA9xAimu7RSeWYinSmdgIwZDZD';
             
-            // 1. Browser Event (Pixel)
-            if (typeof fbq === 'function') { fbq('track', nombreEvento); }
+            // 1. Browser Event
+            if (typeof fbq === 'function') { 
+                fbq('track', nombreEvento, { value: precio, currency: 'MXN' }); 
+            }
 
             // 2. Server Event (CAPI)
             fetch(`https://graph.facebook.com/v17.0/${pixelId}/events?access_token=${accessToken}`, {
@@ -77,13 +82,15 @@
                         event_name: nombreEvento,
                         event_time: Math.floor(Date.now() / 1000),
                         action_source: 'website',
+                        custom_data: { value: precio, currency: 'MXN' },
                         user_data: { client_user_agent: navigator.userAgent }
                     }]
                 })
-            }).catch(err => console.log('CAPI falló, pero el pixel está activo'));
+            }).catch(e => console.log('CAPI error'));
         }
 
-        // ... (rest of your stock logic and modal functions)
+        function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
+        function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
     </script>
 </body>
 </html>
