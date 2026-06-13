@@ -47,22 +47,22 @@
         }
 
         /* =======================================================
-           📦 NUEVA CAJA INDEPENDIENTE PARA EL SEGUNDO PRODUCTO
+           🧢 CAJA INDEPENDIENTE PARA LA FOTO DE LA GORRA
            ======================================================= */
-        .caja-producto-dos {
+        .caja-foto-gorra {
             display: block;
             width: 425px;         /* Su propio ancho asignado */
             text-align: center;
             margin: 40px auto;    /* Separación base con el producto de arriba */
 
-            /* 🔥 CONTROLES PARA MOVER EL SEGUNDO PRODUCTO LIBREMENTE: */
+            /* 🔥 CONTROLES PARA MOVER LA GORRA LIBREMENTE: */
             position: relative;   
-            top: 0px;             /* Modifica aquí para subir (-) o bajar (+) la pura foto nueva */
+            top: 0px;             /* Modifica aquí para subir (-) o bajar (+) la pura foto de la gorra */
             left: 0px;            /* Modifica aquí para mover a la izquierda (-) o derecha (+) */
         }
 
-        /* Asegura que la foto nueva herede el ancho de su propia caja */
-        .caja-producto-dos img {
+        /* Asegura que la foto herede el ancho de su propia caja */
+        .caja-foto-gorra img {
             display: block;
             width: 100%;
             border-radius: 10px;
@@ -196,7 +196,7 @@
 
         /* SI ENTRAN DESDE CELULAR */
         @media (max-width:768px){
-            .caja-completa-playera, .caja-producto-dos {
+            .caja-completa-playera, .caja-foto-gorra {
                 width: 80vw;      
                 margin-top: 100px; 
             }
@@ -224,7 +224,7 @@
         <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
     </div>
 
-    <div class="caja-producto-dos">
+    <div class="caja-foto-gorra">
         <img alt="Gemini_Generated_Image_98vtde98vtde98vt" src="https://github.com/user-attachments/assets/df154711-4a6d-404e-bda6-a93981692340" />
     </div>
 
@@ -244,13 +244,8 @@
 
 
     <script>
-        // =======================================================
-        // 🔥 TU CONTROL DE EXISTENCIAS AQUÍ ABAJO:
-        // =======================================================
         var piezasDisponibles = 10; 
 
-
-        // Lógica para revisar el stock al cargar la página
         var boton = document.getElementById("btnComprar");
         var textoContador = document.getElementById("contadorStock");
 
@@ -262,7 +257,6 @@
             boton.disabled = true; 
         }
 
-        // Funciones de la ventana
         function abrirPagos() {
             document.getElementById("miVentana").style.display = "block";
         }
