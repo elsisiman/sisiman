@@ -6,44 +6,68 @@
     <title>Mi Tienda</title>
     
     <style>
-        /* Este es el truco para el color negro */
+        /* Base de la página */
         body {
-            background-color: black; /* Esto lo hace negro sólido */
-            margin: 0;               /* Quita bordes blancos molestos */
-            height: 100vh;           /* Cubre todo el alto de la pantalla */
-            text-align: center;      /* Centra todo el contenido de la tienda */
+            background-color: black; 
+            margin: 0;               
+            height: 100vh;           
+            text-align: center;      
         }
 
-        /* LOGO (Extraído exactamente de tu página principal) */
+        /* LOGO FIJO */
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
 
-        /* AJUSTE DEL LOGO PARA CELULAR */
         @media (max-width:768px){
             .logoFijo{ top:10px; left:0; }
             .logoFijo img{ width:65px; }
         }
 
-        /* 📦 LA CAJA CONTENEDORA QUE UNE TODO COMO UNA SOLA PIEZA */
-        .bloqueProducto {
+        /* =======================================================
+           👕 SECCIÓN EXCLUSIVA DE LA PLAYERA
+           ======================================================= */
+        .caja-completa-playera {
             display: block;
             width: 435px;
-            margin: 20px auto 40px auto; /* Controla el espacio exterior del bloque completo */
             text-align: center;
+            
+            /* LO QUE SE MUEVE: Cambia estos números para mover la PLAYERA con todo y sus letras */
+            margin-top: 20px;     /* Espacio arriba */
+            margin-bottom: 40px;  /* Espacio abajo */
+            margin-left: auto;    /* Centrado automático izquierda */
+            margin-right: auto;   /* Centrado automático derecha */
         }
-
-        /* 🎯 MODIFICA ESTA LÍNEA PARA MOVER LA GORRA COMPLETA (Con todo y letras) */
-        #cajaGorra { margin: 20px auto 40px auto; }
-
-        /* ESTILO PARA LAS IMÁGENES */
-        .fotoCamisa, .fotoGorra {
+        .foto-de-la-playera {
             display: block;
-            width: 100%; /* Ocupa el 100% de su caja contenedora */        
+            width: 100%;        
             border-radius: 10px;  
             margin-bottom: 15px;
         }
 
-        /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
+        /* =======================================================
+           🧢 SECCIÓN EXCLUSIVA DE LA GORRA
+           ======================================================= */
+        .caja-completa-gorra {
+            display: block;
+            width: 435px;
+            text-align: center;
+            
+            /* LO QUE SE MUEVE: Cambia estos números para mover la GORRA con todo y sus letras */
+            margin-top: 20px;     /* Espacio arriba */
+            margin-bottom: 40px;  /* Espacio abajo */
+            margin-left: auto;    /* Centrado automático izquierda */
+            margin-right: auto;   /* Centrado automático derecha */
+        }
+        .foto-de-la-gorra {
+            display: block;
+            width: 100%;        
+            border-radius: 10px;  
+            margin-bottom: 15px;
+        }
+
+        /* =======================================================
+           ESTILOS GENERALES DE TEXTOS Y BOTONES
+           ======================================================= */
         .nombreProducto {
             color: white;
             font-family: Arial, sans-serif;
@@ -63,7 +87,6 @@
             margin-bottom: 10px;
         }
 
-        /* TEXTO QUE MUESTRA LAS PIEZAS QUE QUEDAN */
         .textoStock {
             color: #aaa;
             font-family: Arial, sans-serif;
@@ -93,7 +116,6 @@
             color: black; 
         }
 
-        /* ESTILO PARA CUANDO SE AGOTE (BOTÓN DESACTIVADO) */
         .botonComprar:disabled {
             border-color: #444;
             color: #444;
@@ -101,9 +123,7 @@
             transform: none;
         }
 
-        /* =======================================================
-           ESTILOS DE LA VENTANA DE PAGOS (MODAL)
-           ======================================================= */
+        /* VENTANA DE PAGOS (MODAL) */
         .ventanaPagos {
             display: none; 
             position: fixed;
@@ -136,9 +156,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .cerrarVentana:hover {
-            color: white;
-        }
+        .cerrarVentana:hover { color: white; }
 
         .tituloPagos {
             color: white;
@@ -169,9 +187,9 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* SI ENTRAN DESDE CELULAR */
+        /* AJUSTES PARA CELULAR */
         @media (max-width:768px){
-            .bloqueProducto {
+            .caja-completa-playera, .caja-completa-gorra {
                 width: 80vw;      
                 margin-top: 100px; 
             }
@@ -188,8 +206,8 @@
         <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
     </div>
 
-    <div class="bloqueProducto">
-        <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="IMG-20250526-WA0020">
+    <div class="caja-completa-playera">
+        <img class="foto-de-la-playera" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="Playera Sisiman">
         <div class="nombreProducto">Playera Sisiman</div>
         <div class="precioProducto">$250</div>
         <div id="contadorStock" class="textoStock"></div>
@@ -198,8 +216,8 @@
 
     <hr style="border: 0; border-top: 1px solid #222; margin: 40px auto; width: 80px;">
 
-    <div class="bloqueProducto" id="cajaGorra">
-        <img class="fotoGorra" src="https://github.com/user-attachments/assets/df154711-4a6d-404e-bda6-a93981692340" alt="Gorra Sisiman">
+    <div class="caja-completa-gorra">
+        <img class="foto-de-la-gorra" src="https://github.com/user-attachments/assets/df154711-4a6d-404e-bda6-a93981692340" alt="Gorra Sisiman">
         <div class="nombreProducto">Gorra Sisiman</div>
         <div class="precioProducto">$250</div>
         <div class="textoStock">Edición Limitada</div>
@@ -222,13 +240,8 @@
 
 
     <script>
-        // =======================================================
-        // 🔥 TU CONTROL DE EXISTENCIAS AQUÍ ABAJO:
-        // =======================================================
         var piezasDisponibles = 10; 
 
-
-        // Lógica para revisar el stock al cargar la página
         var boton = document.getElementById("btnComprar");
         var textoContador = document.getElementById("contadorStock");
 
@@ -240,7 +253,6 @@
             boton.disabled = true; 
         }
 
-        // Funciones de la ventana
         function abrirPagos() {
             document.getElementById("miVentana").style.display = "block";
         }
