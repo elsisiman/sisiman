@@ -1,482 +1,255 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Mi Tienda</title>
-
     
-
     <style>
-
         /* Este es el truco para el color negro */
-
         body {
-
             background-color: black; /* Esto lo hace negro sólido */
-
             margin: 0;               /* Quita bordes blancos molestos */
-
             height: 100vh;           /* Cubre todo el alto de la pantalla */
-
             text-align: center;      /* Centra todo el contenido de la tienda */
-
         }
-
-
 
         /* LOGO (Extraído exactamente de tu página principal) */
-
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
-
         .logoFijo img{ width:110px; }
 
-
-
         /* AJUSTE DEL LOGO PARA CELULAR */
-
         @media (max-width:768px){
-
             .logoFijo{ top:10px; left:0; }
-
             .logoFijo img{ width:65px; }
-
         }
-
-
-
-        /* ESTILO PARA LA CAMISA */
-
-        .fotoCamisa {
-
-            display: block;
-
-            width: 435px;         
-
-            margin: 10px auto 20px auto; 
-
-            border-radius: 10px;  
-
-        }
-
-
-
-        /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
-
-        .nombreProducto {
-
-            color: white;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 22px;
-
-            font-weight: bold;
-
-            text-transform: uppercase;
-
-            margin-top: 15px;
-
-            letter-spacing: 1px;
-
-        }
-
-
-
-        .precioProducto {
-
-            color: #00ff66; 
-
-            font-family: Arial, sans-serif;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            margin-top: 5px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-
-        /* TEXTO QUE MUESTRA LAS PIEZAS QUE QUEDAN */
-
-        .textoStock {
-
-            color: #aaa;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 14px;
-
-            margin-bottom: 20px;
-
-        }
-
-
-
-        .botonComprar {
-
-            display: inline-block;
-
-            text-decoration: none;
-
-            background-color: transparent;
-
-            color: white;
-
-            border: 2px solid white; 
-
-            padding: 10px 30px;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-
-        }
-
-
-
-        .botonComprar:hover:not(:disabled) {
-
-            transform: scale(1.08);
-
-            background-color: white;
-
-            color: black; 
-
-        }
-
-
-
-        /* ESTILO PARA CUANDO SE AGOTE (BOTÓN DESACTIVADO) */
-
-        .botonComprar:disabled {
-
-            border-color: #444;
-
-            color: #444;
-
-            cursor: not-allowed;
-
-            transform: none;
-
-        }
-
-
 
         /* =======================================================
-
-           ESTILOS DE LA VENTANA DE PAGOS (MODAL)
-
+           👕 CAJA CONTENEDORA DE LA PLAYERA (MUEVE TODO JUNTO)
            ======================================================= */
+        .caja-completa-playera {
+            display: block;
+            width: 435px;         /* Ajusta el ancho de toda la sección */
+            text-align: center;   
+            margin: 10px auto 20px auto; /* Centrado base automático */
 
-        .ventanaPagos {
-
-            display: none; 
-
-            position: fixed;
-
-            z-index: 999999;
-
-            left: 0;
-
-            top: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background-color: rgba(0, 0, 0, 0.85); 
-
+            /* 🔥 TUS CONTROLES DE MOVIMIENTO LIBRE: */
+            position: relative;   
+            top: 0px;             /* Cambia este número para subir (-) o bajar (+) la playera con todo su texto */
+            left: 0px;            /* Cambia este número para mover a la izquierda (-) o derecha (+) */
         }
 
+        /* ESTILO PARA LA IMAGEN ADENTRO DE LA CAJA */
+        .fotoCamisa {
+            display: block;
+            width: 100%;          /* Toma el ancho total de su caja contenedora */
+            border-radius: 10px;  
+        }
 
+        /* ESTILOS DEL TEXTO Y EL BOTÓN PRINCIPAL */
+        .nombreProducto {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .precioProducto {
+            color: #00ff66; 
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* TEXTO QUE MUESTRA LAS PIEZAS QUE QUEDAN */
+        .textoStock {
+            color: #aaa;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .botonComprar {
+            display: inline-block;
+            text-decoration: none;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white; 
+            padding: 10px 30px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botonComprar:hover:not(:disabled) {
+            transform: scale(1.08);
+            background-color: white;
+            color: black; 
+        }
+
+        /* ESTILO PARA CUANDO SE AGOTE (BOTÓN DESACTIVADO) */
+        .botonComprar:disabled {
+            border-color: #444;
+            color: #444;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* =======================================================
+           ESTILOS DE LA VENTANA DE PAGOS (MODAL)
+           ======================================================= */
+        .ventanaPagos {
+            display: none; 
+            position: fixed;
+            z-index: 999999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); 
+        }
 
         .contenidoVentana {
-
             background-color: #0a0a0a;
-
             margin: 15% auto;
-
             padding: 30px;
-
             border: 1px solid #333;
-
             width: 80%;
-
             max-width: 400px;
-
             border-radius: 15px;
-
             text-align: center;
-
             position: relative;
-
         }
-
-
 
         .cerrarVentana {
-
             color: #aaa;
-
             position: absolute;
-
             top: 10px;
-
             right: 20px;
-
             font-size: 28px;
-
             font-weight: bold;
-
             cursor: pointer;
-
         }
-
         .cerrarVentana:hover {
-
             color: white;
-
         }
-
-
 
         .tituloPagos {
-
             color: white;
-
             font-family: Arial, sans-serif;
-
             font-size: 18px;
-
             font-weight: bold;
-
             margin-bottom: 25px;
-
             text-transform: uppercase;
-
             letter-spacing: 1px;
-
         }
-
-
 
         .opcionPago {
-
             display: block;
-
             text-decoration: none;
-
             color: white;
-
             font-family: Arial, sans-serif;
-
             font-size: 13px;
-
             font-weight: bold;
-
             text-transform: uppercase;
-
             border: 1px solid #444;
-
             padding: 12px;
-
             margin-bottom: 12px;
-
             border-radius: 8px;
-
             transition: 0.3s;
-
         }
-
-
 
         .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } 
-
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
-
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-
-
         /* SI ENTRAN DESDE CELULAR */
-
         @media (max-width:768px){
-
-            .fotoCamisa {
-
+            .caja-completa-playera {
                 width: 80vw;      
-
                 margin-top: 100px; 
-
             }
-
             .contenidoVentana {
-
                 margin: 40% auto; 
-
             }
-
         }
-
     </style>
 
-
-
 </head>
-
 <body>
-
     
-
     <div class="logoFijo">
-
         <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
-
     </div>
 
+    <div class="caja-completa-playera">
+        <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="IMG-20250526-WA0020">
 
+        <div class="nombreProducto">Playera Sisiman</div>
+        <div class="precioProducto">$250</div>
+        
+        <div id="contadorStock" class="textoStock"></div>
 
-    <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065" alt="IMG-20250526-WA0020">
-
-
-
-    <div class="nombreProducto">Playera Sisiman</div>
-
-    <div class="precioProducto">$250</div>
-
-    
-
-    <div id="contadorStock" class="textoStock"></div>
-
-
-
-    <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
-
-
-
-
-
+        <button id="btnComprar" class="botonComprar" onclick="abrirPagos()">Comprar Ahora</button>
+    </div>
     <div id="miVentana" class="ventanaPagos">
-
         <div class="contenidoVentana">
-
             <span class="cerrarVentana" onclick="cerrarPagos()">&times;</span>
-
             <div class="tituloPagos">Selecciona tu método de pago</div>
-
             
-
             <a class="opcionPago mp" href="https://mpago.la/2vykypR" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
-
             
-
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/5MXXHA8MQZ3QE" target="_blank">PayPal</a>
-
             
-
             <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas,%20p%C3%A1same%20la%20wallet" target="_blank">Criptomonedas</a>
-
         </div>
-
     </div>
-
-
-
 
 
     <script>
-
         // =======================================================
-
         // 🔥 TU CONTROL DE EXISTENCIAS AQUÍ ABAJO:
-
         // =======================================================
-
         var piezasDisponibles = 10; 
 
 
-
-
-
         // Lógica para revisar el stock al cargar la página
-
         var boton = document.getElementById("btnComprar");
-
         var textoContador = document.getElementById("contadorStock");
 
-
-
         if (piezasDisponibles > 0) {
-
             textoContador.innerHTML = "Quedan sólo " + piezasDisponibles + " piezas disponibles";
-
         } else {
-
             textoContador.innerHTML = "Edición Limitada Agotada";
-
             boton.innerHTML = "AGOTADO";
-
             boton.disabled = true; 
-
         }
-
-
 
         // Funciones de la ventana
-
         function abrirPagos() {
-
             document.getElementById("miVentana").style.display = "block";
-
         }
-
-
 
         function cerrarPagos() {
-
             document.getElementById("miVentana").style.display = "none";
-
         }
-
-
 
         window.onclick = function(event) {
-
             var ventana = document.getElementById("miVentana");
-
             if (event.target == ventana) {
-
                 ventana.style.display = "none";
-
             }
-
         }
-
     </script>
 
-
-
 </body>
-
-</html> 
-
+</html>
