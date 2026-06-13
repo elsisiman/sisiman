@@ -25,18 +25,20 @@
         }
 
         /* =======================================================
-           👕 CAJA CONTENEDORA DE LA PLAYERA (MUEVE TODO JUNTO)
+           👕 CAJA CONTENEDORA DE LA PLAYERA (INDEPENDIENTE)
            ======================================================= */
         .caja-completa-playera {
             display: block;
-            width: 435px;         /* Ajusta el ancho de toda la sección */
             text-align: center;   
-            margin: 10px auto 20px auto; /* Centrado base automático */
+            
+            /* 📐 AQUÍ MUEVES EL WIDTH Y MARGIN A TU GUSTO: */
+            width: 435px;         
+            margin: 10px auto 20px auto; 
 
-            /* 🔥 TUS CONTROLES DE MOVIMIENTO LIBRE: */
+            /* 🔥 CONTROLES DE MOVIMIENTO LIBRE PARA LA CAMISA: */
             position: relative;   
-            top: 0px;             /* Cambia este número para subir (-) o bajar (+) la playera con todo su texto */
-            left: 0px;            /* Cambia este número para mover a la izquierda (-) o derecha (+) */
+            top: 0px;             
+            left: 0px;            
         }
 
         /* ESTILO PARA LA IMAGEN ADENTRO DE LA CAJA */
@@ -47,19 +49,17 @@
         }
 
         /* =======================================================
-           🧢 CAJA INDEPENDIENTE PARA LA FOTO DE LA GORRA
+           🧢 CAJA CONTENEDORA DE LA GORRA (EN SU LUGAR ORIGINAL)
            ======================================================= */
         .caja-foto-gorra {
             display: block;
             text-align: center;
-            margin: 40px auto;    /* Separación base con el producto de arriba */
+            width: 435px;         
+            margin: 40px auto;    
 
-            /* 📐 CAMBIA EL ANCHO DE LA FOTO DESDE AQUÍ: */
-            width: 435px;         /* Pon un número más grande o más chico para cambiar el tamaño */
-
-            /* 🔥 CONTROLES PARA MOVER LA GORRA LIBREMENTE: */
+            /* 🔥 REGRESADA A SU LADO IZQUIERDO ORIGINAL: */
             position: relative;   
-            top: -672px;             
+            top: -671px;             
             left: -447px;            
         }
 
@@ -69,8 +69,7 @@
             width: 100%;
             border-radius: 10px;
             
-            /* 📐 🔥 AQUÍ ESTÁ TU CONTROL DE ALTO CORREGIDO:
-               Cambia el '520px' por el número de alto que tú quieras para estirarla más o menos. */
+            /* 📐 🔥 TU CONTROL DE ALTO PARA LA FOTO DE LA GORRA: */
             height: 479px; 
 
             /* 🛠️ Esto obliga a la foto a estirarse a la fuerza para cumplir el 'height' que le diste */
@@ -260,8 +259,8 @@
             <span class="cerrarVentana" onclick="cerrarPagosGorra()">&times;</span>
             <div class="tituloPagos">Pagar Gorra Sisiman</div>
             
-            <a class="opcionPago mp" href="https://mpago.la/2NBd6wP" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
-            <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/VR9XX2SEWEFYS" target="_blank">PayPal</a>
+            <a class="opcionPago mp" href="AQUÍ_VA_TU_LINK_DE_MERCADOPAGO_GORRA" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
+            <a class="opcionPago pp" href="AQUÍ_VA_TU_LINK_DE_PAYPAL_GORRA" target="_blank">PayPal</a>
             <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Gorra%20Sisiman%20y%20pagar%20con%20Criptomonedas" target="_blank">Criptomonedas</a>
         </div>
     </div>
@@ -288,9 +287,9 @@
         // =======================================================
         // 🧢 CONTROL DE STOCK DE LA GORRA
         // =======================================================
-        var piezasGorra = 10; 
+        var piezasGorra = 5; 
 
-        var btnGorra = document.getElementById("btnComprarGorra"); // Vinculado al nuevo botón
+        var btnGorra = document.getElementById("btnComprarGorra"); 
         var txtGorra = document.getElementById("contadorGorra");
 
         if (piezasGorra > 0) {
@@ -298,23 +297,19 @@
         } else {
             txtGorra.innerHTML = "Edición Limitada Agotada";
             btnGorra.innerHTML = "AGOTADO";
-            btnGorra.disabled = true; // Desactiva el botón de la gorra automáticamente
+            btnGorra.disabled = true; 
         }
 
 
         // =======================================================
         // 🛠️ FUNCIONES DE APERTURA Y CIERRE (MODALES)
         // =======================================================
-        
-        // Modales Playera
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
         function cerrarPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "none"; }
 
-        // Modales Gorra
         function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
         function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
-        // Cerrar al dar clic afuera de cualquier ventana
         window.onclick = function(event) {
             var vPlayera = document.getElementById("ventanaPlayera");
             var vGorra = document.getElementById("ventanaGorra");
