@@ -16,14 +16,9 @@
         'https://connect.facebook.net/en_US/fbevents.js');
 
         fbq('init', '1574777457157001');
-
-        /* Desactiva por completo el rastro automático de clics molestos de Meta */
         fbq('set', 'autoConfig', false, '1574777457157001');
-
-        /* EVENTO PERSONALIZADO 'VISITA PAGINA' */
         fbq('track', 'VISITA TIENDA');
 
-        // Respaldo de imagen limpio configurado para evento personalizado 'VISITA PAGINA'
         const cbInicio = Math.floor(Math.random() * 1000000);
         const imgInicio = new Image();
         imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
@@ -62,7 +57,18 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        @media (max-width:768px){ .caja-completa-playera, .caja-foto-gorra { width: 80vw; margin-top: 100px; } .contenidoVentana { margin: 40% auto; } }
+        /* AQUÍ HICE EL CAMBIO PARA EL CELULAR */
+        @media (max-width:768px){ 
+            .caja-completa-playera { 
+                width: 80vw; 
+                margin-top: 100px; 
+                position: relative; 
+                top: 0px;    /* Cambia este valor para subir/bajar (ej: -20px) */
+                left: 0px;   /* Cambia este valor para mover izq/der (ej: 10px) */
+            } 
+            .caja-foto-gorra { width: 80vw; margin-top: 100px; } 
+            .contenidoVentana { margin: 40% auto; } 
+        }
     </style>
 </head>
 <body>
@@ -109,11 +115,7 @@
         function enviarA_API(nombreEvento, valor) {
             const pixelId = '1574777457157001';
             const accessToken = 'EAAWm16Lyo2wBRjqYGbWHJIbQ5fl2TtB1QLVYXLEqSV02xAnfYHE8OEZBjC2ldulTYoZBFwBubnL04AexJWq3YgQ3jL6VGWZBMbDPRFeZB71ArUDYhYmd5aczZAc6O9iAZAxQwUo1ZC2DbSRl4Io2OCElq03hCMRZAZAwWqvLAjAB7mZB67BA9xAimu7RSeWYinSmdgIwZDZD';
-            
-            // 1. Envío a Pixel (Browser)
             if (typeof fbq === 'function') { fbq('track', nombreEvento, {value: valor, currency: 'MXN'}); }
-
-            // 2. Envío a API (Server)
             fetch('https://graph.facebook.com/v17.0/'+pixelId+'/events?access_token='+accessToken, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -142,7 +144,7 @@
         else { txtGorra.innerHTML = "Edición Limitada Agotada"; btnGorra.innerHTML = "AGOTADO"; btnGorra.disabled = true; }
 
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
-        function cerrarPagosPlayera() { document.getElementById("ventanaPagos").style.display = "none"; }
+        function cerrarPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "none"; }
         function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
         function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
