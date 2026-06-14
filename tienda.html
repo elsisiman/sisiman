@@ -33,7 +33,7 @@
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
 
-        /* VISTA PC - MANTENIDA ORIGINALMENTE */
+        /* VISTA PC (NO SE TOCA) */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
@@ -46,8 +46,8 @@
         .botonComprar:hover:not(:disabled) { transform: scale(1.08); background-color: white; color: black; }
         .botonComprar:disabled { border-color: #444; color: #444; cursor: not-allowed; transform: none; }
         
-        /* VENTANAS: Z-index muy alto para que no se bloqueen */
-        .ventanaPagos { display: none; position: fixed; z-index: 9999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
+        /* Z-INDEX AUMENTADO PARA QUE NO SE CONGELE LA PAGINA AL ABRIR */
+        .ventanaPagos { display: none; position: fixed; z-index: 99999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
         .contenidoVentana { background-color: #0a0a0a; margin: 15% auto; padding: 30px; border: 1px solid #333; width: 80%; max-width: 400px; border-radius: 15px; text-align: center; position: relative; }
         .cerrarVentana { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
         .cerrarVentana:hover { color: white; }
@@ -57,6 +57,7 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
+        /* VISTA CELULAR */
         @media (max-width:768px){ 
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
@@ -110,12 +111,44 @@
             const pixelId = '1574777457157001';
             const accessToken = 'EAAWm16Lyo2wBRjqYGbWHJIbQ5fl2TtB1QLVYXLEqSV02xAnfYHE8OEZBjC2ldulTYoZBFwBubnL04AexJWq3YgQ3jL6VGWZBMbDPRFeZB71ArUDYhYmd5aczZAc6O9iAZAxQwUo1ZC2DbSRl4Io2OCElq03hCMRZAZAwWqvLAjAB7mZB67BA9xAimu7RSeWYinSmdgIwZDZD';
             if (typeof fbq === 'function') { fbq('track', nombreEvento, {value: valor, currency: 'MXN'}); }
+            fetch('https://graph.facebook.com/v17.0/'+pixelId+'/events?access_token='+accessToken, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    data: [{
+                        event_name: nombreEvento,
+                        event_time: Math.floor(Date.now() / 1000),
+                        action_source: 'website',
+                        custom_data: { value: valor, currency: 'MXN' },
+                        user_data: { client_user_agent: navigator.userAgent }
+                    }]
+                })
+            }).catch(e => console.log('CAPI error'));
         }
+
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
         function cerrarPagosPlayera() { document.getElementById("ventanaPagos").style.display = "none"; }
         function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
         function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
-        // Se quitó la lógica de scroll para no afectar tu diseño original
+
+        window.onclick = function(event) {
+            var vPlayera = document.getElementById("ventanaPlayera");
+            var vGorra = document.getElementById("ventanaGorra");
+            if (event.target == vPlayera) { cerrarPagosPlayera(); }
+            if (event.target == vGorra) { cerrarPagosGorra(); }
+        }
+
+        var piezasPlayera = 10; 
+        var btnPlayera = document.getElementById("btnComprar");
+        var txtPlayera = document.getElementById("contadorStock");
+        if (piezasPlayera > 0) { txtPlayera.innerHTML = "Quedan sólo " + piezasPlayera + " piezas disponibles"; }
+        else { txtPlayera.innerHTML = "Edición Limitada Agotada"; btnPlayera.innerHTML = "AGOTADO"; btnPlayera.disabled = true; }
+
+        var piezasGorra = 10; 
+        var btnGorra = document.getElementById("btnComprarGorra"); 
+        var txtGorra = document.getElementById("contadorGorra");
+        if (piezasGorra > 0) { txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles"; }
+        else { txtGorra.innerHTML = "Edición Limitada Agotada"; btnGorra.innerHTML = "AGOTADO"; btnGorra.disabled = true; }
     </script>
 </body>
 </html>
