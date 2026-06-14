@@ -28,7 +28,7 @@
     /></noscript>
     
     <style>
-        body { background-color: black; margin: 0; height: 100vh; text-align: center; }
+        body { background-color: black; margin: 0; padding-bottom: 50px; text-align: center; }
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
@@ -36,7 +36,7 @@
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         
-        .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
+        .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; }
         .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
 
         .nombreProducto { color: white; font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; text-transform: uppercase; margin-top: 15px; letter-spacing: 1px; }
@@ -57,16 +57,20 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* AQUÍ HICE EL CAMBIO PARA EL CELULAR */
+        /* AJUSTES DE CELULAR */
         @media (max-width:768px){ 
             .caja-completa-playera { 
                 width: 80vw; 
-                margin-top: 100px; 
+                margin: 20px auto; 
                 position: relative; 
-                top: -16px;    /* Cambia este valor para subir/bajar (ej: -20px) */
-                left: 0px;   /* Cambia este valor para mover izq/der (ej: 10px) */
+                top: 0px; left: 0px; /* Mueve la playera aquí */
             } 
-            .caja-foto-gorra { width: 80vw; margin-top: 100px; } 
+            .caja-foto-gorra { 
+                width: 80vw; 
+                margin: 20px auto; 
+                position: relative; 
+                top: 0px; left: 0px; /* Mueve la gorra aquí */
+            } 
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
@@ -144,7 +148,7 @@
         else { txtGorra.innerHTML = "Edición Limitada Agotada"; btnGorra.innerHTML = "AGOTADO"; btnGorra.disabled = true; }
 
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
-        function cerrarPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "none"; }
+        function cerrarPagosPlayera() { document.getElementById("ventanaPagos").style.display = "none"; }
         function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
         function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
