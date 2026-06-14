@@ -29,9 +29,6 @@
     
     <style>
         body { background-color: black; margin: 0; padding-bottom: 50px; text-align: center; }
-        /* Clase para bloquear scroll */
-        .sin-scroll { overflow: hidden; height: 100vh; }
-
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
@@ -58,8 +55,13 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* VISTA CELULAR */
+        /* VISTA CELULAR (CONTROL TOTAL AQUÍ) */
         @media (max-width:768px){ 
+            body { 
+                /* CAMBIA ESTE NÚMERO (ej: 1200px) PARA QUE LA PÁGINA SEA MÁS O MENOS LARGA */
+                height: 1200px; 
+                overflow-y: auto; 
+            }
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
@@ -127,19 +129,10 @@
             }).catch(e => console.log('CAPI error'));
         }
 
-        // Función para controlar el scroll en móviles
-        function toggleScroll(bloquear) {
-            if (window.innerWidth <= 768) {
-                if (bloquear) { document.body.classList.add('sin-scroll'); }
-                else { document.body.classList.remove('sin-scroll'); }
-            }
-        }
-
-        // Modificamos las funciones para bloquear/desbloquear
-        function abrirPagosPlayera() { toggleScroll(true); document.getElementById("ventanaPlayera").style.display = "block"; }
-        function cerrarPagosPlayera() { toggleScroll(false); document.getElementById("ventanaPagos").style.display = "none"; }
-        function abrirPagosGorra() { toggleScroll(true); document.getElementById("ventanaGorra").style.display = "block"; }
-        function cerrarPagosGorra() { toggleScroll(false); document.getElementById("ventanaGorra").style.display = "none"; }
+        function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
+        function cerrarPagosPlayera() { document.getElementById("ventanaPagos").style.display = "none"; }
+        function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
+        function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
 
         window.onclick = function(event) {
             var vPlayera = document.getElementById("ventanaPlayera");
@@ -148,7 +141,6 @@
             if (event.target == vGorra) { cerrarPagosGorra(); }
         }
 
-        // Lógica de stock intacta
         var piezasPlayera = 10; 
         var btnPlayera = document.getElementById("btnComprar");
         var txtPlayera = document.getElementById("contadorStock");
