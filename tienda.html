@@ -28,12 +28,14 @@
     /></noscript>
     
     <style>
-        body { background-color: black; margin: 0; padding-bottom: 50px; text-align: center; }
+        /* CONTROL SCROLL PC: Cambia el valor de height para ajustar el largo a tu gusto */
+        body { background-color: black; margin: 0; padding-bottom: 50px; text-align: center; height: 1000px; overflow-y: auto; }
+        
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
 
-        /* VISTA PC (NO SE TOCA) */
+        /* VISTA PC (ORIGINAL) */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
@@ -46,8 +48,8 @@
         .botonComprar:hover:not(:disabled) { transform: scale(1.08); background-color: white; color: black; }
         .botonComprar:disabled { border-color: #444; color: #444; cursor: not-allowed; transform: none; }
         
-        /* Z-INDEX AUMENTADO PARA QUE NO SE CONGELE LA PAGINA AL ABRIR */
-        .ventanaPagos { display: none; position: fixed; z-index: 99999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
+        /* VENTANAS DE PAGO */
+        .ventanaPagos { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
         .contenidoVentana { background-color: #0a0a0a; margin: 15% auto; padding: 30px; border: 1px solid #333; width: 80%; max-width: 400px; border-radius: 15px; text-align: center; position: relative; }
         .cerrarVentana { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
         .cerrarVentana:hover { color: white; }
@@ -59,6 +61,7 @@
 
         /* VISTA CELULAR */
         @media (max-width:768px){ 
+            body { height: 1200px; } /* <--- CAMBIA ESTE VALOR PARA EL LARGO DEL SCROLL EN CELULAR */
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
