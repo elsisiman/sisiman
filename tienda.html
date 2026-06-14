@@ -29,6 +29,9 @@
     
     <style>
         body { background-color: black; margin: 0; padding-bottom: 50px; text-align: center; }
+        /* Clase para bloquear scroll */
+        .sin-scroll { overflow: hidden; height: 100vh; }
+
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
@@ -55,22 +58,11 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* VISTA CELULAR (AQUÍ ES DONDE MUEVES) */
+        /* VISTA CELULAR */
         @media (max-width:768px){ 
-            .caja-completa-playera { 
-                width: 80vw; margin: 20px auto; position: relative; 
-                top: 60px;   /* Mueve playera arriba/abajo */
-                left: 0px;  /* Mueve playera izq/der */
-            } 
-            .caja-foto-gorra { 
-                width: 80vw; margin: 20px auto; position: relative; 
-                top: 60px;   /* Mueve gorra arriba/abajo */
-                left: 0px;  /* Mueve gorra izq/der */
-            } 
-            /* AQUÍ CONTROLA LA ALTURA DE LA IMAGEN DE LA GORRA */
-            .caja-foto-gorra img { 
-                height: 320px; /* Cambia este valor para ajustar la altura de la gorra */
-            }
+            .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
+            .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
+            .caja-foto-gorra img { height: 320px; }
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
@@ -135,6 +127,28 @@
             }).catch(e => console.log('CAPI error'));
         }
 
+        // Función para controlar el scroll en móviles
+        function toggleScroll(bloquear) {
+            if (window.innerWidth <= 768) {
+                if (bloquear) { document.body.classList.add('sin-scroll'); }
+                else { document.body.classList.remove('sin-scroll'); }
+            }
+        }
+
+        // Modificamos las funciones para bloquear/desbloquear
+        function abrirPagosPlayera() { toggleScroll(true); document.getElementById("ventanaPlayera").style.display = "block"; }
+        function cerrarPagosPlayera() { toggleScroll(false); document.getElementById("ventanaPagos").style.display = "none"; }
+        function abrirPagosGorra() { toggleScroll(true); document.getElementById("ventanaGorra").style.display = "block"; }
+        function cerrarPagosGorra() { toggleScroll(false); document.getElementById("ventanaGorra").style.display = "none"; }
+
+        window.onclick = function(event) {
+            var vPlayera = document.getElementById("ventanaPlayera");
+            var vGorra = document.getElementById("ventanaGorra");
+            if (event.target == vPlayera) { cerrarPagosPlayera(); }
+            if (event.target == vGorra) { cerrarPagosGorra(); }
+        }
+
+        // Lógica de stock intacta
         var piezasPlayera = 10; 
         var btnPlayera = document.getElementById("btnComprar");
         var txtPlayera = document.getElementById("contadorStock");
@@ -146,18 +160,6 @@
         var txtGorra = document.getElementById("contadorGorra");
         if (piezasGorra > 0) { txtGorra.innerHTML = "Quedan sólo " + piezasGorra + " piezas disponibles"; }
         else { txtGorra.innerHTML = "Edición Limitada Agotada"; btnGorra.innerHTML = "AGOTADO"; btnGorra.disabled = true; }
-
-        function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
-        function cerrarPagosPlayera() { document.getElementById("ventanaPagos").style.display = "none"; }
-        function abrirPagosGorra() { document.getElementById("ventanaGorra").style.display = "block"; }
-        function cerrarPagosGorra() { document.getElementById("ventanaGorra").style.display = "none"; }
-
-        window.onclick = function(event) {
-            var vPlayera = document.getElementById("ventanaPlayera");
-            var vGorra = document.getElementById("ventanaGorra");
-            if (event.target == vPlayera) { vPlayera.style.display = "none"; }
-            if (event.target == vGorra) { vGorra.style.display = "none"; }
-        }
     </script>
 </body>
 </html>
