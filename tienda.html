@@ -33,7 +33,7 @@
         .logoFijo img{ width:110px; }
         @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
 
-        /* VISTA PC (NO SE TOCA) */
+        /* VISTA PC (INTACTA) */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
@@ -55,13 +55,9 @@
         .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
         .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
-        /* VISTA CELULAR (CONTROL TOTAL AQUÍ) */
+        /* VISTA CELULAR (CONTROL DE ALTURA) */
         @media (max-width:768px){ 
-            body { 
-                /* CAMBIA ESTE NÚMERO (ej: 1200px) PARA QUE LA PÁGINA SEA MÁS O MENOS LARGA */
-                height: 1200px; 
-                overflow-y: auto; 
-            }
+            body { height: 1200px; } /* <--- CAMBIA ESTE VALOR PARA EL LARGO DEL SCROLL EN CELULAR */
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
