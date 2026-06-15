@@ -8,15 +8,15 @@
 <style>
 body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-serif; min-height:200vh; }
 
-/* CONTENEDOR PARA BOTONES IZQUIERDOS (Tienda y WhatsApp) */
+/* CONTENEDOR DE BOTONES IZQUIERDOS (TIENDA Y WHATSAPP) */
 .contenedorIzquierda {
   position: fixed;
   top: 122px;
-  left: 10px;
+  left: 0px; /* Pegado totalmente a la izquierda */
   z-index: 99999;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espacio entre los dos botones */
+  gap: 2px; /* Muy juntos entre sí */
 }
 
 .contenedorIzquierda a {
@@ -24,7 +24,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
   text-decoration: none;
   background-color: transparent;
   color: #ffffff;
-  padding: 8px 15px;
+  padding: 5px 10px;
   font-family: Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -38,8 +38,10 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
   transform: scale(1.1);
 }
 
-/* OTROS ESTILOS QUE YA TENÍAS */
+/* FOTO CENTRAL */
 .fotoCentral{ display:block; width:900px; margin:auto; margin-top:-150px; position:relative; left:-218px; top:20px; }
+
+/* BOTONES EXISTENTES */
 .botonSpotify{ position:fixed; top:18px; right:56px; z-index:9999;}
 .botonSpotify img{ width:450px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonSpotify img:hover{ transform:scale(1.08);}
@@ -57,7 +59,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 .spotifyEmbed{ display:flex; justify-content:center; }
 .seccionTexto, .seccionTexto2 { color: #e0e0e0; font-size: 16px; line-height: 1.6; z-index: 1; font-family: 'Arial', sans-serif; }
 
-/* AJUSTES PARA PC Y CELULAR */
+/* RESPONSIVE */
 @media (min-width:769px){
   .spotifyEmbed{ transform: translate(-216px, 28px); }
   body { min-height: 250vh; }
@@ -74,8 +76,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
   .botonDescarga { position: absolute; top: 1043px; right: 23px; width: 310px; }
   .logoFijo{ top:10px; left:0; }
   
-  /* Ajuste botones en móvil */
-  .contenedorIzquierda { top: 40px; left: 5px; }
+  .contenedorIzquierda { top: 40px; left: 0px; }
   .contenedorIzquierda a { font-size: 14px; padding: 5px 10px; }
   
   .spotifyEmbed { position: absolute; top: 1254px; left: 2vw; width: 90vw; }
@@ -99,6 +100,10 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 <div class="seccionTexto">cantondecarton@hotmail.com</div>
 <div class="seccionTexto2">3125951818</div>
 <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
+
+<script>
+// (Aquí mantienes tu script original de lógica)
+</script>
 
 </body>
 </html>
