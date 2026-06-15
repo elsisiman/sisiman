@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -47,7 +47,7 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* BOTON TIENDA - MANTIENE ANIMACIÓN */
+/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
 .botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999; text-align: left;}
 .botonTienda a{
   display: inline-block;
@@ -64,29 +64,354 @@ body{
   transition: 0.3s; 
   letter-spacing: 1px; 
 }
-.botonTienda a:hover{ transform: scale(1.08); }
-
-/* BOTON WHATSAPP - CON MISMA LÓGICA Y ANIMACIÓN */
-.botonWats{ position:fixed; top:170px; left:-6px; z-index:99999; text-align: left;}
-.botonWats a{
-  display: inline-block;
-  text-decoration: none;
-  background-color: #25D366; /* Verde */
-  color: #ffffff;            /* Blanco */
-  padding: 10px 20px; 
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  border: none; 
-  border-radius: 5px;        /* Pequeño redondeado estilo botón */
-  text-transform: uppercase;
-  transition: 0.3s; 
-  letter-spacing: 1px; 
+.botonTienda a:hover{ 
+  transform: scale(1.08); 
 }
-.botonWats a:hover{ transform: scale(1.08); }
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
 
-/* ... (resto de tus estilos y media queries originales) ... */
+
+/* =======================================================
+   ESTILOS BASE DE LOS DOS TEXTOS NORMALES
+   ======================================================= */
+.seccionTexto, .seccionTexto2 {
+  color: #e0e0e0;        
+  font-size: 16px;       
+  line-height: 1.6;      
+  z-index: 1;
+  font-family: 'Arial', sans-serif; 
+}
+
+
+/* AJUSTES PARA PC */
+@media (min-width:769px){
+  .spotifyEmbed{ transform: translate(-216px, 28px); }
+
+  /* CONTROL DE SCROLL EXCLUSIVO PARA PC */
+  body { 
+    min-height: 250vh; 
+  }
+
+  /* TEXTO 1: Mueve libremente "cantondecarton" */
+  .seccionTexto {
+    width: 445px;
+    text-align: left;      
+    margin-top: 31px;      /* Espacio abajo desde el embed */
+    margin-left: 90px;    /* Espacio desde la orilla izquierda */
+  }
+
+  /* TEXTO 2: Mueve libremente "3125951818" */
+  .seccionTexto2 {
+    width: 400px;
+    text-align: left;      
+    margin-top: -3px;      /* Espacio abajo desde el primer texto */
+    margin-left: 89px;    /* Espacio desde la orilla izquierda */
+  }
+}
+
+/* CELULAR */
+@media (max-width:768px){
+  body{ min-height:221vh; overflow-x:hidden; }
+  
+  .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
+
+  .botonSpotify {
+    position: absolute;
+    top: 570px;          
+    right: 14px;         
+    width: 330px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonYoutube {
+    position: absolute;   
+    top: 743px;          
+    right: 68px;         
+    width: 232px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonApple {
+    position: absolute;
+    top: 903px;          
+    right: 47px;         
+    width: 260px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonDescarga {
+    position: absolute;
+    top: 1043px;          
+    right: 23px;         
+    width: 310px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonSpotify img, .botonYoutube img, .botonApple img, .botonDescarga img {
+    width: 100%;
+  }
+
+  .logoFijo{ top:10px; left:0; }
+  .logoFijo img{ width:65px; }
+
+  /* AJUSTE CAMBIADO A ABSOLUTE (YA NO FLOTA) Y LETRA MÁS GRANDE (15px) */
+  .botonTienda{ position: absolute; top: 44px; left: 50px; }
+  .botonTienda a{ padding: 8px 15px; font-size: 15px; }
+  .botonTienda a:hover{ transform: scale(1.08); }
+
+  .spotifyEmbed { 
+    position: absolute;
+    transform: none; 
+    display: block;
+    top: 1254px;       
+    left: 2vw;       
+    width: 90vw;      
+  }
+  
+  .spotifyEmbed iframe {
+    width: 105% !important;
+    height: 80px;     
+  }
+
+  .seccionTexto {
+    position: absolute;
+    top: 1338px;         
+    left: -8vw;        
+    width: 85vw;
+    text-align: center;
+  }
+
+  .seccionTexto2 {
+    position: absolute;
+    top: 1359px;         
+    left: -26vw;        
+    width: 83vw;
+    text-align: center;
+  }
+}
 </style>
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1574777457157001');
+
+/* Desactiva por completo el rastro automático de clics molestos de Meta */
+fbq('set', 'autoConfig', false, '1574777457157001');
+
+/* EVENTO PERSONALIZADO 'VISITA PAGINA' */
+fbq('track', 'VISITA PAGINA');
+
+// Respaldo de imagen limpio configurado para evento personalizado 'VISITA PAGINA'
+const cbInicio = Math.floor(Math.random() * 1000000);
+const imgInicio = new Image();
+imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1"
+/></noscript>
+</head>
+
+<body>
+
+<img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
+
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q', this.href, 'SPOTIFY')">
+  <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
+</a>
+
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'YOUTUBE')">
+  <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
+</a>
+
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
+  <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
+</a>
+
+<div class="botonDescarga">
+  <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" onclick="seguirSpotify()">
+</div>
+
+<div class="spotifyEmbed">
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+</div>
+
+<div class="seccionTexto">
+  cantondecarton@hotmail.com
+</div>
+
+<div class="seccionTexto2">
+  3125951818
+</div>
+
+<div class="logoFijo">
+  <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+</div>
+
+<div class="botonTienda">
+  <a href="tienda.html" target="_blank">TIENDA</a>
+</div>
+
+<script>
+const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
+const redirect_uri = "https://sisiman.vercel.app";
+const artist_id = "5KeX79pQzo2M92PKqjOhxo";
+const playlist_id = "5H4YBJmZKajvJnANiswCvX";
+
+const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
+const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
+
+let tokenSpotify = localStorage.getItem("spotify_token");
+
+// ==================================================================================
+// LOGICA DE REDIRECCIÓN (SOLO SE CORRIGE EL CASO SPOTIFY EN IPHONE)
+// ==================================================================================
+function forzarApp(e, urlApp, urlWeb, eventoMeta) {
+  const ua = navigator.userAgent;
+  const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
+
+  // AJUSTE EXCLUSIVO PARA SPOTIFY EN IPHONE: Evita que e.preventDefault() bloquee la app nativa
+  if (esAppleMovil && urlApp.startsWith('spotify:')) {
+    enviarA_API(eventoMeta);
+    window.location.href = urlApp;
+    return;
+  }
+
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault(); 
+  }
+  
+  enviarA_API(eventoMeta);
+
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
+  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
+
+  setTimeout(() => {
+    if (esChromeMovil && urlApp.startsWith('music:')) {
+      window.open(urlWeb, '_blank');
+      return;
+    }
+
+    if (esMovil) {
+      window.location.href = urlApp;
+      if (urlApp.startsWith('music:')) {
+        setTimeout(() => {
+          window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+        }, 1200);
+      }
+    } else {
+      window.open(urlWeb, '_blank');
+    }
+  }, 250);
+}
+
+function enviarA_API(nombreEvento) {
+  const pixelId = '1574777457157001';
+  
+  if (typeof fbq === 'function') {
+    fbq('track', nombreEvento);
+  }
+  
+  const cacheBuster = Math.floor(Math.random() * 1000000);
+  const eventosEstandar = ['PageView', 'ViewContent', 'Search', 'AddToCart', 'AddToWishlist', 'InitiateCheckout', 'AddPaymentInfo', 'Purchase', 'Lead', 'CompleteRegistration', 'Subscribe', 'Contact', 'CustomizeProduct', 'FindLocation', 'Schedule', 'StartTrial', 'SubmitApplication'];
+  const parametroEvento = eventosEstandar.includes(nombreEvento) ? `ev=${nombreEvento}` : `ev=CustomEvent&cd[custom_event_name]=${nombreEvento}`;
+  
+  const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&${parametroEvento}&noscript=1&cb=${cacheBuster}`;
+  const imgTracker = new Image();
+  imgTracker.src = urlFallback;
+}
+// ==================================================================================
+
+function seguirSpotify(){
+  /* EVENTO PERSONALIZADO: 'CLIK DESCARGA' */
+  enviarA_API('CLIK DESCARGA');
+
+  const scope = "user-follow-read playlist-read-private";
+
+  const auth_url =
+  "https://accounts.spotify.com/authorize"+
+  "?client_id="+client_id+
+  "&response_type=code"+
+  "&redirect_uri="+encodeURIComponent(redirect_uri)+
+  "&scope="+encodeURIComponent(scope)+
+  "&show_dialog=true";
+
+  const ancho = 500;
+  const alto = 650;
+  const izquierda = (screen.width / 2) - (ancho / 2);
+  const arriba = (screen.height / 2) - (alto / 2);
+
+  window.open(auth_url, "SpotifyAuth", `width=${ancho},height=${alto},top=${arriba},left=${izquierda}`);
+}
+
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get("code");
+
+  if(code){
+    if (window.opener) {
+      window.opener.postMessage({ tipo: "SPOTIFY_CODE", code: code }, "*");
+      window.close();
+    } else {
+      intercambiarCodePorToken(code);
+    }
+  }
+}
+
+window.addEventListener("message", (evento) => {
+  if (evento.data && evento.data.tipo === "SPOTIFY_CODE") {
+    intercambiarCodePorToken(evento.data.code);
+  }
+});
+
+async function intercambiarCodePorToken(code){
+  const body = new URLSearchParams({
+    grant_type: "authorization_code",
+    code: code,
+    redirect_uri: redirect_uri,
+    client_id: client_id
+  });
+
+  try {
+    const respuesta = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body
+    });
+
+    const data = await respuesta.json();
+    tokenSpotify = data.access_token;
+    localStorage.setItem("spotify_token", tokenSpotify);
+    
+    window.history.replaceState({}, document.title, "/");
+    desbloquearDescarga();
+  } catch (error) {
+    console.error("Error al obtener el token:", error);
+  }
+}
+
+function desbloquearDescarga(){
+  /* EVENTO PERSONALIZADO: 'DESCARGA COMPLETADA' */
+  enviarA_API('DESCARGA COMPLETADA');
+
+  const img = document.getElementById("imgDescarga");
+  img.src = imgDesbloqueado;
+  img.onclick = () => window.open(linkDescarga, "_blank");
+  alert("DESCARGA DESBLOQUEADA 🚀");
+}
+</script>
+
+</body>
+</html>
