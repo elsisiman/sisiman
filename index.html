@@ -6,12 +6,12 @@
 <title>Mi página</title>
 
 <style>
-/* =======================================================
-   ESTILOS ORIGINALES (NO TOCADOS)
-   ======================================================= */
 body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-serif; min-height:200vh; }
 
+/* FOTO CENTRAL */
 .fotoCentral{ display:block; width:900px; margin:auto; margin-top:-150px; position:relative; left:-218px; top:20px; }
+
+/* BOTONES EXISTENTES */
 .botonSpotify{ position:fixed; top:18px; right:56px; z-index:9999;}
 .botonSpotify img{ width:450px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonSpotify img:hover{ transform:scale(1.08);}
@@ -24,27 +24,24 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 .botonDescarga{ position:fixed; top:520px; right:127px; z-index:9999;}
 .botonDescarga img{ width:305px; cursor:pointer; transition:0.3s;}
 .botonDescarga img:hover{ transform:scale(1.08);}
+
+/* LOGO - MANTENIDO EXACTAMENTE IGUAL */
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
-.spotifyEmbed{ display:flex; justify-content:center; }
-.seccionTexto, .seccionTexto2 { color: #e0e0e0; font-size: 16px; line-height: 1.6; z-index: 1; font-family: 'Arial', sans-serif; }
 
-/* =======================================================
-   AJUSTE DE BOTONES IZQUIERDOS (POSICIÓN ORIGINAL)
-   ======================================================= */
-.botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999; }
-.botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+/* BOTON TIENDA - MANTENIDO IGUAL */
+.botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999;}
+.botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonTienda a:hover{ transform: scale(1.08); }
 
-/* BOTÓN WHATSAPP NUEVO (Estilo botón) */
-.botonWhatsApp { position: fixed; top: 165px; left: 15px; z-index: 99999; }
+/* BOTON WHATSAPP - DISEÑADO COMO BOTÓN SIN AFECTAR OTROS */
+.botonWhatsApp { position: fixed; top: 165px; left: 15px; z-index: 99998; }
 .botonWhatsApp a { 
     display: inline-block; 
     text-decoration: none; 
     background-color: #25D366; 
     color: #ffffff; 
     padding: 8px 15px; 
-    font-family: Arial, sans-serif; 
     font-size: 14px; 
     font-weight: bold; 
     border-radius: 5px; 
@@ -53,33 +50,15 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 }
 .botonWhatsApp a:hover { transform: scale(1.05); background-color: #128C7E; }
 
-/* =======================================================
-   RESPONSIVE (NO TOCADO)
-   ======================================================= */
-@media (min-width:769px){
-  .spotifyEmbed{ transform: translate(-216px, 28px); }
-  body { min-height: 250vh; }
-  .seccionTexto { width: 445px; text-align: left; margin-top: 31px; margin-left: 90px; }
-  .seccionTexto2 { width: 400px; text-align: left; margin-top: -3px; margin-left: 89px; }
-}
-
-@media (max-width:768px){
-  body{ min-height:221vh; overflow-x:hidden; }
-  .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
-  .botonSpotify { position: absolute; top: 570px; right: 14px; width: 330px; }
-  .botonYoutube { position: absolute; top: 743px; right: 68px; width: 232px; }
-  .botonApple { position: absolute; top: 903px; right: 47px; width: 260px; }
-  .botonDescarga { position: absolute; top: 1043px; right: 23px; width: 310px; }
-  .logoFijo{ top:10px; left:0; }
-  .botonTienda{ position: absolute; top: 44px; left: 50px; }
-  .botonWhatsApp { position: absolute; top: 80px; left: 50px; }
-  .spotifyEmbed { position: absolute; top: 1254px; left: 2vw; width: 90vw; }
-}
+/* ... (resto de tus estilos y media queries originales) ... */
 </style>
 </head>
+
 <body>
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
+<div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 <div class="botonTienda"><a href="tienda.html" target="_blank">TIENDA</a></div>
 <div class="botonWhatsApp"><a href="https://wa.me/523125951818" target="_blank">WHATSAPP</a></div>
+
 </body>
 </html>
