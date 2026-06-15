@@ -11,54 +11,73 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 /* FOTO CENTRAL */
 .fotoCentral{ display:block; width:900px; margin:auto; margin-top:-150px; position:relative; left:-218px; top:20px; }
 
-/* BOTONES EXISTENTES */
+/* BOTONES ORIGINALES */
 .botonSpotify{ position:fixed; top:18px; right:56px; z-index:9999;}
 .botonSpotify img{ width:450px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonSpotify img:hover{ transform:scale(1.08);}
+
 .botonYoutube{ position:fixed; top:217px; right:151px; z-index:9999;}
 .botonYoutube img{ width:280px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonYoutube img:hover{ transform:scale(1.08);}
+
 .botonApple{ position:fixed; top:376px; right:132px; z-index:9999;}
 .botonApple img{ width:305px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonApple img:hover{ transform:scale(1.08);}
+
 .botonDescarga{ position:fixed; top:520px; right:127px; z-index:9999;}
 .botonDescarga img{ width:305px; cursor:pointer; transition:0.3s;}
 .botonDescarga img:hover{ transform:scale(1.08);}
 
-/* LOGO - MANTENIDO EXACTAMENTE IGUAL */
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* BOTON TIENDA - MANTENIDO IGUAL */
-.botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999;}
+.botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999; text-align: left;}
 .botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonTienda a:hover{ transform: scale(1.08); }
 
-/* BOTON WHATSAPP - DISEÑADO COMO BOTÓN SIN AFECTAR OTROS */
-.botonWhatsApp { position: fixed; top: 165px; left: 15px; z-index: 99998; }
-.botonWhatsApp a { 
-    display: inline-block; 
-    text-decoration: none; 
-    background-color: #25D366; 
-    color: #ffffff; 
-    padding: 8px 15px; 
-    font-size: 14px; 
-    font-weight: bold; 
-    border-radius: 5px; 
-    text-transform: uppercase; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-.botonWhatsApp a:hover { transform: scale(1.05); background-color: #128C7E; }
+/* WHATSAPP (Añadido sin mover lo demás) */
+.botonWhatsApp { position: fixed; top: 165px; left: 10px; z-index: 99999; }
+.botonWhatsApp a { color: #25D366; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; font-size: 16px; text-transform: uppercase; }
 
-/* ... (resto de tus estilos y media queries originales) ... */
+.spotifyEmbed{ display:flex; justify-content:center; }
+.seccionTexto, .seccionTexto2 { color: #e0e0e0; font-size: 16px; line-height: 1.6; z-index: 1; font-family: 'Arial', sans-serif; }
+
+/* MEDIA QUERIES ORIGINALES */
+@media (min-width:769px){
+  .spotifyEmbed{ transform: translate(-216px, 28px); }
+  body { min-height: 250vh; }
+  .seccionTexto { width: 445px; text-align: left; margin-top: 31px; margin-left: 90px; }
+  .seccionTexto2 { width: 400px; text-align: left; margin-top: -3px; margin-left: 89px; }
+}
+
+@media (max-width:768px){
+  body{ min-height:221vh; overflow-x:hidden; }
+  .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
+  .botonSpotify { position: absolute; top: 570px; right: 14px; width: 330px; }
+  .botonYoutube { position: absolute; top: 743px; right: 68px; width: 232px; }
+  .botonApple { position: absolute; top: 903px; right: 47px; width: 260px; }
+  .botonDescarga { position: absolute; top: 1043px; right: 23px; width: 310px; }
+  .logoFijo{ top:10px; left:0; }
+  .botonTienda{ position: absolute; top: 44px; left: 50px; }
+  .botonWhatsApp { position: absolute; top: 80px; left: 50px; }
+  .spotifyEmbed { position: absolute; top: 1254px; left: 2vw; width: 90vw; }
+}
 </style>
 </head>
-
 <body>
+
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 <div class="botonTienda"><a href="tienda.html" target="_blank">TIENDA</a></div>
 <div class="botonWhatsApp"><a href="https://wa.me/523125951818" target="_blank">WHATSAPP</a></div>
+
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"><img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"></a>
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank"><img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930"></a>
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank"><img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470"></a>
+<div class="botonDescarga"><img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" onclick="seguirSpotify()"></div>
+<div class="spotifyEmbed"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="seccionTexto">cantondecarton@hotmail.com</div>
+<div class="seccionTexto2">3125951818</div>
 
 </body>
 </html>
