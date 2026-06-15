@@ -11,7 +11,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 /* FOTO CENTRAL */
 .fotoCentral{ display:block; width:900px; margin:auto; margin-top:-150px; position:relative; left:-218px; top:20px; }
 
-/* BOTONES ORIGINALES */
+/* BOTONES ORIGINALES (NO TOCADOS) */
 .botonSpotify{ position:fixed; top:18px; right:56px; z-index:9999;}
 .botonSpotify img{ width:450px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4); transition:0.3s;}
 .botonSpotify img:hover{ transform:scale(1.08);}
@@ -31,13 +31,25 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
+/* TIENDA (ORIGINAL) */
 .botonTienda{ position:fixed; top:122px; left:-6px; z-index:99999; text-align: left;}
 .botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonTienda a:hover{ transform: scale(1.08); }
 
-/* WHATSAPP (Añadido sin mover lo demás) */
+/* WHATSAPP (SOLO ESTILO VERDE/BLANCO, SIN MOVER POSICIÓN) */
 .botonWhatsApp { position: fixed; top: 165px; left: 10px; z-index: 99999; }
-.botonWhatsApp a { color: #25D366; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; font-size: 16px; text-transform: uppercase; }
+.botonWhatsApp a { 
+    display: inline-block; 
+    text-decoration: none; 
+    background-color: #25D366; 
+    color: #ffffff; 
+    padding: 8px 15px; 
+    font-family: Arial, sans-serif; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border-radius: 5px; 
+}
+.botonWhatsApp a:hover { transform: scale(1.05); }
 
 .spotifyEmbed{ display:flex; justify-content:center; }
 .seccionTexto, .seccionTexto2 { color: #e0e0e0; font-size: 16px; line-height: 1.6; z-index: 1; font-family: 'Arial', sans-serif; }
@@ -71,7 +83,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 <div class="botonTienda"><a href="tienda.html" target="_blank">TIENDA</a></div>
 <div class="botonWhatsApp"><a href="https://wa.me/523125951818" target="_blank">WHATSAPP</a></div>
 
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"><img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"></a>
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP" target="_blank"><img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"></a>
 <a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank"><img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930"></a>
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank"><img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470"></a>
 <div class="botonDescarga"><img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" onclick="seguirSpotify()"></div>
