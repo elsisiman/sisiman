@@ -8,23 +8,22 @@
 <style>
 body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-serif; min-height:200vh; }
 
-/* CONTENEDOR DE BOTONES IZQUIERDOS (TIENDA Y WHATSAPP) */
+/* CONTENEDOR DE BOTONES IZQUIERDOS */
 .contenedorIzquierda {
   position: fixed;
   top: 122px;
-  left: 0px; /* Pegado totalmente a la izquierda */
+  left: 0px; 
   z-index: 99999;
   display: flex;
   flex-direction: column;
-  gap: 2px; /* Muy juntos entre sí */
+  gap: 2px;
 }
 
+/* Estilo base para los botones */
 .contenedorIzquierda a {
   display: block;
   text-decoration: none;
-  background-color: transparent;
-  color: #ffffff;
-  padding: 5px 10px;
+  padding: 8px 15px;
   font-family: Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -32,11 +31,19 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
   transition: 0.3s;
   letter-spacing: 1px;
   text-align: left;
+  color: #ffffff;
 }
 
-.contenedorIzquierda a:hover {
-  transform: scale(1.1);
+/* Botón TIENDA */
+.btnTienda { background-color: transparent; }
+.btnTienda:hover { transform: scale(1.1); }
+
+/* Botón WHATSAPP - Verde, blanco y con esquina redondeada */
+.btnWats { 
+  background-color: #25D366; 
+  border-radius: 0 20px 20px 0; 
 }
+.btnWats:hover { transform: scale(1.1); background-color: #128C7E; }
 
 /* FOTO CENTRAL */
 .fotoCentral{ display:block; width:900px; margin:auto; margin-top:-150px; position:relative; left:-218px; top:20px; }
@@ -75,10 +82,8 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
   .botonApple { position: absolute; top: 903px; right: 47px; width: 260px; }
   .botonDescarga { position: absolute; top: 1043px; right: 23px; width: 310px; }
   .logoFijo{ top:10px; left:0; }
-  
   .contenedorIzquierda { top: 40px; left: 0px; }
   .contenedorIzquierda a { font-size: 14px; padding: 5px 10px; }
-  
   .spotifyEmbed { position: absolute; top: 1254px; left: 2vw; width: 90vw; }
 }
 </style>
@@ -88,8 +93,8 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
 
 <div class="contenedorIzquierda">
-  <a href="tienda.html" target="_blank">TIENDA</a>
-  <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20que%20hay%20de%20nuevo%20!%20vengo%20de%20tu%20pagina" target="_blank">WHATSAPP</a>
+  <a href="tienda.html" target="_blank" class="btnTienda">TIENDA</a>
+  <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20que%20hay%20de%20nuevo%20!%20vengo%20de%20tu%20pagina" target="_blank" class="btnWats">WHATSAPP</a>
 </div>
 
 <a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP" target="_blank"><img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"></a>
@@ -102,7 +107,7 @@ body{ margin:0; padding:0; background:black; font-family:Arial, Helvetica, sans-
 <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
 <script>
-// (Aquí mantienes tu script original de lógica)
+// Manten tu lógica original aquí abajo
 </script>
 
 </body>
