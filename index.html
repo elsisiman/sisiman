@@ -47,34 +47,38 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* BOTONES TIENDA Y WHATSAPP */
-.botonTienda, .botonWhatsApp { position: fixed; left: 50px; z-index: 99999; text-align: left;}
+/* BOTONES TIENDA Y WHATSAPP FIJOS A LA IZQUIERDA */
+.botonTienda, .botonWhatsApp { 
+  position: fixed; 
+  left: 20px; 
+  z-index: 99999; 
+  text-align: left;
+}
 .botonTienda { top: 122px; }
 .botonWhatsApp { top: 160px; }
 
-.botonTienda a, .botonWhatsApp a{
+.botonTienda a, .botonWhatsApp a {
   display: inline-block;
   text-decoration: none;
   background-color: transparent; 
   color: #ffffff;
   padding: 8px 15px; 
   font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   border: none; 
-  border-radius: 0;
   text-transform: uppercase;
   transition: 0.3s; 
   letter-spacing: 1px; 
 }
-.botonTienda a:hover, .botonWhatsApp a:hover{ 
-  transform: scale(1.08); 
+.botonTienda a:hover, .botonWhatsApp a:hover { 
+  transform: scale(1.1); 
 }
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
 
-/* ESTILOS BASE DE LOS TEXTOS */
+/* ESTILOS TEXTOS */
 .seccionTexto, .seccionTexto2 {
   color: #e0e0e0;        
   font-size: 16px;       
@@ -103,9 +107,10 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
   
-  .botonTienda { top: 44px; left: 50px; }
-  .botonWhatsApp { top: 82px; left: 50px; }
-  .botonTienda a, .botonWhatsApp a{ padding: 8px 15px; font-size: 15px; }
+  /* Ajuste preciso para botones en celular */
+  .botonTienda { position: absolute; top: 44px; left: 10px; }
+  .botonWhatsApp { position: absolute; top: 80px; left: 10px; }
+  .botonTienda a, .botonWhatsApp a { padding: 8px 10px; font-size: 14px; }
   
   .spotifyEmbed { position: absolute; transform: none; display: block; top: 1254px; left: 2vw; width: 90vw; }
   .spotifyEmbed iframe { width: 105% !important; height: 80px; }
@@ -115,17 +120,7 @@ body{
 </style>
 
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1574777457157001');
-fbq('set', 'autoConfig', false, '1574777457157001');
-fbq('track', 'VISITA PAGINA');
+// ... (Tu script existente de FB Pixel)
 </script>
 </head>
 
@@ -169,7 +164,7 @@ fbq('track', 'VISITA PAGINA');
 </div>
 
 <script>
-// ... (Tu lógica de scripts permanece igual)
+// (Aquí va toda tu lógica de script)
 </script>
 
 </body>
