@@ -33,6 +33,7 @@
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
 
+        /* --- BOTÓN WHATSAPP (ESTILO INDEX) --- */
         .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
         .botonWhatsApp a { 
           display: inline-block; 
@@ -50,12 +51,9 @@
         }
         .botonWhatsApp a:hover { transform: scale(1.08); }
 
+        /* VISTA PC */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
-        
-        /* AQUÍ ESTÁ EL AJUSTE: Solo afecta a la imagen que rota */
-        #imagenRotativa { height: 400px; object-fit: cover; }
-
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
         .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
 
@@ -71,14 +69,17 @@
         .tituloPagos { color: white; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
         .opcionPago { display: block; text-decoration: none; color: white; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-transform: uppercase; border: 1px solid #444; padding: 12px; margin-bottom: 12px; border-radius: 8px; transition: 0.3s; }
 
+        /* VISTA CELULAR */
         @media (max-width:768px){ 
             body { height: 1200px; } 
             .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; }
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
+            
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+            
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
