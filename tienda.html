@@ -33,6 +33,7 @@
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
 
+        /* --- BOTÓN WHATSAPP (ESTILO INDEX) --- */
         .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
         .botonWhatsApp a { 
           display: inline-block; 
@@ -52,10 +53,7 @@
 
         /* VISTA PC */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
-        
-        /* AQUÍ ESTÁ EL AJUSTE PARA QUE NO SALTE: Alto fijo y object-fit */
-        .fotoCamisa { display: block; width: 100%; height: 435px; object-fit: contain; border-radius: 10px; background-color: black; }
-        
+        .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
         .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
 
@@ -78,8 +76,11 @@
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
+            
+            /* AJUSTE WHATSAPP CELULAR */
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+            
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
@@ -93,7 +94,9 @@
     </div>
 
     <div class="caja-completa-playera">
-        <img id="fotoPlayera" class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
+        <!-- Imagen rotativa integrada -->
+        <img id="imagenRotativa" class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
+        
         <div class="nombreProducto">Playera Sisiman</div>
         <div class="precioProducto">$250</div>
         <div id="contadorStock" class="textoStock"></div>
@@ -108,6 +111,7 @@
         <button id="btnComprarGorra" class="botonComprar" onclick="enviarA_API('GORRA', 250); abrirPagosGorra();">Comprar Ahora</button>
     </div>
 
+    <!-- [Resto de tus ventanas modales y scripts igual] -->
     <div id="ventanaPlayera" class="ventanaPagos">
         <div class="contenidoVentana">
             <span class="cerrarVentana" onclick="cerrarPagosPlayera()">×</span>
@@ -129,17 +133,17 @@
     </div>
 
     <script>
-        // Lógica de rotación de imágenes (Playera)
+        // Lógica de rotación de imágenes
         const imagenes = [
             "https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065",
             "https://github.com/user-attachments/assets/c71a2a39-0c40-4dc1-9918-e940f33bbb23"
         ];
         let indice = 0;
-        const imgElemento = document.getElementById("fotoPlayera");
+        const imgElemento = document.getElementById("imagenRotativa");
         setInterval(() => {
             indice = (indice + 1) % imagenes.length;
             imgElemento.src = imagenes[indice];
-        }, 3000);
+        }, 2000);
 
         function enviarA_API(nombreEvento, valor) {
             if (typeof fbq === 'function') { 
