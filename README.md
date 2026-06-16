@@ -1,3 +1,6 @@
+imagen camisa 2
+<img width="976" height="1088" alt="Gemini_Generated_Image_ngd7mpngd7mpngd7" src="https://github.com/user-attachments/assets/c71a2a39-0c40-4dc1-9918-e940f33bbb23" />
+
 imagen gorra
 <img width="500" height="500" alt="uiio" src="https://github.com/user-attachments/assets/85ef5a17-fe41-4897-a6ac-f5d9aa4ae679" />
 
