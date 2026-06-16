@@ -21,10 +21,10 @@
 
         const cbInicio = Math.floor(Math.random() * 1000000);
         const imgInicio = new Image();
-        imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
+        imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+TIENDA&noscript=1&cb=${cbInicio}`;
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1"
+    src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+TIENDA&noscript=1"
     /></noscript>
     
     <style>
@@ -32,9 +32,26 @@
         
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
-        @media (max-width:768px){ .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; } }
 
-        /* VISTA PC (ORIGINAL) */
+        /* --- BOTÓN WHATSAPP (ESTILO INDEX) --- */
+        .botonWhatsApp { position: fixed; top: 160px; left: 10px; z-index: 99999; text-align: left;}
+        .botonWhatsApp a { 
+          display: inline-block; 
+          text-decoration: none; 
+          background-color: #25D366; 
+          color: #ffffff; 
+          padding: 2px 4px; 
+          font-family: Arial, sans-serif; 
+          font-size: 10px; 
+          font-weight: bold; 
+          border-radius: 10px; 
+          text-transform: uppercase; 
+          transition: 0.3s; 
+          letter-spacing: 1px; 
+        }
+        .botonWhatsApp a:hover { transform: scale(1.08); }
+
+        /* VISTA PC */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
@@ -45,25 +62,25 @@
         .textoStock { color: #aaa; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
         .botonComprar { display: inline-block; text-decoration: none; background-color: transparent; color: white; border: 2px solid white; padding: 10px 30px; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; }
         .botonComprar:hover:not(:disabled) { transform: scale(1.08); background-color: white; color: black; }
-        .botonComprar:disabled { border-color: #444; color: #444; cursor: not-allowed; transform: none; }
         
-        /* VENTANAS DE PAGO */
         .ventanaPagos { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
         .contenidoVentana { background-color: #0a0a0a; margin: 15% auto; padding: 30px; border: 1px solid #333; width: 80%; max-width: 400px; border-radius: 15px; text-align: center; position: relative; }
         .cerrarVentana { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .cerrarVentana:hover { color: white; }
         .tituloPagos { color: white; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
         .opcionPago { display: block; text-decoration: none; color: white; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-transform: uppercase; border: 1px solid #444; padding: 12px; margin-bottom: 12px; border-radius: 8px; transition: 0.3s; }
-        .opcionPago.mp:hover { background-color: #009ee3; border-color: #009ee3; } 
-        .opcionPago.pp:hover { background-color: #003087; border-color: #003087; } 
-        .opcionPago.crypto:hover { background-color: #f3ba2f; color: black; border-color: #f3ba2f; } 
 
         /* VISTA CELULAR */
         @media (max-width:768px){ 
             body { height: 1200px; } 
+            .logoFijo{ top:10px; left:0; } .logoFijo img{ width:65px; }
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
+            
+            /* AJUSTE WHATSAPP CELULAR */
+            .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
+            .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+            
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
@@ -71,6 +88,10 @@
 <body>
     
     <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
+
+    <div class="botonWhatsApp">
+      <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20la%20tienda" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a>
+    </div>
 
     <div class="caja-completa-playera">
         <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
@@ -90,42 +111,35 @@
 
     <div id="ventanaPlayera" class="ventanaPagos">
         <div class="contenidoVentana">
-            <span class="cerrarVentana" onclick="cerrarPagosPlayera()">&times;</span>
+            <span class="cerrarVentana" onclick="cerrarPagosPlayera()">×</span>
             <div class="tituloPagos">Pagar Playera Sisiman</div>
             <a class="opcionPago mp" href="https://mpago.la/2vykypR" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/5MXXHA8MQZ3QE" target="_blank">PayPal</a>
-            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas!%20Pasame%20la%20wallet" target="_blank">Criptomonedas</a>
+            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Playera%20Sisiman%20y%20pagar%20con%20Criptomonedas!" target="_blank">Criptomonedas</a>
         </div>
     </div>
 
     <div id="ventanaGorra" class="ventanaPagos">
         <div class="contenidoVentana">
-            <span class="cerrarVentana" onclick="cerrarPagosGorra()">&times;</span>
+            <span class="cerrarVentana" onclick="cerrarPagosGorra()">×</span>
             <div class="tituloPagos">Pagar Gorra Sisiman</div>
             <a class="opcionPago mp" href="https://mpago.la/2NBd6wP" target="_blank">Mercado Pago / Tarjeta / OXXO</a>
             <a class="opcionPago pp" href="https://www.paypal.com/ncp/payment/VR9XX2SEWEFYS" target="_blank">PayPal</a>
-            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Gorra%20Sisiman%20y%20pagar%20con%20Criptomonedas!%20Pasame%20la%20wallet" target="_blank">Criptomonedas</a>
+            <a class="opcionPago crypto" href="https://wa.me/523125951818?text=Hola!%20Quiero%20comprar%20la%20Gorra%20Sisiman%20y%20pagar%20con%20Criptomonedas!" target="_blank">Criptomonedas</a>
         </div>
     </div>
 
     <script>
         function enviarA_API(nombreEvento, valor) {
-            const pixelId = '1574777457157001';
-            const accessToken = 'EAAWm16Lyo2wBRjqYGbWHJIbQ5fl2TtB1QLVYXLEqSV02xAnfYHE8OEZBjC2ldulTYoZBFwBubnL04AexJWq3YgQ3jL6VGWZBMbDPRFeZB71ArUDYhYmd5aczZAc6O9iAZAxQwUo1ZC2DbSRl4Io2OCElq03hCMRZAZAwWqvLAjAB7mZB67BA9xAimu7RSeWYinSmdgIwZDZD';
-            if (typeof fbq === 'function') { fbq('track', nombreEvento, {value: valor, currency: 'MXN'}); }
-            fetch('https://graph.facebook.com/v17.0/'+pixelId+'/events?access_token='+accessToken, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    data: [{
-                        event_name: nombreEvento,
-                        event_time: Math.floor(Date.now() / 1000),
-                        action_source: 'website',
-                        custom_data: { value: valor, currency: 'MXN' },
-                        user_data: { client_user_agent: navigator.userAgent }
-                    }]
-                })
-            }).catch(e => console.log('CAPI error'));
+            // Pixel de Facebook
+            if (typeof fbq === 'function') { 
+                if(valor) { fbq('track', nombreEvento, {value: valor, currency: 'MXN'}); }
+                else { fbq('track', nombreEvento); }
+            }
+            // Fallback de imagen para asegurar el tracking
+            const cacheBuster = Math.floor(Math.random() * 1000000);
+            const imgTracker = new Image();
+            imgTracker.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
         }
 
         function abrirPagosPlayera() { document.getElementById("ventanaPlayera").style.display = "block"; }
