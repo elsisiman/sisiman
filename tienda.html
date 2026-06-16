@@ -50,16 +50,11 @@
         }
         .botonWhatsApp a:hover { transform: scale(1.08); }
 
-        /* VISTA PC */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
         .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
         
-        /* NUEVO: Control exclusivo para la imagen que rota */
-        #imagenRotativa {
-            height: 400px; /* Cambia este 400 por la altura que desees para ambas fotos */
-            object-fit: contain; /* Esto asegura que ambas fotos se vean completas sin deformarse */
-            background-color: transparent;
-        }
+        /* AQUÍ ESTÁ EL AJUSTE: Solo afecta a la imagen que rota */
+        #imagenRotativa { height: 400px; object-fit: cover; }
 
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
         .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
