@@ -33,7 +33,6 @@
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
 
-        /* --- BOTÓN WHATSAPP (ESTILO INDEX) --- */
         .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
         .botonWhatsApp a { 
           display: inline-block; 
@@ -53,7 +52,10 @@
 
         /* VISTA PC */
         .caja-completa-playera { display: block; text-align: center; width: 435px; margin: 10px auto 20px auto; position: relative; top: 0px; left: 0px; }
-        .fotoCamisa { display: block; width: 100%; border-radius: 10px; }
+        
+        /* Modificado: height auto permite que la imagen respete su proporción original */
+        .fotoCamisa { display: block; width: 100%; border-radius: 10px; height: auto; }
+        
         .caja-foto-gorra { display: block; text-align: center; width: 435px; margin: 40px auto; position: relative; top: -672px; left: -447px; }
         .caja-foto-gorra img { display: block; width: 100%; border-radius: 10px; height: 479px; object-fit: fill; }
 
@@ -76,18 +78,14 @@
             .caja-completa-playera { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
-            
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
-            
             .contenidoVentana { margin: 40% auto; } 
         }
     </style>
 </head>
 <body>
-    
     <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
-
     <div class="botonWhatsApp">
       <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20la%20tienda" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a>
     </div>
