@@ -94,7 +94,9 @@
     </div>
 
     <div class="caja-completa-playera">
-        <img class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
+        <!-- Imagen rotativa integrada -->
+        <img id="imagenRotativa" class="fotoCamisa" src="https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065">
+        
         <div class="nombreProducto">Playera Sisiman</div>
         <div class="precioProducto">$250</div>
         <div id="contadorStock" class="textoStock"></div>
@@ -109,6 +111,7 @@
         <button id="btnComprarGorra" class="botonComprar" onclick="enviarA_API('GORRA', 250); abrirPagosGorra();">Comprar Ahora</button>
     </div>
 
+    <!-- [Resto de tus ventanas modales y scripts igual] -->
     <div id="ventanaPlayera" class="ventanaPagos">
         <div class="contenidoVentana">
             <span class="cerrarVentana" onclick="cerrarPagosPlayera()">×</span>
@@ -130,13 +133,23 @@
     </div>
 
     <script>
+        // Lógica de rotación de imágenes
+        const imagenes = [
+            "https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065",
+            "https://github.com/user-attachments/assets/c71a2a39-0c40-4dc1-9918-e940f33bbb23"
+        ];
+        let indice = 0;
+        const imgElemento = document.getElementById("imagenRotativa");
+        setInterval(() => {
+            indice = (indice + 1) % imagenes.length;
+            imgElemento.src = imagenes[indice];
+        }, 2000);
+
         function enviarA_API(nombreEvento, valor) {
-            // Pixel de Facebook
             if (typeof fbq === 'function') { 
                 if(valor) { fbq('track', nombreEvento, {value: valor, currency: 'MXN'}); }
                 else { fbq('track', nombreEvento); }
             }
-            // Fallback de imagen para asegurar el tracking
             const cacheBuster = Math.floor(Math.random() * 1000000);
             const imgTracker = new Image();
             imgTracker.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
