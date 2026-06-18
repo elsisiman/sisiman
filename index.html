@@ -47,20 +47,20 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* NUEVO BOTON TIENDA */
+/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
 .botonTienda{ position:fixed; top:120px; left:-6px; z-index:99999; text-align: left;}
 .botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonTienda a:hover{ transform: scale(1.08); }
 
-/* NUEVO BOTON EPK */
-.botonEPK{ position:fixed; top:160px; left:-6px; z-index:99999; text-align: left;}
-.botonEPK a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-.botonEPK a:hover{ transform: scale(1.08); }
-
-/* BOTÓN WHATSAPP */
-.botonWhatsApp { position: fixed; top: 200px; left: 10px; z-index: 99999; text-align: left;}
+/* --- BOTÓN WHATSAPP (Original) --- */
+.botonWhatsApp { position: fixed; top: 160px; left: 10px; z-index: 99999; text-align: left;}
 .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonWhatsApp a:hover { transform: scale(1.08); }
+
+/* --- NUEVO BOTON EPK (Ajustado) --- */
+.botonEPK { position: fixed; top: 185px; left: -6px; z-index: 99999; text-align: left;}
+.botonEPK a { display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 5px 20px; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; border: none; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+.botonEPK a:hover { transform: scale(1.08); }
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
@@ -87,8 +87,16 @@ body{
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
   .botonTienda{ position: absolute; top: 44px; left: 50px; }
-  .botonEPK{ position: absolute; top: 75px; left: 50px; }
-  .botonWhatsApp { position: absolute; top: 105px; left: 58px; }
+  .botonTienda a{ padding: 8px 15px; font-size: 15px; }
+  
+  /* AJUSTE CELULAR WHATSAPP - Restituido a original */
+  .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
+  .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+  
+  /* AJUSTE CELULAR EPK - Posicionado debajo de WhatsApp en móvil */
+  .botonEPK { position: absolute; top: 80px; left: 137px; text-align: right;}
+  .botonEPK a { padding: 5px 10px; font-size: 12px; }
+  
   .spotifyEmbed { position: absolute; transform: none; display: block; top: 1254px; left: 2vw; width: 90vw; }
   .spotifyEmbed iframe { width: 105% !important; height: 80px; }
   .seccionTexto { position: absolute; top: 1338px; left: -8vw; width: 85vw; text-align: center; }
@@ -97,7 +105,7 @@ body{
 </style>
 
 <script>
-/* (Tu script original aquí) */
+/* (Tu script existente permanece igual) */
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -110,23 +118,25 @@ fbq('init', '1574777457157001');
 fbq('track', 'VISITA PAGINA');
 </script>
 </head>
-<body>
 
+<body>
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
+
 <a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"> <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"> </a>
 <a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank"> <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930"> </a>
 <a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank"> <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470"> </a>
-<div class="botonDescarga"> <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" onclick="seguirSpotify()"> </div>
+
+<div class="botonDescarga"> <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"> </div>
 <div class="spotifyEmbed"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> </div>
-<div class="seccionTexto"> cantondecarton@hotmail.com </div>
-<div class="seccionTexto2"> 3125951818 </div>
+
 <div class="logoFijo"> <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"> </div>
 <div class="botonTienda"> <a href="tienda.html" target="_blank">TIENDA</a> </div>
-<div class="botonEPK"> <a href="bio.html">EPK</a> </div>
 <div class="botonWhatsApp"> <a href="https://wa.me/523125951818..." target="_blank">WHATSAPP</a> </div>
 
+<div class="botonEPK"> <a href="bio.html">EPK</a> </div>
+
 <script>
-/* El resto de tus funciones (forzarApp, enviarA_API, etc) van aquí igual que antes */
+/* (Tu script completo debe ir aquí) */
 </script>
 </body>
 </html>
