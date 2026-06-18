@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página sisiman</title>
+<title>Mi página</title>
 
 <style>
 body{
@@ -49,51 +49,194 @@ body{
 
 /* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
 .botonTienda{ position:fixed; top:120px; left:-6px; z-index:99999; text-align: left;}
-.botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-.botonTienda a:hover{ transform: scale(1.08); }
+.botonTienda a{
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent; 
+  color: #ffffff;
+  padding: 10px 20px; 
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border: none; 
+  border-radius: 0;
+  text-transform: uppercase;
+  transition: 0.3s; 
+  letter-spacing: 1px; 
+}
+.botonTienda a:hover{ 
+  transform: scale(1.08); 
+}
 
-/* --- BOTÓN EPK (Mismo estilo de Tienda) --- */
-.botonEPK{ position:fixed; top:155px; left:-6px; z-index:99999; text-align: left;}
-.botonEPK a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-.botonEPK a:hover{ transform: scale(1.08); }
-
-/* --- BOTÓN WHATSAPP (Original) --- */
-.botonWhatsApp { position: fixed; top: 200px; left: 10px; z-index: 99999; text-align: left;}
-.botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+/* --- BOTÓN WHATSAPP --- */
+.botonWhatsApp { position: fixed; top: 160px; left: 10px; z-index: 99999; text-align: left;}
+.botonWhatsApp a { 
+  display: inline-block; 
+  text-decoration: none; 
+  background-color: #25D366; 
+  color: #ffffff; 
+  padding: 2px 4px; 
+  font-family: Arial, sans-serif; 
+  font-size: 10px; 
+  font-weight: bold; 
+  border-radius: 10px; 
+  text-transform: uppercase; 
+  transition: 0.3s; 
+  letter-spacing: 1px; 
+}
 .botonWhatsApp a:hover { transform: scale(1.08); }
+
+/* --- BOTÓN EPK --- */
+.botonEPK { position: fixed; top: 185px; left: -6px; z-index: 99999; text-align: left;}
+.botonEPK a { 
+  display: inline-block; 
+  text-decoration: none; 
+  background-color: transparent; 
+  color: #ffffff; 
+  padding: 10px 20px; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
+  font-weight: bold; 
+  border: none; 
+  border-radius: 0; 
+  text-transform: uppercase; 
+  transition: 0.3s; 
+  letter-spacing: 1px; 
+}
+.botonEPK a:hover { transform: scale(1.08); }
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
 
-.seccionTexto, .seccionTexto2 { color: #e0e0e0; font-size: 16px; line-height: 1.6; z-index: 1; font-family: 'Arial', sans-serif; }
+
+/* =======================================================
+   ESTILOS BASE DE LOS DOS TEXTOS NORMALES
+   ======================================================= */
+.seccionTexto, .seccionTexto2 {
+  color: #e0e0e0;       
+  font-size: 16px;       
+  line-height: 1.6;      
+  z-index: 1;
+  font-family: 'Arial', sans-serif; 
+}
+
 
 /* AJUSTES PARA PC */
 @media (min-width:769px){
   .spotifyEmbed{ transform: translate(-216px, 28px); }
-  body { min-height: 250vh; }
-  .seccionTexto { width: 445px; text-align: left; margin-top: 31px; margin-left: 90px; }
-  .seccionTexto2 { width: 400px; text-align: left; margin-top: -3px; margin-left: 89px; }
+
+  /* CONTROL DE SCROLL EXCLUSIVO PARA PC */
+  body { 
+    min-height: 250vh; 
+  }
+
+  /* TEXTO 1: Mueve libremente "cantondecarton" */
+  .seccionTexto {
+    width: 445px;
+    text-align: left;      
+    margin-top: 31px;      
+    margin-left: 90px;    
+  }
+
+  /* TEXTO 2: Mueve libremente "3125951818" */
+  .seccionTexto2 {
+    width: 400px;
+    text-align: left;      
+    margin-top: -3px;      
+    margin-left: 89px;    
+  }
 }
 
 /* CELULAR */
 @media (max-width:768px){
   body{ min-height:221vh; overflow-x:hidden; }
+  
   .fotoCentral{ width:85vw; margin-top:81px; left:0; top:0;}
-  .botonSpotify { position: absolute; top: 570px; right: 14px; width: 330px; display: block; margin: 0; }
-  .botonYoutube { position: absolute; top: 743px; right: 68px; width: 232px; display: block; margin: 0; }
-  .botonApple { position: absolute; top: 903px; right: 47px; width: 260px; display: block; margin: 0; }
-  .botonDescarga { position: absolute; top: 1043px; right: 23px; width: 310px; display: block; margin: 0; }
-  .botonSpotify img, .botonYoutube img, .botonApple img, .botonDescarga img { width: 100%; }
+
+  .botonSpotify {
+    position: absolute;
+    top: 570px;          
+    right: 14px;         
+    width: 330px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonYoutube {
+    position: absolute;   
+    top: 743px;          
+    right: 68px;         
+    width: 232px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonApple {
+    position: absolute;
+    top: 903px;          
+    right: 47px;         
+    width: 260px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonDescarga {
+    position: absolute;
+    top: 1043px;         
+    right: 23px;         
+    width: 310px;        
+    display: block;
+    margin: 0;
+  }
+
+  .botonSpotify img, .botonYoutube img, .botonApple img, .botonDescarga img {
+    width: 100%;
+  }
+
   .logoFijo{ top:10px; left:0; }
   .logoFijo img{ width:65px; }
+
   .botonTienda{ position: absolute; top: 44px; left: 50px; }
   .botonTienda a{ padding: 8px 15px; font-size: 15px; }
-  .botonWhatsApp { position: absolute; top: 110px; left: 58px; }
+  .botonTienda a:hover{ transform: scale(1.08); }
+
+  /* AJUSTE CELULAR WHATSAPP */
+  .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
   .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
-  .spotifyEmbed { position: absolute; transform: none; display: block; top: 1254px; left: 2vw; width: 90vw; }
-  .spotifyEmbed iframe { width: 105% !important; height: 80px; }
-  .seccionTexto { position: absolute; top: 1338px; left: -8vw; width: 85vw; text-align: center; }
-  .seccionTexto2 { position: absolute; top: 1359px; left: -26vw; width: 83vw; text-align: center; }
+  
+  /* AJUSTE CELULAR EPK */
+  .botonEPK { position: absolute; top: 75px; left: 50px; }
+  .botonEPK a { padding: 8px 15px; font-size: 15px; }
+
+  .spotifyEmbed { 
+    position: absolute;
+    transform: none; 
+    display: block;
+    top: 1254px;       
+    left: 2vw;       
+    width: 90vw;      
+  }
+  
+  .spotifyEmbed iframe {
+    width: 105% !important;
+    height: 80px;     
+  }
+
+  .seccionTexto {
+    position: absolute;
+    top: 1338px;         
+    left: -8vw;        
+    width: 85vw;
+    text-align: center;
+  }
+
+  .seccionTexto2 {
+    position: absolute;
+    top: 1359px;         
+    left: -26vw;        
+    width: 83vw;
+    text-align: center;
+  }
 }
 </style>
 
@@ -106,25 +249,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+
 fbq('init', '1574777457157001');
+fbq('set', 'autoConfig', false, '1574777457157001');
 fbq('track', 'VISITA PAGINA');
-</script>
-</head>
 
-<body>
-<img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"> <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"> </a>
-<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank"> <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930"> </a>
-<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank"> <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470"> </a>
-<div class="botonDescarga"> <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"> </div>
-<div class="spotifyEmbed"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> </div>
-<div class="logoFijo"> <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"> </div>
-<div class="botonTienda"> <a href="tienda.html" target="_blank">TIENDA</a> </div>
-<div class="botonEPK"> <a href="bio.html">EPK</a> </div>
-<div class="botonWhatsApp"> <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20que%20hay%20de%20nuevo%20!%20vengo%20de%20tu%20pagina" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a> </div>
-
-<script>
-/* (Tu script original aquí) */
-</script>
-</body>
-</html>
+const cbInicio = Math.floor(Math.random() * 1000000);
+const imgInicio = new Image();
+imgInicio.src = `
