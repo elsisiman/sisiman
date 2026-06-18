@@ -5,62 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bio/EPK sisiman</title>
     <style>
+        /* --- ESTILOS DEL CUERPO (Fondo y fuente) --- */
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #ffffff;
-            min-height: 200vh;
+            margin: 0;                /* Elimina margen exterior por defecto */
+            padding: 0;               /* Elimina espacio interno por defecto */
+            background-color: #000000;/* Color de fondo negro */
+            font-family: Arial, Helvetica, sans-serif; /* Tipo de letra */
+            color: #ffffff;           /* Color del texto */
+            min-height: 200vh;        /* Altura mínima de 2 pantallas para que permita bajar */
         }
 
+        /* --- LOGO FIJO (SE QUEDA EN LA ESQUINA) --- */
         .logoFijo {
-            position: fixed;
-            top: 4px;
-            left: -10px;
-            z-index: 99999;
+            position: fixed;          /* Mantiene el logo en su sitio aunque hagas scroll */
+            top: 4px;                 /* Distancia desde arriba */
+            left: -10px;              /* Distancia desde la izquierda */
+            z-index: 99999;           /* Asegura que el logo flote encima de todo */
         }
-        .logoFijo img { width: 110px; }
+        .logoFijo img { width: 110px; } /* Tamaño original del logo */
 
-        /* --- CLASE PARA MANIPULAR EL TEXTO --- */
+        /* --- CAJA QUE CONTIENE TODO EL TEXTO Y BOTONES --- */
         .cajaTexto {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 500px;
-            line-height: 1.6;
-            font-size: 18px;
-            text-align: justify;
+            position: absolute;       /* Posición absoluta para poder moverla con top/left */
+            top: 100px;               /* Distancia desde arriba en PC */
+            left: 100px;              /* Distancia desde la izquierda en PC */
+            width: 500px;             /* Ancho fijo de la caja en PC */
+            line-height: 1.6;         /* Separación entre renglones */
+            font-size: 18px;          /* Tamaño de letra para PC */
+            text-align: justify;      /* Justifica el texto para que se vea ordenado */
         }
 
-        /* --- ESTILO DE LOS BOTONES (Puedes ajustar padding/font-size aquí) --- */
+        /* --- BOTONES DE IDIOMA --- */
         .miBoton {
-            background-color: #25D366; 
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-            font-weight: bold;
+            background-color: #25D366; /* Color verde */
+            color: white;              /* Color del texto */
+            border: none;              /* Quita el borde del botón */
+            padding: 10px 20px;        /* Tamaño interno (relleno) del botón */
+            font-size: 14px;           /* Tamaño del texto dentro del botón */
+            border-radius: 5px;        /* Esquinas redondeadas */
+            cursor: pointer;           /* Cambia el cursor a manita al pasar por encima */
+            margin-right: 10px;        /* Espacio a la derecha entre botones */
+            margin-bottom: 20px;       /* Espacio debajo de los botones */
+            transition: 0.3s;          /* Velocidad de la animación al pasar el mouse */
+            font-weight: bold;         /* Texto en negrita */
         }
         .miBoton:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
+            transform: scale(1.1);     /* Agranda el botón al pasar el mouse */
+            background-color: #128C7E; /* Oscurece el verde al pasar el mouse */
         }
 
+        /* --- AJUSTES PARA CELULARES (Pantallas menores a 768px) --- */
         @media (max-width: 768px) {
-            .logoFijo { top: 10px; left: 0; }
-            .logoFijo img { width: 65px; }
+            .logoFijo { top: 10px; left: 0; } /* Ajuste de logo en móvil */
+            .logoFijo img { width: 65px; }    /* Logo más pequeño en móvil */
 
             .cajaTexto {
-                top: 100px;
-                left: 5%;
-                width: 90%;
-                font-size: 16px;
+                top: 100px;           /* Distancia desde arriba en móvil */
+                left: 5%;             /* Centrado en móvil */
+                width: 90%;           /* Ocupa casi toda la pantalla en móvil */
+                font-size: 16px;      /* Letra un poco más pequeña */
             }
         }
     </style>
@@ -72,13 +75,12 @@
     </div>
 
     <div class="cajaTexto">
-        <!-- BOTONES DE IDIOMA -->
+        
         <div class="selectorIdioma">
             <button class="miBoton" onclick="cambiarIdioma('es')">ESPAÑOL</button>
             <button class="miBoton" onclick="cambiarIdioma('en')">ENGLISH</button>
         </div>
 
-        <!-- TEXTO ESPAÑOL -->
         <div id="textoEsp" style="display: block;">
             <h1>SISIMAN: LA REALIDAD EN EL MIC</h1>
             <p>sisiman no es solo un nombre, es el reflejo de la calle, de lo que se vive abajo, donde el asfalto quema y las historias no se cuentan, se sudan. Este proyecto nacio sin adornos, con la pura intención de ponerle letra a lo que muchos piensan pero pocos se atreven a soltar. Aquí no hay poses ni cuentos chinos; lo que escuchas es la neta, cruda y sin filtro, como debe ser cuando hablas desde la vivencia.</p>
@@ -88,7 +90,6 @@
             <p>Este espacio es para los que saben reconocer la calidad cuando la tienen enfrente. Aquí no hay más que trabajo duro y una visión que no se dobla. Bienvenido a la movida, ponte cómodo, sube el volumen y siente el código que manejamos. Esto es sisiman: lo que ves es lo que hay, y lo que hay, es fuego puro. ¡Puro barrio, pura lumbre!</p>
         </div>
 
-        <!-- TEXTO INGLÉS -->
         <div id="textoEng" style="display: none;">
             <h1>SISIMAN: REALITY ON THE MIC</h1>
             <p>sisiman isn't just a name; it’s a reflection of the streets, of life at the bottom where the pavement burns and the stories aren't just told—they’re earned through sweat. This project was born with no frills, with the sole intention of putting words to what many think but few dare to say. There’s no posing here, no fake hype; what you hear is the truth—raw and unfiltered, exactly how it should be when you speak from experience.</p>
@@ -101,10 +102,13 @@
 
     <script>
         function cambiarIdioma(idioma) {
+            // Si el usuario elige español, muestra el div de español y oculta el de inglés
             if (idioma === 'es') {
                 document.getElementById('textoEsp').style.display = 'block';
                 document.getElementById('textoEng').style.display = 'none';
-            } else {
+            } 
+            // Si elige inglés, hace lo contrario
+            else {
                 document.getElementById('textoEsp').style.display = 'none';
                 document.getElementById('textoEng').style.display = 'block';
             }
