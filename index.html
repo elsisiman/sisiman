@@ -256,4 +256,176 @@ fbq('track', 'VISITA PAGINA');
 
 const cbInicio = Math.floor(Math.random() * 1000000);
 const imgInicio = new Image();
-imgInicio.src = `
+imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1"
+/></noscript>
+</head>
+<body>
+
+<img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
+
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank" onclick="forzarApp(event, 'spotify:track:1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q', this.href, 'SPOTIFY')">
+  <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
+</a>
+
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank" onclick="forzarApp(event, 'vnd.youtube://LhNoNp9qEiQ', this.href, 'YOUTUBE')">
+  <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
+</a>
+
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank" onclick="forzarApp(event, 'music://music.apple.com/mx/song/solo/1706135810', 'https://music.apple.com/mx/song/solo/1706135810', 'APPLE')">
+  <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470">
+</a>
+
+<div class="botonDescarga">
+  <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f" onclick="seguirSpotify()">
+</div>
+
+<div class="spotifyEmbed">
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+</div>
+
+<div class="seccionTexto">
+  cantondecarton@hotmail.com
+</div>
+
+<div class="seccionTexto2">
+  3125951818
+</div>
+
+<div class="logoFijo">
+  <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+</div>
+
+<div class="botonTienda">
+  <a href="tienda.html" target="_blank">TIENDA</a>
+</div>
+
+<div class="botonWhatsApp">
+  <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20que%20hay%20de%20nuevo%20!%20vengo%20de%20tu%20pagina" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a>
+</div>
+
+<div class="botonEPK">
+  <a href="bio.html" target="_blank">EPK</a>
+</div>
+
+<script>
+const client_id = "f10cb7ef8c5b4ad8bbf15eaf2a239e8d";
+const redirect_uri = "https://sisiman.vercel.app";
+const artist_id = "5KeX79pQzo2M92PKqjOhxo";
+const playlist_id = "5H4YBJmZKajvJnANiswCvX";
+
+const linkDescarga = "https://mega.nz/folder/7vxDmDCC#6rkxkdLm9xoP234xWUjp1g";
+const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01bd-47fd-8895-898216feb2e0";
+
+let tokenSpotify = localStorage.getItem("spotify_token");
+
+function forzarApp(e, urlApp, urlWeb, eventoMeta) {
+  const ua = navigator.userAgent;
+  const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
+  if (esAppleMovil && urlApp.startsWith('spotify:')) {
+    enviarA_API(eventoMeta);
+    window.location.href = urlApp;
+    return;
+  }
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault(); 
+  }
+  enviarA_API(eventoMeta);
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
+  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
+  setTimeout(() => {
+    if (esChromeMovil && urlApp.startsWith('music:')) {
+      window.open(urlWeb, '_blank');
+      return;
+    }
+    if (esMovil) {
+      window.location.href = urlApp;
+      if (urlApp.startsWith('music:')) {
+        setTimeout(() => {
+          window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
+        }, 1200);
+      }
+    } else {
+      window.open(urlWeb, '_blank');
+    }
+  }, 250);
+}
+
+function enviarA_API(nombreEvento) {
+  const pixelId = '1574777457157001';
+  if (typeof fbq === 'function') {
+    fbq('track', nombreEvento);
+  }
+  const cacheBuster = Math.floor(Math.random() * 1000000);
+  const eventosEstandar = ['PageView', 'ViewContent', 'Search', 'AddToCart', 'AddToWishlist', 'InitiateCheckout', 'AddPaymentInfo', 'Purchase', 'Lead', 'CompleteRegistration', 'Subscribe', 'Contact', 'CustomizeProduct', 'FindLocation', 'Schedule', 'StartTrial', 'SubmitApplication'];
+  const parametroEvento = eventosEstandar.includes(nombreEvento) ? `ev=${nombreEvento}` : `ev=CustomEvent&cd[custom_event_name]=${nombreEvento}`;
+  const urlFallback = `https://www.facebook.com/tr?id=${pixelId}&${parametroEvento}&noscript=1&cb=${cacheBuster}`;
+  const imgTracker = new Image();
+  imgTracker.src = urlFallback;
+}
+
+function seguirSpotify(){
+  enviarA_API('CLIK DESCARGA');
+  const scope = "user-follow-read playlist-read-private";
+  const auth_url = "https://accounts.spotify.com/authorize"+ "?client_id="+client_id+ "&response_type=code"+ "&redirect_uri="+encodeURIComponent(redirect_uri)+ "&scope="+encodeURIComponent(scope)+ "&show_dialog=true";
+  const ancho = 500;
+  const alto = 650;
+  const izquierda = (screen.width / 2) - (ancho / 2);
+  const arriba = (screen.height / 2) - (alto / 2);
+  window.open(auth_url, "SpotifyAuth", `width=${ancho},height=${alto},top=${arriba},left=${izquierda}`);
+}
+
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get("code");
+  if(code){
+    if (window.opener) {
+      window.opener.postMessage({ tipo: "SPOTIFY_CODE", code: code }, "*");
+      window.close();
+    } else {
+      intercambiarCodePorToken(code);
+    }
+  }
+}
+
+window.addEventListener("message", (evento) => {
+  if (evento.data && evento.data.tipo === "SPOTIFY_CODE") {
+    intercambiarCodePorToken(evento.data.code);
+  }
+});
+
+async function intercambiarCodePorToken(code){
+  const body = new URLSearchParams({
+    grant_type: "authorization_code",
+    code: code,
+    redirect_uri: redirect_uri,
+    client_id: client_id
+  });
+  try {
+    const respuesta = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body
+    });
+    const data = await respuesta.json();
+    tokenSpotify = data.access_token;
+    localStorage.setItem("spotify_token", tokenSpotify);
+    window.history.replaceState({}, document.title, "/");
+    desbloquearDescarga();
+  } catch (error) {
+    console.error("Error al obtener el token:", error);
+  }
+}
+
+function desbloquearDescarga(){
+  enviarA_API('DESCARGA COMPLETADA');
+  const img = document.getElementById("imgDescarga");
+  img.src = imgDesbloqueado;
+  img.onclick = () => window.open(linkDescarga, "_blank");
+  alert("DESCARGA DESBLOQUEADA 🚀");
+}
+</script>
+</body>
+</html>
