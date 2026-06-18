@@ -47,20 +47,20 @@ body{
 .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
 .logoFijo img{ width:110px; }
 
-/* BOTON TIENDA */
+/* NUEVO BOTON TIENDA (PUERTA) - CON ANIMACIÓN DE ESCALA */
 .botonTienda{ position:fixed; top:120px; left:-6px; z-index:99999; text-align: left;}
 .botonTienda a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonTienda a:hover{ transform: scale(1.08); }
 
-/* BOTÓN WHATSAPP (TOTALMENTE ORIGINAL) */
+/* --- BOTÓN EPK (Mismo estilo de Tienda) --- */
+.botonEPK{ position:fixed; top:155px; left:-6px; z-index:99999; text-align: left;}
+.botonEPK a{ display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+.botonEPK a:hover{ transform: scale(1.08); }
+
+/* --- BOTÓN WHATSAPP (Original) --- */
 .botonWhatsApp { position: fixed; top: 200px; left: 10px; z-index: 99999; text-align: left;}
 .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
 .botonWhatsApp a:hover { transform: scale(1.08); }
-
-/* BOTON EPK (Mismo estilo que TIENDA) */
-.botonEPK { position: fixed; top: 160px; left: -6px; z-index: 99999; text-align: left;}
-.botonEPK a { display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-.botonEPK a:hover { transform: scale(1.08); }
 
 /* SPOTIFY EMBED */
 .spotifyEmbed{ display:flex; justify-content:center; }
@@ -113,4 +113,18 @@ fbq('track', 'VISITA PAGINA');
 
 <body>
 <img class="fotoCentral" src="https://github.com/user-attachments/assets/ad66a631-bd77-42d9-af9e-fbd95b66f24e">
-<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"> <img src="
+<a class="botonSpotify" href="https://open.spotify.com/intl-es/track/1xm343jLVRrE6F3seWr5OP?context=spotify:playlist:5H4YBJmZKajvJnANiswCvX&si=PnNy9WOSQ8eAfIXm5clv4Q" target="_blank"> <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662"> </a>
+<a class="botonYoutube" href="https://youtu.be/LhNoNp9qEiQ" target="_blank"> <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930"> </a>
+<a class="botonApple" href="https://music.apple.com/mx/song/solo/1706135810" target="_blank"> <img src="https://github.com/user-attachments/assets/67ba3a7a-83b2-4675-9393-7de6fa176470"> </a>
+<div class="botonDescarga"> <img id="imgDescarga" src="https://github.com/user-attachments/assets/4dcc798c-a448-43d3-b034-6196688c053f"> </div>
+<div class="spotifyEmbed"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5H4YBJmZKajvJnANiswCvX" width="60%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> </div>
+<div class="logoFijo"> <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"> </div>
+<div class="botonTienda"> <a href="tienda.html" target="_blank">TIENDA</a> </div>
+<div class="botonEPK"> <a href="bio.html">EPK</a> </div>
+<div class="botonWhatsApp"> <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20que%20hay%20de%20nuevo%20!%20vengo%20de%20tu%20pagina" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a> </div>
+
+<script>
+/* (Tu script original aquí) */
+</script>
+</body>
+</html>
