@@ -5,47 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bio/EPK sisiman</title>
     <style>
-        /* Fondo Negro Sólido */
         body {
             margin: 0;
             padding: 0;
             background-color: #000000;
             font-family: Arial, Helvetica, sans-serif;
             color: #ffffff;
-            min-height: 100vh;
+            min-height: 200vh; /* Alto para permitir scroll */
         }
 
-        /* Logo extraído de tu index */
         .logoFijo {
             position: fixed;
             top: 4px;
             left: -10px;
             z-index: 99999;
         }
-        .logoFijo img {
-            width: 110px;
+        .logoFijo img { width: 110px; }
+
+        /* --- CLASE PARA MANIPULAR EL TEXTO --- */
+        .cajaTexto {
+            position: absolute; /* Permite moverlo con top/left */
+            top: 100px;         /* Ajusta esto para moverlo hacia arriba/abajo */
+            left: 100px;        /* Ajusta esto para moverlo hacia los lados */
+            width: 500px;       /* Cambia el ancho del bloque de texto */
+            line-height: 1.6;
+            font-size: 18px;    /* Cambia el tamaño de letra aquí */
+            text-align: justify;
         }
 
-        /* Ajuste para celular igual que en tu index */
         @media (max-width: 768px) {
-            .logoFijo {
-                top: 10px;
-                left: 0;
-            }
-            .logoFijo img {
-                width: 65px;
+            .logoFijo { top: 10px; left: 0; }
+            .logoFijo img { width: 65px; }
+
+            /* Ajustes exclusivos para móvil */
+            .cajaTexto {
+                top: 100px;
+                left: 5%;      /* Centrado relativo */
+                width: 90%;    /* Ocupa el 90% de la pantalla */
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Logo exacto como en el index -->
     <div class="logoFijo">
         <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
     </div>
 
-    <!-- Aquí irás agregando tu contenido después -->
+    <div class="cajaTexto">
+        <h1>Biografía de Sisiman</h1>
+        <p>
+            Sisiman es un proyecto musical que trasciende los límites del género, fusionando texturas urbanas con una lírica que busca conectar directamente con la realidad cotidiana de su audiencia. Nacido de la necesidad de expresión, el proyecto se ha consolidado como una voz auténtica dentro de la escena independiente, caracterizándose por una estética visual y sonora impecable que no deja indiferente a nadie.
+        </p>
+        <p>
+            Desde sus inicios, la propuesta de Sisiman ha sido clara: mantener la independencia creativa como bandera. La evolución constante ha sido parte fundamental del camino, permitiendo que cada lanzamiento se sienta como una nueva capa de una narrativa mucho más grande. La influencia de diversos sonidos se hace presente en cada beat, creando una atmósfera que se siente tanto nostálgica como visionaria.
+        </p>
+        <p>
+            A lo largo de este tiempo, el proyecto ha logrado construir una comunidad leal, basada en la honestidad de sus letras y la cercanía con sus seguidores. Cada canción es un testimonio de vivencias personales, luchas, sueños y triunfos, lo que permite que el oyente encuentre en cada acorde un reflejo de sus propias experiencias. Sisiman no solo hace música; crea un ecosistema cultural donde la autenticidad es el valor más importante.
+        </p>
+        <p>
+            Mirando hacia el futuro, el objetivo sigue siendo el mismo: expandir las fronteras del proyecto sin sacrificar la esencia que lo vio nacer. Con colaboraciones estratégicas, un enfoque en la calidad visual y una constante reinvención, la trayectoria de Sisiman apenas está comenzando a mostrar su verdadero potencial. Gracias por formar parte de este viaje musical y por creer en el poder de la música independiente que nace desde el corazón y la dedicación total.
+        </p>
+        <p>
+            Este espacio sirve como el punto de encuentro definitivo para prensa, aliados estratégicos y seguidores. Aquí encontrarás todo lo necesario para entender la profundidad de este movimiento. Bienvenido a la casa de Sisiman, donde la música, el arte y la vida se encuentran bajo un mismo lenguaje.
+        </p>
+    </div>
 
 </body>
 </html>
