@@ -23,17 +23,17 @@
         }
         .logoFijo img { width: 110px; }
 
-        /* --- CONTENEDOR DE VIDEO --- */
+        /* --- CONTENEDOR DE VIDEO (Agregado arriba) --- */
         .contenedorVideo {
             position: absolute;
             top: 45px;
-            left: 50px;
-            width: 800px;
-            height: 450px;
+            left: 100px;
+            width: 500px;
+            height: 280px;
             z-index: 1000;
         }
 
-        /* --- CONTENEDOR DE BOTONES --- */
+        /* --- CONTENEDOR DE BOTONES (Tus coordenadas) --- */
         .contenedorBotones {
             position: absolute;
             top: 13px;
@@ -41,12 +41,12 @@
             z-index: 1000;
         }
 
-        /* --- CAJA DE TEXTO --- */
+        /* --- CAJA DE TEXTO (Tus coordenadas originales) --- */
         .cajaTexto {
             position: absolute;
-            top: 520px;
-            left: 50px;
-            width: 800px;
+            top: 45px;
+            left: 950px;
+            width: 500px;
             line-height: 1.6;
             font-size: 18px;
             text-align: justify;
@@ -70,27 +70,11 @@
             background-color: #128C7E;
         }
 
-        /* --- AJUSTES PARA CELULARES --- */
         @media (max-width: 768px) {
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-
-            .contenedorVideo {
-                top: 80px;
-                left: 5%;
-                width: 90%;
-                height: 250px;
-            }
-            .contenedorBotones {
-                top: 350px;
-                left: 5%;
-            }
-            .cajaTexto {
-                top: 400px;
-                left: 5%;
-                width: 90%;
-                font-size: 16px;
-            }
+            .contenedorBotones { top: 80px; left: 5%; }
+            .cajaTexto { top: 140px; left: 5%; width: 90%; font-size: 16px; }
         }
     </style>
 </head>
@@ -101,7 +85,7 @@
     </div>
 
     <div class="contenedorVideo">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/LhNoNp9qEiQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/LhNoNp9qEiQ" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="contenedorBotones">
@@ -113,12 +97,12 @@
         <div id="textoEsp" style="display: block;">
             <h1>SISIMAN: LA REALIDAD EN EL MIC</h1>
             <p>sisiman no es solo un nombre, es el reflejo de la calle, de lo que se vive abajo, donde el asfalto quema y las historias no se cuentan, se sudan. Este proyecto nacio sin adornos, con la pura intención de ponerle letra a lo que muchos piensan pero pocos se atreven a soltar. Aquí no hay poses ni cuentos chinos; lo que escuchas es la neta, cruda y sin filtro, como debe ser cuando hablas desde la vivencia.</p>
-        </div>
+            </div>
 
         <div id="textoEng" style="display: none;">
             <h1>SISIMAN: REALITY ON THE MIC</h1>
             <p>sisiman isn't just a name; it’s a reflection of the streets, of life at the bottom where the pavement burns and the stories aren't just told—they’re earned through sweat. This project was born with no frills, with the sole intention of putting words to what many think but few dare to say. There’s no posing here, no fake hype; what you hear is the truth—raw and unfiltered, exactly how it should be when you speak from experience.</p>
-        </div>
+            </div>
     </div>
 
     <script>
