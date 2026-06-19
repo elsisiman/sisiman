@@ -23,6 +23,24 @@
         }
         .logoFijo img { width: 110px; }
 
+        /* --- BOTÓN WHATSAPP --- */
+        .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
+        .botonWhatsApp a { 
+            display: inline-block; 
+            text-decoration: none; 
+            background-color: #25D366; 
+            color: #ffffff; 
+            padding: 2px 4px; 
+            font-family: Arial, sans-serif; 
+            font-size: 10px; 
+            font-weight: bold; 
+            border-radius: 10px; 
+            text-transform: uppercase; 
+            transition: 0.3s; 
+            letter-spacing: 1px; 
+        }
+        .botonWhatsApp a:hover { transform: scale(1.08); }
+
         /* --- CONTENEDOR DE VIDEO --- */
         .contenedorVideo {
             position: absolute;
@@ -41,7 +59,7 @@
             z-index: 1000;
         }
 
-        /* --- CAJA DE TEXTO (Tus coordenadas originales) --- */
+        /* --- CAJA DE TEXTO --- */
         .cajaTexto {
             position: absolute;
             top: 45px;
@@ -74,18 +92,22 @@
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
 
+            /* AJUSTE WHATSAPP CELULAR */
+            .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
+            .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+
             /* Ajustes para el video en móvil */
             .contenedorVideo {
-                position: relative; /* Cambiamos a relativo para que fluya en el documento */
-                top: 80px;          /* Ajusta esto para bajar o subir el video */
+                position: relative;
+                top: 80px;
                 left: 5%;
-                width: 90%;         /* Ocupa el 90% del ancho de la pantalla */
-                height: auto;       /* Altura automática */
+                width: 90%;
+                height: auto;
             }
 
             .contenedorVideo iframe {
-                width: 100%;        /* El iframe se adapta al 100% del contenedor */
-                height: 250px;      /* Puedes ajustar esta altura a tu gusto */
+                width: 100%;
+                height: 250px;
             }
 
             .contenedorBotones { top: 350px; left: 5%; }
@@ -97,6 +119,10 @@
 
     <div class="logoFijo">
         <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
+    </div>
+
+    <div class="botonWhatsApp">
+        <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20la%20bio" target="_blank">WHATSAPP</a>
     </div>
 
     <div class="contenedorVideo">
