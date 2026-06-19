@@ -33,22 +33,14 @@
         .logoFijo{ position:fixed; top:4px; left:-10px; z-index:99999;}
         .logoFijo img{ width:110px; }
 
-        /* --- BOTÓN WHATSAPP (ESTILO INDEX) --- */
-        .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
-        .botonWhatsApp a { 
-          display: inline-block; 
-          text-decoration: none; 
-          background-color: #25D366; 
-          color: #ffffff; 
-          padding: 2px 4px; 
-          font-family: Arial, sans-serif; 
-          font-size: 10px; 
-          font-weight: bold; 
-          border-radius: 10px; 
-          text-transform: uppercase; 
-          transition: 0.3s; 
-          letter-spacing: 1px; 
-        }
+        /* BOTON INICIO */
+        .botonInicio { position: fixed; top: 120px; left: -1px; z-index: 99999; text-align: left;}
+        .botonInicio a { display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; border: none; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+        .botonInicio a:hover { transform: scale(1.08); }
+
+        /* BOTON WHATSAPP */
+        .botonWhatsApp { position: fixed; top: 160px; left: 10px; z-index: 99999; text-align: left;}
+        .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
         .botonWhatsApp a:hover { transform: scale(1.08); }
 
         /* VISTA PC */
@@ -77,7 +69,11 @@
             .caja-foto-gorra { width: 80vw; margin: 20px auto; position: relative; top: 60px; left: 0px; } 
             .caja-foto-gorra img { height: 320px; }
             
-            /* AJUSTE WHATSAPP CELULAR */
+            /* MOVIL: INICIO */
+            .botonInicio { position: absolute; top: 44px; left: 56px; }
+            .botonInicio a { padding: 8px 15px; font-size: 15px; }
+            
+            /* MOVIL: WHATSAPP */
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
             
@@ -89,8 +85,12 @@
     
     <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
+    <div class="botonInicio">
+        <a href="index.html" target="_blank">INICIO</a>
+    </div>
+
     <div class="botonWhatsApp">
-      <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20la%20tienda" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a>
+        <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20la%20tienda" target="_blank" onclick="enviarA_API('WHATSAPP')">WHATSAPP</a>
     </div>
 
     <div class="caja-completa-playera">
@@ -131,7 +131,6 @@
     </div>
 
     <script>
-        // Lógica de rotación de imágenes
         const imagenes = [
             "https://github.com/user-attachments/assets/db04bb08-52d4-436a-925a-08f18edc7397",
             "https://github.com/user-attachments/assets/24ecfaa2-120b-4282-9fb5-d70f2827e065"
