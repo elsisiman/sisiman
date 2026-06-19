@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bio/EPK sisiman</title>
 
-    <!-- Píxel de Meta -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -18,120 +17,39 @@
 
         fbq('init', '1574777457157001');
         fbq('set', 'autoConfig', false, '1574777457157001');
-        fbq('track', 'PageView'); // Evento de carga de página
+
+        /* [B] EVENTO DE CARGA: ESTE MANDA EL "VISITA PAGINA" AL CARGAR */
+        fbq('track', 'VISITA PAGINA'); 
 
         const cbInicio = Math.floor(Math.random() * 1000000);
         const imgInicio = new Image();
-        imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1&cb=${cbInicio}`;
+        imgInicio.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1&cb=${cbInicio}`;
     </script>
+    
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1574777457157001&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=VISITA+PAGINA&noscript=1"
     /></noscript>
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #ffffff;
-            min-height: 200vh;
-        }
-
-        /* --- LOGO FIJO --- */
-        .logoFijo {
-            position: fixed;
-            top: 4px;
-            left: -10px;
-            z-index: 99999;
-        }
+        body { margin: 0; padding: 0; background-color: #000000; font-family: Arial, Helvetica, sans-serif; color: #ffffff; min-height: 200vh; }
+        .logoFijo { position: fixed; top: 4px; left: -10px; z-index: 99999; }
         .logoFijo img { width: 110px; }
-
-        /* --- BOTÓN WHATSAPP --- */
         .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
-        .botonWhatsApp a { 
-            display: inline-block; 
-            text-decoration: none; 
-            background-color: #25D366; 
-            color: #ffffff; 
-            padding: 2px 4px; 
-            font-family: Arial, sans-serif; 
-            font-size: 10px; 
-            font-weight: bold; 
-            border-radius: 10px; 
-            text-transform: uppercase; 
-            transition: 0.3s; 
-            letter-spacing: 1px; 
-        }
+        .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
         .botonWhatsApp a:hover { transform: scale(1.08); }
-
-        /* --- CONTENEDOR DE VIDEO --- */
-        .contenedorVideo {
-            position: absolute;
-            top: 13px;
-            left: 88px;
-            width: 857px;
-            height: 481px;
-            z-index: 1000;
-        }
-
-        /* --- CONTENEDOR DE BOTONES --- */
-        .contenedorBotones {
-            position: absolute;
-            top: 13px;
-            left: 1074px;
-            z-index: 1000;
-        }
-
-        /* --- CAJA DE TEXTO --- */
-        .cajaTexto {
-            position: absolute;
-            top: 45px;
-            left: 950px;
-            width: 500px;
-            line-height: 1.6;
-            font-size: 18px;
-            text-align: justify;
-        }
-
-        /* --- ESTILO DE LOS BOTONES --- */
-        .miBoton {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-        .miBoton:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
-        }
+        .contenedorVideo { position: absolute; top: 13px; left: 88px; width: 857px; height: 481px; z-index: 1000; }
+        .contenedorBotones { position: absolute; top: 13px; left: 1074px; z-index: 1000; }
+        .cajaTexto { position: absolute; top: 45px; left: 950px; width: 500px; line-height: 1.6; font-size: 18px; text-align: justify; }
+        .miBoton { background-color: #25D366; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px; transition: 0.3s; font-weight: bold; }
+        .miBoton:hover { transform: scale(1.1); background-color: #128C7E; }
 
         @media (max-width: 768px) {
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
-
-            .contenedorVideo {
-                position: relative;
-                top: 80px;
-                left: 5%;
-                width: 90%;
-                height: auto;
-            }
-
-            .contenedorVideo iframe {
-                width: 100%;
-                height: 250px;
-            }
-
+            .contenedorVideo { position: relative; top: 80px; left: 5%; width: 90%; height: auto; }
+            .contenedorVideo iframe { width: 100%; height: 250px; }
             .contenedorBotones { top: 350px; left: 5%; }
             .cajaTexto { top: 400px; left: 5%; width: 90%; font-size: 16px; }
         }
@@ -139,9 +57,7 @@
 </head>
 <body>
 
-    <div class="logoFijo">
-        <img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544">
-    </div>
+    <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
     <div class="botonWhatsApp">
         <a href="https://wa.me/523125951818?text=Que%20onda%20sisiman%20!%20vengo%20de%20tu%20Biografia" 
@@ -150,7 +66,7 @@
     </div>
 
     <div class="contenedorVideo">
-        <iframe width="857" height="481" src="https://www.youtube.com/embed/y847_2OV1q4?si=8ZIhNdfj2wcJQRpd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="857" height="481" src="https://www.youtube.com/embed/y847_2OV1q4?si=8ZIhNdfj2wcJQRpd" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="contenedorBotones">
@@ -158,13 +74,11 @@
         <button class="miBoton" onclick="cambiarIdioma('en')">ENGLISH</button>
     </div>
 
-    <!-- ... (El resto del contenido HTML sigue igual) ... -->
     <div class="cajaTexto">
-        <!-- Contenido de texto omitido para brevedad, igual al que ya tenías -->
-    </div>
+        </div>
 
     <script>
-        // Función para rastreo de eventos
+        /* [E] LA FUNCIÓN QUE ENVÍA EL EVENTO CUANDO SE HACE CLICK */
         function enviarA_API(nombreEvento) {
             if (typeof fbq === 'function') { 
                 fbq('track', nombreEvento); 
@@ -175,13 +89,7 @@
         }
 
         function cambiarIdioma(idioma) {
-            if (idioma === 'es') {
-                document.getElementById('textoEsp').style.display = 'block';
-                document.getElementById('textoEng').style.display = 'none';
-            } else {
-                document.getElementById('textoEsp').style.display = 'none';
-                document.getElementById('textoEng').style.display = 'block';
-            }
+            // ... lógica idioma
         }
     </script>
 </body>
