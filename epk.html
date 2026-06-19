@@ -73,8 +73,23 @@
         @media (max-width: 768px) {
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-            .contenedorBotones { top: 80px; left: 5%; }
-            .cajaTexto { top: 140px; left: 5%; width: 90%; font-size: 16px; }
+
+            /* Ajustes para el video en móvil */
+            .contenedorVideo {
+                position: relative; /* Cambiamos a relativo para que fluya en el documento */
+                top: 80px;          /* Ajusta esto para bajar o subir el video */
+                left: 5%;
+                width: 90%;         /* Ocupa el 90% del ancho de la pantalla */
+                height: auto;       /* Altura automática */
+            }
+
+            .contenedorVideo iframe {
+                width: 100%;        /* El iframe se adapta al 100% del contenedor */
+                height: 250px;      /* Puedes ajustar esta altura a tu gusto */
+            }
+
+            .contenedorBotones { top: 350px; left: 5%; }
+            .cajaTexto { top: 400px; left: 5%; width: 90%; font-size: 16px; }
         }
     </style>
 </head>
