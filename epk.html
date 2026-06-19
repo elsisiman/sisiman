@@ -34,20 +34,15 @@
         body { margin: 0; padding: 0; background-color: #000000; font-family: Arial, Helvetica, sans-serif; color: #ffffff; min-height: 200vh; }
         .logoFijo { position: fixed; top: 4px; left: -10px; z-index: 99999; }
         .logoFijo img { width: 110px; }
+        
+        /* BOTÓN INICIO */
+        .botonInicio { position: fixed; top: 90px; left: 10px; z-index: 99999; text-align: left; }
+        .botonInicio a { display: inline-block; text-decoration: none; background-color: transparent; border: 1px solid #ffffff; color: #ffffff; padding: 2px 8px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+        .botonInicio a:hover { transform: scale(1.08); background-color: #ffffff; color: #000000; }
 
-        /* BOTÓN INICIO (IDÉNTICO A INDEX) */
-        .botonInicio { position: fixed; top: 120px; left: -6px; z-index: 99999; text-align: left; }
-        .botonInicio a {
-            display: inline-block; text-decoration: none; background-color: transparent; color: #ffffff; 
-            padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; 
-            border: none; border-radius: 0; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px;
-        }
-        .botonInicio a:hover { transform: scale(1.08); }
-
-        .botonWhatsApp { position: fixed; top: 160px; left: 10px; z-index: 99999; text-align: left;}
+        .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
         .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
         .botonWhatsApp a:hover { transform: scale(1.08); }
-
         .contenedorVideo { position: absolute; top: 13px; left: 88px; width: 857px; height: 481px; z-index: 1000; }
         .contenedorBotones { position: absolute; top: 13px; left: 1074px; z-index: 1000; }
         .cajaTexto { position: absolute; top: 25px; left: 950px; width: 500px; line-height: 1.6; font-size: 18px; text-align: justify; }
@@ -57,13 +52,9 @@
         @media (max-width: 768px) {
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-
-            .botonInicio { position: absolute; top: 44px; left: 50px; }
-            .botonInicio a { padding: 8px 15px; font-size: 15px; }
-
-            .botonWhatsApp { position: absolute; top: 47px; left: 132px; }
+            .botonInicio { position: absolute; top: 48px; left: 80px; }
+            .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
-
             .contenedorVideo { position: relative; top: 80px; left: 5%; width: 90%; height: auto; }
             .contenedorVideo iframe { width: 100%; height: 250px; }
             .contenedorBotones { top: 343px; left: 19%; }
@@ -76,7 +67,7 @@
     <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
     <div class="botonInicio">
-        <a href="index.html" target="_blank" onclick="enviarA_API('VISITA PAGINA')">INICIO</a>
+        <a href="index.html" target="_blank" onclick="enviarA_API('INICIO_CLICK')">INICIO</a>
     </div>
 
     <div class="botonWhatsApp">
@@ -96,10 +87,18 @@
         <div id="textoEsp" style="display: block;">
             <h1>SISIMAN: LA REALIDAD EN EL MIC</h1>
             <p>sisiman no es solo un nombre, es el reflejo de la calle, de lo que se vive abajo, donde el asfalto quema y las historias no se cuentan, se sudan. Este proyecto nacio sin adornos, con la pura intención de ponerle letra a lo que muchos piensan pero pocos se atreven a soltar. Aquí no hay poses ni cuentos chinos; lo que escuchas es la neta, cruda y sin filtro, como debe ser cuando hablas desde la vivencia.</p>
+            <p>Desde que empezamos en esto, la visión ha sido clarísima: mantener la independencia intacta. Porque en este negocio hay mucho espejismo, pero nosotros nos hemos mantenido firmes en nuestra línea, trabajando desde abajo, con puro esfuerzo y sin andar pidiendo permiso para brillar. Cada Rola que soltamos es un mensaje, una marca que se queda clavada porque trae el sello de la autenticidad que ya casi no se encuentra.</p>
+            <p>La banda que nos sigue sabe que esto es real. No somos de los que venden humo; somos de los que entregan resultados en cada Rola. Cada letra es un pedazo de realidad, un reflejo de los barrios donde crecimos, de los jales, de la lealtad y de la ambición de querer salir adelante sin perder la humildad. sisiman es el eco de la raza que lucha, que chambea y que no se achica ante nada ni nadie.</p>
+            <p>Ahorita estamos soltando todo el poder, afinando el estilo para que se sienta el peso de la constancia. No venimos a ver si podemos, venimos porque podemos. La meta es clara: que la música cruce todas las fronteras posibles, desde el callejón más escondido hasta las grandes ligas, siempre manteniendo la esencia. Esto apenas está agarrando vuelo, y el que se quiera subir al tren, que se prepare porque vamos con todo.</p>
+            <p>Este espacio es para los que saben reconocer la calidad cuando la tienen enfrente. Aquí no hay más que trabajo duro y una visión que no se dobla. Bienvenido a la movida, ponte cómodo, sube el volumen y siente el código que manejamos. Esto es sisiman: lo que ves es lo que hay, y lo que hay, es fuego puro. ¡Puro barrio, pura lumbre!</p>
         </div>
         <div id="textoEng" style="display: none;">
             <h1>SISIMAN: REALITY ON THE MIC</h1>
             <p>sisiman isn't just a name; it’s a reflection of the streets, of life at the bottom where the pavement burns and the stories aren't just told—they’re earned through sweat. This project was born with no frills, with the sole intention of putting words to what many think but few dare to say. There’s no posing here, no fake hype; what you hear is the truth—raw and unfiltered, exactly how it should be when you speak from experience.</p>
+            <p>Since day one, the vision has been crystal clear: keep the independence intact. There are too many illusions in this game, but we’ve stayed firm on our own path, grinding from the bottom, putting in the work without asking for permission to shine. Every track we drop is a message, a mark that sticks because it carries the seal of authenticity you rarely find anymore.</p>
+            <p>The crew that follows us knows this is real. We aren't the type to blow smoke; we’re the type to deliver in every track. Every lyric is a piece of reality, a reflection of the neighborhoods we grew up in, the struggle, the loyalty, and the drive to make it big without losing our roots. sisiman is the echo of the people who fight, who hustle, and who never back down for anyone.</p>
+            <p>Right now, we’re unleashing the power, refining the style so you can feel the weight of the consistency. We didn't come here to see if we could; we came because we can. The goal is simple: take this music across every border possible, from the deepest alleyways to the big leagues, always keeping the soul of the project. This is just taking flight, so if you want to hop on the ride, get ready—we’re coming with everything we’ve got.</p>
+            <p>This space is for those who know real quality when they see it. Here, it’s all about hard work and a vision that doesn't bend. Welcome to the movement; get comfortable, turn the volume up, and feel the code we live by. This is sisiman: what you see is what you get, and what you get is pure fire. Straight from the barrio, straight fire!</p>
         </div>
     </div>
 
