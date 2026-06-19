@@ -18,7 +18,6 @@
         fbq('init', '1574777457157001');
         fbq('set', 'autoConfig', false, '1574777457157001');
 
-        /* [B] EVENTO DE CARGA: ESTO MANDA EL EVENTO "VISITA PAGINA" AL CARGAR */
         fbq('track', 'VISITA BIO'); 
 
         const cbInicio = Math.floor(Math.random() * 1000000);
@@ -35,14 +34,14 @@
         .logoFijo { position: fixed; top: 4px; left: -10px; z-index: 99999; }
         .logoFijo img { width: 110px; }
         
-        /* BOTÓN INICIO */
-        .botonInicio { position: fixed; top: 90px; left: 10px; z-index: 99999; text-align: left; }
-        .botonInicio a { display: inline-block; text-decoration: none; background-color: transparent; border: 1px solid #ffffff; color: #ffffff; padding: 2px 8px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-        .botonInicio a:hover { transform: scale(1.08); background-color: #ffffff; color: #000000; }
+        /* ESTILO PARA LOS BOTONES */
+        .botonInicio, .botonWhatsApp { position: fixed; z-index: 99999; text-align: left;}
+        .botonInicio { top: 124px; left: 10px; }
+        .botonWhatsApp { top: 154px; left: 10px; }
+        
+        .botonInicio a, .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+        .botonInicio a:hover, .botonWhatsApp a:hover { transform: scale(1.08); }
 
-        .botonWhatsApp { position: fixed; top: 124px; left: 10px; z-index: 99999; text-align: left;}
-        .botonWhatsApp a { display: inline-block; text-decoration: none; background-color: #25D366; color: #ffffff; padding: 2px 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; border-radius: 10px; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
-        .botonWhatsApp a:hover { transform: scale(1.08); }
         .contenedorVideo { position: absolute; top: 13px; left: 88px; width: 857px; height: 481px; z-index: 1000; }
         .contenedorBotones { position: absolute; top: 13px; left: 1074px; z-index: 1000; }
         .cajaTexto { position: absolute; top: 25px; left: 950px; width: 500px; line-height: 1.6; font-size: 18px; text-align: justify; }
@@ -52,9 +51,9 @@
         @media (max-width: 768px) {
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-            .botonInicio { position: absolute; top: 48px; left: 80px; }
-            .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
-            .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
+            .botonInicio { top: 48px; left: 137px; }
+            .botonWhatsApp { top: 78px; left: 137px; }
+            .botonInicio a, .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
             .contenedorVideo { position: relative; top: 80px; left: 5%; width: 90%; height: auto; }
             .contenedorVideo iframe { width: 100%; height: 250px; }
             .contenedorBotones { top: 343px; left: 19%; }
@@ -67,7 +66,7 @@
     <div class="logoFijo"><img src="https://github.com/user-attachments/assets/f1a56ada-5a62-432b-9f2b-3da43e0b8544"></div>
 
     <div class="botonInicio">
-        <a href="index.html" target="_blank" onclick="enviarA_API('INICIO_CLICK')">INICIO</a>
+        <a href="index.html" target="_blank" onclick="enviarA_API('INICIO')">INICIO</a>
     </div>
 
     <div class="botonWhatsApp">
@@ -104,14 +103,11 @@
 
     <script>
         function enviarA_API(nombreEvento) {
-            if (typeof fbq === 'function') { 
-                fbq('track', nombreEvento); 
-            }
+            if (typeof fbq === 'function') { fbq('track', nombreEvento); }
             const cacheBuster = Math.floor(Math.random() * 1000000);
             const imgTracker = new Image();
             imgTracker.src = `https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_event_name]=${nombreEvento}&noscript=1&cb=${cacheBuster}`;
         }
-
         function cambiarIdioma(idioma) {
             if (idioma === 'es') {
                 document.getElementById('textoEsp').style.display = 'block';
