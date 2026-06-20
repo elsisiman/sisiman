@@ -31,7 +31,7 @@
     /></noscript>
 
     <style>
-        body { margin: 0; padding: 0; background-color: #000000; font-family: Arial, Helvetica, sans-serif; color: #ffffff; min-height: 200vh; }
+        body { margin: 0; padding: 0; background-color: #000000; font-family: Arial, Helvetica, sans-serif; color: #ffffff; min-height: 200vh; overflow-x: hidden; } /* Agregado overflow-x hidden aquí por seguridad */
         .logoFijo { position: fixed; top: 4px; left: -10px; z-index: 99999; }
         .logoFijo img { width: 110px; }
         
@@ -59,26 +59,31 @@
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
         @media (max-width: 768px) {
-            body { height: 2200px; }
+            body { height: 2200px; overflow-x: hidden; width: 100%; } /* Corregido para evitar scroll lateral en el body */
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
             
             /* MOVIL: INICIO */
-            .botonInicio { position: absolute; top: 44px; left: 56px; }
+            .botonInicio { position: absolute; top: 44px; left: 5px; } /* Ajustado left */
             .botonInicio a { padding: 8px 15px; font-size: 15px; }
             
-            /* MOVIL: WHATSAPP (Ajustado a la posición de la tienda) */
-            .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
+            /* MOVIL: WHATSAPP */
+            .botonWhatsApp { position: absolute; top: 48px; left: 100px; } /* Ajustado left */
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
             
-            .contenedorVideo { position: relative; top: 83px; left: 5%; width: 90%; height: auto; }
-            .contenedorVideo iframe { width: 100%; height: 250px; }
-            .contenedorBotones { top: 347px; left: 19%; }
-            .cajaTexto { top: 375px; left: 5%; width: 90%; font-size: 16px; }
+            .contenedorVideo { position: relative; top: 100px; left: 0; width: 100%; height: auto; padding: 0 10px; box-sizing: border-box; } /* Corregido left y width */
+            .contenedorVideo iframe { width: 100%; height: auto; aspect-ratio: 16/9; } /* Altura responsive */
+            
+            .contenedorBotones { position: relative; top: 130px; left: 0; text-align: center; width: 100%; } /* Posicionamiento relativo y centrado */
+            .miBoton { font-size: 18px; padding: 8px 16px; margin: 5px; } /* Botones más pequeños en móvil */
+
+            .cajaTexto { position: relative; top: 150px; left: 0; width: 100%; padding: 0 20px; box-sizing: border-box; font-size: 16px; text-align: left; } /* Relativo y padding corregido */
             
             /* Ajustes precisos para móvil */
-            .botonMasInfo { position: absolute; top: 1890px; left: 6%; }
-            .contenidoInfo { height: 70vh; overflow-y: auto;}
+            .botonMasInfo { position: absolute; top: 2000px; left: 50%; transform: translateX(-50%); width: auto; text-align: center; } /* Centrado perfecto del botón */
+            .botonMasInfo .miBoton { font-size: 16px; width: auto; white-space: nowrap; } /* Evita que el texto del botón se corte */
+
+            .contenidoInfo { width: 90%; max-width: 90%; margin: 5% auto; padding: 20px; height: 80vh; } /* Ventana más ancha en móvil */
         }
     </style>
 </head>
@@ -130,7 +135,7 @@
             <h1>SISIMAN: LA REALIDAD EN EL MIC</h1>
             <p>sisiman no es solo un nombre, es el reflejo de la calle, de lo que se vive abajo, donde el asfalto quema y las historias no se cuentan, se sudan. Este proyecto nacio sin adornos, con la pura intención de ponerle letra a lo que muchos piensan pero pocos se atreven a soltar. Aquí no hay poses ni cuentos chinos; lo que escuchas es la neta, cruda y sin filtro, como debe ser cuando hablas desde la vivencia.</p>
             <p>Desde que empezamos en esto, la visión ha sido clarísima: mantener la independencia intacta. Porque en este negocio hay mucho espejismo, pero nosotros nos hemos mantenido firmes en nuestra línea, trabajando desde abajo, con puro esfuerzo y sin andar pidiendo permiso para brillar. Cada Rola que soltamos es un mensaje, una marca que se queda clavada porque trae el sello de la autenticidad que ya casi no se encuentra.</p>
-            <p>La banda que nos sigue sabe que esto es real. No somos de los que venden humo; somos de los que entregan resultados en cada Rola. Cada letra es un pedazo de realidad, un reflejo de los barrios donde crecimos, de los jales, de la lealtad y de la ambición de querer salir adelante sin perder la humildad. sisiman es el eco de la raza que lucha, que chambea y que no se achica ante nada ni nadie.</p>
+            <p>La banda que nos sigue sabe que esto es real. No somos de los que venden humo; somos de los que entregan resultados en cada Rola. Cada letra es un pedazo de reality, un reflejo de los barrios donde crecimos, de los jales, de la lealtad y de la ambición de querer salir adelante sin perder la humildad. sisiman es el eco de la raza que lucha, que chambea y que no se achica ante nada ni nadie.</p>
             <p>Ahorita estamos soltando todo el poder, afinando el estilo para que se sienta el peso de la constancia. No venimos a ver si podemos, venimos porque podemos. La meta es clara: que la música cruce todas las fronteras posibles, desde el callejón más escondido hasta las grandes ligas, siempre manteniendo la esencia. Esto apenas está agarrando vuelo, y el que se quiera subir al tren, que se prepare porque vamos con todo.</p>
             <p>Este espacio es para los que saben reconocer la calidad cuando la tienen enfrente. Aquí no hay más que trabajo duro y una visión que no se dobla. Bienvenido a la movida, ponte cómodo, sube el volumen y siente el código que manejamos. Esto es sisiman: lo que ves es lo que hay, y lo que hay, es fuego puro. ¡Puro barrio, pura lumbre!</p>
         </div>
