@@ -58,17 +58,20 @@
         .botonMasInfo { position: absolute; top: 496px; left: 250px; z-index: 1000; animation: latido 1.2s infinite ease-in-out; }
         .ventanaInfo { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
         .contenidoInfo { 
-    background-color: #1a1a1a; 
-    margin: 1% auto; 
-    padding: 30px; 
-    border: 1px solid #444; 
-    width: 80%; 
-    max-width: 600px; 
-    height: 88vh; /* <--- CAMBIA ESTE NÚMERO (81) A TU GUSTO */
-    overflow-y: hidden; 
-    border-radius: 15px; 
-    position: relative; 
-}
+            background-color: #1a1a1a; 
+            margin: 1% auto; 
+            padding: 30px; 
+            border: 1px solid #444; 
+            width: 80%; 
+            max-width: 600px; 
+            height: 88vh;
+            overflow-y: hidden; 
+            border-radius: 15px; 
+            position: relative; 
+        }
+        /* ESTILO BOTON SPOTIFY */
+        .botonSpotify { display: block; width: 60px; height: 60px; background-color: #1DB954; border-radius: 50%; margin: 20px auto; text-align: center; line-height: 60px; color: white; font-weight: bold; text-decoration: none; font-size: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
@@ -91,21 +94,9 @@
             .cajaTexto { top: 372px; left: 5%; width: 90%; font-size: 16px; }
             .miBoton { margin-right: 0; }
             
-            /* BOTON MÓVIL: NO BORRÉ NADA, ESTÁ DONDE LO DEJASTE */
-            .botonMasInfo { 
-    position: absolute; 
-    top: 1875px; 
-    left: 5%; 
-    width: 90%; /* Ajusta este porcentaje a tu gusto */
-    text-align: center;
-}
-            .contenidoInfo { 
-    height: 81vh;      /* Aumenté a 85vh para que sea más larga hacia abajo */
-    overflow-y: auto; 
-    position: relative; /* Esto permite moverla */
-    top: 14px;          /* Ajusta este número para bajarla más o menos (px) */
-    left: 0px;          /* Ajusta si quieres moverla a los lados */
-}
+            /* BOTON MÓVIL */
+            .botonMasInfo { position: absolute; top: 1875px; left: 5%; width: 90%; text-align: center; }
+            .contenidoInfo { height: 81vh; overflow-y: auto; position: relative; top: 14px; left: 0px; }
         }
     </style>
 </head>
@@ -125,7 +116,7 @@
     </div>
     <div id="ventanaInfo" class="ventanaInfo">
         <div class="contenidoInfo">
-            <span class="cerrarInfo" onclick="cerrarInfo()">&times;</span>
+            <span class="cerrarInfo" onclick="cerrarInfo()">×</span>
             <h2 style="text-align: center; color: #25D366;">¿QUIÉN ES SISIMAN / WHO IS SISIMAN?</h2>
             <div style="text-align: left; margin-bottom: 20px;">
                 <p><strong>Nombre Reál / Real Name:</strong> Silvano Martinez Solorio</p>
@@ -134,10 +125,12 @@
             </div>
             <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
             <h3 style="text-align: center; color: #25D366;">HISTORIA / HISTORY</h3>
-            <p>ESPAÑOL<p>
+            <p>ESPAÑOL</p>
             <p>Si algo aprendí acá en el puerto de Manzanillo, es que la realidad no se cuenta, se vive y se suda en el puro asfalto. Mi rap no nace de cuentos ni de andar buscando reflectores baratos; nace de la chamba diaria, de no agacharse ante nadie y de mantener la línea siempre, pero siempre firme. Aquí no hay disfraces ni cuentos chinos: lo que escuchas es la neta, cruda, sin filtro y sin poses, porque cuando hablas desde la vivencia, no necesitas adornar nada. Esto es sisiman: puro estilo, puro peso, pura lumbre y pura constancia. ¡Puro barrio, mi hermano!</p>
-            <p>ENGLISH<p>
+            <p>ENGLISH</p>
             <p>If there's one thing I learned here in the port of Manzanillo, it's that reality isn't told, it's lived and sweated out on the bare asphalt. My rap isn't born from stories or chasing cheap attention; it's born from daily grind, from never bowing down to anyone, and from always, always staying true to myself. There are no disguises or tall tales here: what you hear is the real deal, raw, unfiltered, and without pretense, because when you speak from experience, you don't need to embellish anything. This is Sisiman: pure style, pure weight, pure fire, and pure consistency. Pure hood, my brother!</p>
+            
+            <a href="https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=wCPTnQ_SR8mERt1UbiHbJg" class="botonSpotify" target="_blank">S</a>
         </div>
     </div>
     <div class="cajaTexto">
