@@ -82,13 +82,17 @@
             /* BOTON MÓVIL: NO BORRÉ NADA, ESTÁ DONDE LO DEJASTE */
             .botonMasInfo { position: absolute; top: 1890px; left: 6%; }
             .contenidoInfo { 
-    position: absolute;       /* Permite moverla libremente */
-    top: 100px;               /* Ajusta qué tan arriba está */
-    left: 5%;                 /* Ajusta qué tan a la izquierda está */
-    width: 90%;               /* Ancho de la cajita */
-    height: 85vh;             /* La hicimos más larga (de 70vh a 85vh) */
-    overflow-y: auto;         /* Mantiene el scroll interno */
-    margin: 0;                /* Quitamos el margen automático para que el top/left manden */
+    position: fixed;        /* Esto hace que se quede fija en la pantalla aunque bajes */
+    top: 50px;              /* Distancia desde arriba */
+    left: 5%;               /* Distancia desde la izquierda */
+    width: 90%;             /* Ancho de la caja */
+    height: 85vh;           /* Más larga hacia abajo */
+    overflow-y: auto;       /* El scroll interno por si el texto es muy largo */
+    border-radius: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    padding: 30px;
+    z-index: 999999;        /* Para que siempre esté al frente */
 }
         }
     </style>
