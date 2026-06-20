@@ -48,10 +48,10 @@
         .contenedorVideo { position: absolute; top: 13px; left: 88px; width: 857px; height: 481px; z-index: 1000; }
         .contenedorBotones { position: absolute; top: 13px; left: 1075px; z-index: 1000; }
         .cajaTexto { position: absolute; top: 25px; left: 951px; width: 500px; line-height: 1.6; font-size: 18px; text-align: justify; }
-        .miBoton { background-color: #25D366; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px; transition: 0.3s; font-weight: bold; margin-bottom: 10px; }
+        .miBoton { background-color: #25D366; color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px; transition: 0.3s; font-weight: bold; }
         .miBoton:hover { transform: scale(1.1); background-color: #128C7E; }
 
-        /* ESTILOS NUEVOS PARA EL BOTON Y VENTANA */
+        /* ESTILOS DEL BOTON Y VENTANA NUEVOS */
         .botonMasInfo { margin-top: 10px; }
         .ventanaInfo { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
         .contenidoInfo { background-color: #1a1a1a; margin: 10% auto; padding: 30px; border: 1px solid #444; width: 80%; max-width: 600px; border-radius: 15px; position: relative; }
@@ -90,7 +90,6 @@
 
     <div class="contenedorVideo">
         <iframe width="857" height="481" src="https://www.youtube.com/embed/y847_2OV1q4?si=8ZIhNdfj2wcJQRpd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <!-- Botón solicitado debajo del video -->
         <div class="botonMasInfo">
             <button class="miBoton" onclick="abrirInfo()">MÁS INFORMACIÓN</button>
         </div>
@@ -101,12 +100,11 @@
         <button class="miBoton" onclick="cambiarIdioma('en')">ENGLISH</button>
     </div>
 
-    <!-- VENTANA EMERGENTE -->
     <div id="ventanaInfo" class="ventanaInfo">
         <div class="contenidoInfo">
             <span class="cerrarInfo" onclick="cerrarInfo()">&times;</span>
             <h2 style="text-align: center;">Información</h2>
-            <p>Aquí puedes agregar tu biografía o datos adicionales.</p>
+            <p>Aquí irá tu información.</p>
         </div>
     </div>
 
@@ -149,7 +147,7 @@
             }
         }
 
-        /* FUNCIONES NUEVAS PARA EL BOTON Y VENTANA */
+        /* FUNCIONES NUEVAS */
         function abrirInfo() { document.getElementById('ventanaInfo').style.display = 'block'; }
         function cerrarInfo() { document.getElementById('ventanaInfo').style.display = 'none'; }
         window.onclick = function(event) { if (event.target == document.getElementById('ventanaInfo')) { cerrarInfo(); } }
