@@ -99,7 +99,13 @@
     width: 90%; /* Ajusta este porcentaje a tu gusto */
     text-align: center;
 }
-            .contenidoInfo { height: 70vh; overflow-y: auto; }
+            .contenidoInfo { 
+    height: 85vh;      /* Aumenté a 85vh para que sea más larga hacia abajo */
+    overflow-y: auto; 
+    position: relative; /* Esto permite moverla */
+    top: 20px;          /* Ajusta este número para bajarla más o menos (px) */
+    left: 0px;          /* Ajusta si quieres moverla a los lados */
+}
         }
     </style>
 </head>
