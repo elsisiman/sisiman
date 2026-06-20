@@ -81,7 +81,15 @@
             
             /* BOTON MÓVIL: NO BORRÉ NADA, ESTÁ DONDE LO DEJASTE */
             .botonMasInfo { position: absolute; top: 1890px; left: 6%; }
-            .contenidoInfo { height: 70vh; overflow-y: auto; }
+            .contenidoInfo { 
+    position: absolute;       /* Permite moverla libremente */
+    top: 100px;               /* Ajusta qué tan arriba está */
+    left: 5%;                 /* Ajusta qué tan a la izquierda está */
+    width: 90%;               /* Ancho de la cajita */
+    height: 85vh;             /* La hicimos más larga (de 70vh a 85vh) */
+    overflow-y: auto;         /* Mantiene el scroll interno */
+    margin: 0;                /* Quitamos el margen automático para que el top/left manden */
+}
         }
     </style>
 </head>
