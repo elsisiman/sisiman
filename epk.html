@@ -71,20 +71,20 @@
         }
         /* ESTILO BOTON SPOTIFY */
         .botonSpotify { 
-    display: block; 
-    width: 60px; 
-    height: 60px; 
-    background-color: #1DB954; 
-    border-radius: 50%; 
-    margin: -9px auto 10px auto; /* <-- ¡Aquí está el truco! */
-    text-align: center; 
-    line-height: 60px; 
-    color: white; 
-    font-weight: bold; 
-    text-decoration: none; 
-    font-size: 13px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-}
+            display: block; 
+            width: 60px; 
+            height: 60px; 
+            background-color: #1DB954; 
+            border-radius: 50%; 
+            margin: -9px auto 10px auto; 
+            text-align: center; 
+            line-height: 60px; 
+            color: white; 
+            font-weight: bold; 
+            text-decoration: none; 
+            font-size: 13px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+        }
 
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
@@ -111,6 +111,14 @@
             /* BOTON MÓVIL */
             .botonMasInfo { position: absolute; top: 1875px; left: 5%; width: 90%; text-align: center; }
             .contenidoInfo { height: 81vh; overflow-y: auto; position: relative; top: 14px; left: 0px; }
+            
+            /* CONTROLES MÓVILES PARA BOTON SPOTIFY */
+            .botonSpotify {
+                /* AQUÍ PUEDES MODIFICAR ESTOS VALORES PARA EL MÓVIL */
+                width: 60px;
+                height: 60px;
+                margin: -9px auto 10px auto;
+            }
         }
     </style>
 </head>
