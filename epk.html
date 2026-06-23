@@ -69,22 +69,16 @@
             border-radius: 15px; 
             position: relative; 
         }
-        /* ESTILO BOTON SPOTIFY */
-        .botonSpotify { 
-            display: block; 
-            width: 60px; 
-            height: 60px; 
-            background-color: #1DB954; 
-            border-radius: 50%; 
-            margin: -9px auto 10px auto; 
-            text-align: center; 
-            line-height: 60px; 
-            color: white; 
-            font-weight: bold; 
-            text-decoration: none; 
-            font-size: 13px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+        
+        /* ESTILO BOTONES SOCIALES */
+        .contenedorSocial { display: flex; justify-content: center; gap: 15px; margin: 10px auto; }
+        .botonSpotify, .botonFacebook { 
+            display: block; width: 60px; height: 60px; border-radius: 50%; 
+            text-align: center; line-height: 60px; color: white; font-weight: bold; 
+            text-decoration: none; font-size: 11px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
         }
+        .botonSpotify { background-color: #1DB954; }
+        .botonFacebook { background-color: #1877F2; }
 
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
@@ -93,32 +87,18 @@
             body { height: 2200px; }
             .logoFijo { top: 10px; left: 0; }
             .logoFijo img { width: 65px; }
-            
-            /* MOVIL: INICIO */
             .botonInicio { position: absolute; top: 44px; left: 56px; }
             .botonInicio a { padding: 8px 15px; font-size: 15px; }
-            
-            /* MOVIL: WHATSAPP */
             .botonWhatsApp { position: absolute; top: 48px; left: 137px; }
             .botonWhatsApp a { padding: 3px 10px; font-size: 10px; }
-            
             .contenedorVideo { position: relative; top: 83px; left: 5%; width: 90%; height: auto; }
             .contenedorVideo iframe { width: 100%; height: 250px; }
             .contenedorBotones { top: 350px; left: 13%; display: flex; gap: 10px; }
             .cajaTexto { top: 372px; left: 5%; width: 90%; font-size: 16px; }
             .miBoton { margin-right: 0; }
-            
-            /* BOTON MÓVIL */
             .botonMasInfo { position: absolute; top: 1875px; left: 5%; width: 90%; text-align: center; }
             .contenidoInfo { height: 81vh; overflow-y: auto; position: relative; top: 14px; left: 0px; }
-            
-            /* CONTROLES MÓVILES PARA BOTON SPOTIFY */
-            .botonSpotify {
-                /* AQUÍ PUEDES MODIFICAR ESTOS VALORES PARA EL MÓVIL */
-                width: 60px;
-                height: 60px;
-                margin: 30px auto;
-            }
+            .botonSpotify, .botonFacebook { margin: 30px 0; }
         }
     </style>
 </head>
@@ -152,18 +132,21 @@
             <p>ENGLISH</p>
             <p>If there's one thing I learned here in the port of Manzanillo, it's that reality isn't told, it's lived and sweated out on the bare asphalt. My rap isn't born from stories or chasing cheap attention; it's born from daily grind, from never bowing down to anyone, and from always, always staying true to myself. There are no disguises or tall tales here: what you hear is the real deal, raw, unfiltered, and without pretense, because when you speak from experience, you don't need to embellish anything. This is Sisiman: pure style, pure weight, pure fire, and pure consistency. Pure hood, my brother!</p>
             
-            <a href="https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw" 
-   class="botonSpotify" 
-   onclick="event.preventDefault(); enviarA_API('SPOTIFY'); 
-   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-   if (esMovil) {
-       window.location.href = 'spotify:artist:5KeX79pQzo2M92PKqjOhxo';
-       setTimeout(function(){ window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank'); }, 1000);
-   } else {
-       window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank');
-   }">
-   SPOTIFY
-</a>
+            <div class="contenedorSocial">
+                <a href="https://www.facebook.com/profile.php?id=100094646356724" target="_blank" class="botonFacebook">FB</a>
+                <a href="https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw" 
+                   class="botonSpotify" 
+                   onclick="event.preventDefault(); enviarA_API('SPOTIFY'); 
+                   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                   if (esMovil) {
+                       window.location.href = 'spotify:artist:5KeX79pQzo2M92PKqjOhxo';
+                       setTimeout(function(){ window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank'); }, 1000);
+                   } else {
+                       window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank');
+                   }">
+                   SPOTIFY
+                </a>
+            </div>
         </div>
     </div>
     <div class="cajaTexto">
