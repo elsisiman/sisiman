@@ -81,10 +81,25 @@
         }
         
         .botonFacebook { 
-            display: block; width: 60px; height: 60px; background-color: #1877F2; 
-            border-radius: 50%; text-align: auto; line-height: 60px; color: white; 
-            font-weight: bold; text-decoration: none; font-size: 13px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
+    display: flex;             /* Cambiamos a flex para tener control total */
+    align-items: center;       /* Centrado vertical (puedes cambiarlo a flex-start para subir) */
+    justify-content: center;   /* Centrado horizontal (puedes cambiarlo a flex-start para izquierda) */
+    
+    width: 60px; 
+    height: 60px; 
+    background-color: #1877F2; 
+    border-radius: 50%; 
+    
+    color: white; 
+    font-weight: bold; 
+    text-decoration: none; 
+    font-size: 13px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    
+    /* Mueve las letras a tu gusto con estos valores: */
+    padding-left: 0px;  /* Cambia 0 por más para mover a la derecha */
+    padding-top: 0px;   /* Cambia 0 por más para mover hacia abajo */
+}
 
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
