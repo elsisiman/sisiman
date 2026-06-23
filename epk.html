@@ -69,10 +69,6 @@
             border-radius: 15px; 
             position: relative; 
         }
-        
-        /* CONTENEDOR PARA LOS BOTONES JUNTOS */
-        .contenedorSocial { display: flex; justify-content: center; gap: 15px; margin: 10px 0; }
-
         /* ESTILO BOTON SPOTIFY */
         .botonSpotify { 
             display: block; 
@@ -80,6 +76,7 @@
             height: 60px; 
             background-color: #1DB954; 
             border-radius: 50%; 
+            margin: -9px auto 10px auto; 
             text-align: center; 
             line-height: 60px; 
             color: white; 
@@ -87,24 +84,6 @@
             text-decoration: none; 
             font-size: 13px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-        }
-
-        /* ESTILO BOTON FACEBOOK */
-        .botonFacebook { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 60px; 
-            height: 60px; 
-            background-color: #1877F2; 
-            border-radius: 50%; 
-            color: white; 
-            font-weight: bold; 
-            text-decoration: none; 
-            font-size: 13px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-            padding-left: 0px; 
-            padding-top: 0px; 
         }
 
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
@@ -132,6 +111,14 @@
             /* BOTON MÓVIL */
             .botonMasInfo { position: absolute; top: 1875px; left: 5%; width: 90%; text-align: center; }
             .contenidoInfo { height: 81vh; overflow-y: auto; position: relative; top: 14px; left: 0px; }
+            
+            /* CONTROLES MÓVILES PARA BOTON SPOTIFY */
+            .botonSpotify {
+                /* AQUÍ PUEDES MODIFICAR ESTOS VALORES PARA EL MÓVIL */
+                width: 60px;
+                height: 60px;
+                margin: 30px auto;
+            }
         }
     </style>
 </head>
@@ -165,22 +152,18 @@
             <p>ENGLISH</p>
             <p>If there's one thing I learned here in the port of Manzanillo, it's that reality isn't told, it's lived and sweated out on the bare asphalt. My rap isn't born from stories or chasing cheap attention; it's born from daily grind, from never bowing down to anyone, and from always, always staying true to myself. There are no disguises or tall tales here: what you hear is the real deal, raw, unfiltered, and without pretense, because when you speak from experience, you don't need to embellish anything. This is Sisiman: pure style, pure weight, pure fire, and pure consistency. Pure hood, my brother!</p>
             
-            <div class="contenedorSocial">
-                <a href="https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw" 
-                   class="botonSpotify" 
-                   onclick="event.preventDefault(); enviarA_API('SPOTIFY'); 
-                   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-                   if (esMovil) {
-                       window.location.href = 'spotify:artist:5KeX79pQzo2M92PKqjOhxo';
-                       setTimeout(function(){ window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank'); }, 1000);
-                   } else {
-                       window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank');
-                   }">
-                   SPOTIFY
-                </a>
-                
-                <a href="https://www.facebook.com/profile.php?id=100094646356724" target="_blank" class="botonFacebook">FACEBOOK</a>
-            </div>
+            <a href="https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw" 
+   class="botonSpotify" 
+   onclick="event.preventDefault(); enviarA_API('SPOTIFY'); 
+   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+   if (esMovil) {
+       window.location.href = 'spotify:artist:5KeX79pQzo2M92PKqjOhxo';
+       setTimeout(function(){ window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank'); }, 1000);
+   } else {
+       window.open('https://open.spotify.com/intl-es/artist/5KeX79pQzo2M92PKqjOhxo?si=yAgmC7O3S6aupwpqOsZfMw', '_blank');
+   }">
+   SPOTIFY
+</a>
         </div>
     </div>
     <div class="cajaTexto">
