@@ -111,6 +111,31 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+/* BOTON TIKTOK */
+.botonTikTok {
+    position: fixed;
+
+    /* CONTROLES PC: MUÉVELO AQUÍ */
+    top: 649px;
+    left: 735px;
+
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #000000;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}      
+        
         .cerrarInfo { color: white; position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
         @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
@@ -151,6 +176,19 @@
     /* CONTROLES MOVIL: MUÉVELO AQUÍ */
     top: 1098px;
     left: 71px;
+
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+}
+
+    /* BOTON TIKTOK MOVIL */
+.botonTikTok {
+    position: absolute;
+
+    /* CONTROLES MOVIL: MUÉVELO AQUÍ */
+    top: 1098px;
+    left: 145px;
 
     width: 60px;
     height: 60px;
@@ -218,6 +256,23 @@
        window.open('https://www.facebook.com/profile.php?id=100094646356724', '_blank');
    }">
    FACEBOOK
+</a>
+
+   <a href="https://www.tiktok.com/@elsisi001"
+   class="botonTikTok"
+   onclick="
+   event.preventDefault();
+   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+   if (esMovil) {
+       window.location.href = 'snssdk1233://user/profile/elsisi001';
+       setTimeout(function(){
+           window.open('https://www.tiktok.com/@elsisi001', '_blank');
+       }, 1000);
+   } else {
+       window.open('https://www.tiktok.com/@elsisi001', '_blank');
+   }">
+   TIKTOK
 </a>
             
         </div>
