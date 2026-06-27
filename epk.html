@@ -260,39 +260,22 @@
 
    <a href="https://www.tiktok.com/@elsisi001"
 class="botonTikTok"
-onclick="openTikTok(event)">
+onclick="
+event.preventDefault();
+
+const url = 'https://www.tiktok.com/@elsisi001';
+const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
+
+if (esFacebook) {
+  // En Facebook: solo abre el link normal (más estable)
+  window.open(url, '_blank');
+} else {
+  // En navegador normal
+  window.location.href = url;
+}
+">
 TIKTOK
 </a>
-
-<script>
-function openTikTok(e){
-  e.preventDefault();
-
-  const url = "https://www.tiktok.com/@elsisi001";
-  const esFacebook = navigator.userAgent.includes("FBAN") || navigator.userAgent.includes("FBAV");
-
-  if (esFacebook) {
-    // En Facebook abrimos web (lo único estable)
-    window.open(url, "_blank");
-    return;
-  }
-
-  // Fuera de Facebook intentamos app
-  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (esMovil) {
-    window.location.href = "tiktok://user/@elsisi001";
-
-    setTimeout(() => {
-      window.location.href = url;
-    }, 1500);
-
-    return;
-  }
-
-  window.open(url, "_blank");
-}
-</script>
             
         </div>
     </div>
