@@ -265,10 +265,12 @@
    const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
    if (esMovil) {
-       window.location.href = 'snssdk1233://user/profile/elsisi001';
+       window.location.href = 'snssdk1233://user/profile';
+
        setTimeout(function(){
-           window.open('https://www.tiktok.com/@elsisi001', '_blank');
-       }, 1000);
+           window.location.href = 'https://www.tiktok.com/@elsisi001';
+       }, 1800);
+
    } else {
        window.open('https://www.tiktok.com/@elsisi001', '_blank');
    }">
