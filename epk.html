@@ -269,18 +269,25 @@ function openTikTok(e){
   e.preventDefault();
 
   const urlWeb = "https://www.tiktok.com/@elsisi001";
-  const urlApp = "snssdk1233://user/profile/elsisi001";
+
+  const esFacebookApp = navigator.userAgent.includes("FBAN") || navigator.userAgent.includes("FBAV");
+
+  // Si está dentro de Facebook → NO intentamos abrir app
+  if (esFacebookApp) {
+    window.open(urlWeb, "_blank");
+    return;
+  }
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if(esMovil){
-    // intenta abrir la app
-    window.location.href = urlApp;
+  if (esMovil) {
+    // intento suave (sin forzar demasiado)
+    window.location.href = "snssdk1233://user/profile/elsisi001";
 
-    // fallback por si Facebook bloquea la app
+    // fallback limpio
     setTimeout(() => {
-      window.open(urlWeb, "_blank");
-    }, 1500);
+      window.location.href = urlWeb;
+    }, 1200);
 
   } else {
     window.open(urlWeb, "_blank");
