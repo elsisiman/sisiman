@@ -259,23 +259,34 @@
 </a>
 
    <a href="https://www.tiktok.com/@elsisi001"
-   class="botonTikTok"
-   onclick="
-   event.preventDefault();
-   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-   if (esMovil) {
-       window.location.href = 'snssdk1233://user/profile';
-
-       setTimeout(function(){
-           window.location.href = 'https://www.tiktok.com/@elsisi001';
-       }, 1800);
-
-   } else {
-       window.open('https://www.tiktok.com/@elsisi001', '_blank');
-   }">
-   TIKTOK
+class="botonTikTok"
+onclick="openTikTok(event)">
+TIKTOK
 </a>
+
+<script>
+function openTikTok(e){
+  e.preventDefault();
+
+  const urlWeb = "https://www.tiktok.com/@elsisi001";
+  const urlApp = "snssdk1233://user/profile/elsisi001";
+
+  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if(esMovil){
+    // intenta abrir la app
+    window.location.href = urlApp;
+
+    // fallback por si Facebook bloquea la app
+    setTimeout(() => {
+      window.open(urlWeb, "_blank");
+    }, 1500);
+
+  } else {
+    window.open(urlWeb, "_blank");
+  }
+}
+</script>
             
         </div>
     </div>
