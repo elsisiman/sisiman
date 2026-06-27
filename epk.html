@@ -260,38 +260,42 @@
 
    <a href="https://www.tiktok.com/@elsisi001"
 class="botonTikTok"
-onclick="openTikTok(event)">
+onclick="return openTikTok(this)">
 TIKTOK
 </a>
 
 <script>
-function openTikTok(e){
-  e.preventDefault();
+function openTikTok(el){
 
   const urlWeb = "https://www.tiktok.com/@elsisi001";
 
-  const esFacebookApp = navigator.userAgent.includes("FBAN") || navigator.userAgent.includes("FBAV");
-
-  // Si está dentro de Facebook → NO intentamos abrir app
-  if (esFacebookApp) {
-    window.open(urlWeb, "_blank");
-    return;
-  }
-
+  // detecta móvil
   const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if (esMovil) {
-    // intento suave (sin forzar demasiado)
-    window.location.href = "snssdk1233://user/profile/elsisi001";
-
-    // fallback limpio
-    setTimeout(() => {
-      window.location.href = urlWeb;
-    }, 1200);
-
-  } else {
+  if (!esMovil) {
     window.open(urlWeb, "_blank");
+    return false;
   }
+
+  // intentamos abrir app
+  const appUrl = "tiktok://user/@elsisi001";
+
+  const start = Date.now();
+
+  // abre app
+  window.location.href = appUrl;
+
+  // fallback real después de intento
+  setTimeout(() => {
+    const tiempo = Date.now() - start;
+
+    // si no cambió de app, probablemente falló
+    if (tiempo < 1500) {
+      window.location.href = urlWeb;
+    }
+  }, 1200);
+
+  return false;
 }
 </script>
             
