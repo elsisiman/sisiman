@@ -264,37 +264,47 @@ onclick="
 event.preventDefault();
 
 const url = 'https://www.tiktok.com/@elsisi001';
+
+// detectar Facebook
 const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
 
-// mensaje simple sin bloquear navegación
-function mostrarMensaje() {
-  const msg = document.createElement('div');
-  msg.innerText = '👉 Si no abre bien, usa “Abrir en navegador”';
-  msg.style.position = 'fixed';
-  msg.style.bottom = '20px';
-  msg.style.left = '50%';
-  msg.style.transform = 'translateX(-50%)';
-  msg.style.background = '#000';
-  msg.style.color = '#fff';
-  msg.style.padding = '10px 14px';
-  msg.style.borderRadius = '10px';
-  msg.style.fontSize = '13px';
-  msg.style.zIndex = '9999';
-  msg.style.opacity = '0.9';
-  document.body.appendChild(msg);
+// crear aviso visual
+function aviso() {
+  let box = document.createElement('div');
+  box.innerHTML = `
+    <div style='font-weight:bold;margin-bottom:6px;'>📲 Abrir en navegador</div>
+    <div style='font-size:13px;'>Si Facebook no abre bien el link:</div>
+    <div style='font-size:13px;'>toca los <b>3 puntitos</b> arriba y elige <b>“Abrir en navegador”</b></div>
+  `;
 
-  setTimeout(() => msg.remove(), 3500);
+  box.style.position = 'fixed';
+  box.style.bottom = '20px';
+  box.style.left = '50%';
+  box.style.transform = 'translateX(-50%)';
+  box.style.background = '#111';
+  box.style.color = '#fff';
+  box.style.padding = '14px 16px';
+  box.style.borderRadius = '12px';
+  box.style.fontSize = '13px';
+  box.style.zIndex = '99999';
+  box.style.maxWidth = '280px';
+  box.style.textAlign = 'center';
+  box.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
+
+  document.body.appendChild(box);
+
+  setTimeout(() => box.remove(), 5000);
 }
 
-// IMPORTANTE: no romper apertura de pestaña
 if (esFacebook) {
-  mostrarMensaje();
+  aviso();
 
-  // abre limpio en nueva pestaña SIN bloquear Facebook
-  window.open(url, '_blank', 'noopener,noreferrer');
+  // intento suave de abrir sin bloquear
+  setTimeout(() => {
+    window.location.href = url;
+  }, 300);
 
 } else {
-  // navegador normal
   window.open(url, '_blank');
 }
 ">
