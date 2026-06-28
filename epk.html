@@ -263,21 +263,42 @@ class="botonTikTok"
 onclick="
 event.preventDefault();
 
-const web = 'https://www.tiktok.com/@elsisi001';
-const app = 'tiktok://user?screen_name=elsisi001';
+const url = 'https://www.tiktok.com/@elsisi001';
 
-const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+// Detecta Facebook in-app browser
+const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
 
-// intentamos abrir app primero
-if (esMovil) {
-  window.location.href = app;
+// Mensaje flotante simple
+function mostrarMensaje() {
+  const msg = document.createElement('div');
+  msg.innerText = '👉 Para mejor experiencia, abre esto en tu navegador';
+  msg.style.position = 'fixed';
+  msg.style.bottom = '20px';
+  msg.style.left = '50%';
+  msg.style.transform = 'translateX(-50%)';
+  msg.style.background = '#111';
+  msg.style.color = '#fff';
+  msg.style.padding = '12px 18px';
+  msg.style.borderRadius = '12px';
+  msg.style.fontSize = '14px';
+  msg.style.zIndex = '9999';
+  msg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+  document.body.appendChild(msg);
 
-  // fallback a web si el sistema no abre la app
-  setTimeout(function () {
-    window.location.href = web;
-  }, 800);
+  setTimeout(() => msg.remove(), 3000);
+}
+
+if (esFacebook) {
+  // NO forzamos app (esto evita el bloqueo de carga)
+  mostrarMensaje();
+
+  // abre limpio sin colgar Facebook
+  setTimeout(() => {
+    window.open(url, '_blank');
+  }, 300);
 } else {
-  window.open(web, '_blank');
+  // navegador normal
+  window.location.href = url;
 }
 ">
 TIKTOK
