@@ -264,41 +264,38 @@ onclick="
 event.preventDefault();
 
 const url = 'https://www.tiktok.com/@elsisi001';
-
-// Detecta Facebook in-app browser
 const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
 
-// Mensaje flotante simple
+// mensaje simple sin bloquear navegación
 function mostrarMensaje() {
   const msg = document.createElement('div');
-  msg.innerText = '👉 Para mejor experiencia, abre esto en tu navegador';
+  msg.innerText = '👉 Si no abre bien, usa “Abrir en navegador”';
   msg.style.position = 'fixed';
   msg.style.bottom = '20px';
   msg.style.left = '50%';
   msg.style.transform = 'translateX(-50%)';
-  msg.style.background = '#111';
+  msg.style.background = '#000';
   msg.style.color = '#fff';
-  msg.style.padding = '12px 18px';
-  msg.style.borderRadius = '12px';
-  msg.style.fontSize = '14px';
+  msg.style.padding = '10px 14px';
+  msg.style.borderRadius = '10px';
+  msg.style.fontSize = '13px';
   msg.style.zIndex = '9999';
-  msg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+  msg.style.opacity = '0.9';
   document.body.appendChild(msg);
 
-  setTimeout(() => msg.remove(), 3000);
+  setTimeout(() => msg.remove(), 3500);
 }
 
+// IMPORTANTE: no romper apertura de pestaña
 if (esFacebook) {
-  // NO forzamos app (esto evita el bloqueo de carga)
   mostrarMensaje();
 
-  // abre limpio sin colgar Facebook
-  setTimeout(() => {
-    window.open(url, '_blank');
-  }, 300);
+  // abre limpio en nueva pestaña SIN bloquear Facebook
+  window.open(url, '_blank', 'noopener,noreferrer');
+
 } else {
   // navegador normal
-  window.location.href = url;
+  window.open(url, '_blank');
 }
 ">
 TIKTOK
