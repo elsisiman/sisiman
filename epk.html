@@ -264,48 +264,53 @@ onclick="
 event.preventDefault();
 
 const url = 'https://www.tiktok.com/@elsisi001';
-
-// detectar Facebook
 const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
 
-// crear aviso visual
-function aviso() {
-  let box = document.createElement('div');
-  box.innerHTML = `
-    <div style='font-weight:bold;margin-bottom:6px;'>📲 Abrir en navegador</div>
-    <div style='font-size:13px;'>Si Facebook no abre bien el link:</div>
-    <div style='font-size:13px;'>toca los <b>3 puntitos</b> arriba y elige <b>“Abrir en navegador”</b></div>
-  `;
+// crear panel
+const panel = document.createElement('div');
+panel.innerHTML = `
+  <div style='font-size:16px;font-weight:bold;margin-bottom:8px;'>📲 Estás en Facebook</div>
+  <div style='font-size:13px;margin-bottom:10px;line-height:1.4;'>
+    Para abrir TikTok sin errores:<br>
+    👉 Toca los <b>3 puntitos (⋮)</b> arriba<br>
+    👉 Selecciona <b>Abrir en navegador</b>
+  </div>
+  <button id='goTikTok' style='
+    background:#ff0050;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    color:white;
+    font-weight:bold;
+    width:100%;
+    cursor:pointer;
+  '>Continuar a TikTok</button>
+`;
 
-  box.style.position = 'fixed';
-  box.style.bottom = '20px';
-  box.style.left = '50%';
-  box.style.transform = 'translateX(-50%)';
-  box.style.background = '#111';
-  box.style.color = '#fff';
-  box.style.padding = '14px 16px';
-  box.style.borderRadius = '12px';
-  box.style.fontSize = '13px';
-  box.style.zIndex = '99999';
-  box.style.maxWidth = '280px';
-  box.style.textAlign = 'center';
-  box.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
+panel.style.position = 'fixed';
+panel.style.bottom = '20px';
+panel.style.left = '50%';
+panel.style.transform = 'translateX(-50%)';
+panel.style.background = '#111';
+panel.style.color = '#fff';
+panel.style.padding = '16px';
+panel.style.borderRadius = '14px';
+panel.style.width = '280px';
+panel.style.zIndex = '99999';
+panel.style.boxShadow = '0 15px 40px rgba(0,0,0,0.5)';
 
-  document.body.appendChild(box);
+document.body.appendChild(panel);
 
-  setTimeout(() => box.remove(), 5000);
-}
+// botón dentro del panel
+document.getElementById('goTikTok').onclick = function () {
+  window.location.href = url;
+  setTimeout(() => panel.remove(), 1000);
+};
 
-if (esFacebook) {
-  aviso();
-
-  // intento suave de abrir sin bloquear
-  setTimeout(() => {
-    window.location.href = url;
-  }, 300);
-
-} else {
+// auto mensaje si NO es Facebook
+if (!esFacebook) {
   window.open(url, '_blank');
+  panel.remove();
 }
 ">
 TIKTOK
