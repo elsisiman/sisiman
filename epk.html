@@ -263,15 +263,21 @@ class="botonTikTok"
 onclick="
 event.preventDefault();
 
-const url = 'https://www.tiktok.com/@elsisi001';
-const esFacebook = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
+const web = 'https://www.tiktok.com/@elsisi001';
+const app = 'tiktok://user?screen_name=elsisi001';
 
-if (esFacebook) {
-  // En Facebook: solo abre el link normal (más estable)
-  window.open(url, '_blank');
+const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+// intentamos abrir app primero
+if (esMovil) {
+  window.location.href = app;
+
+  // fallback a web si el sistema no abre la app
+  setTimeout(function () {
+    window.location.href = web;
+  }, 800);
 } else {
-  // En navegador normal
-  window.location.href = url;
+  window.open(web, '_blank');
 }
 ">
 TIKTOK
