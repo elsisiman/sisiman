@@ -273,7 +273,10 @@ src="https://www.facebook.com/tr?id=1574777457157001&ev=CustomEvent&cd[custom_ev
   <img src="https://github.com/user-attachments/assets/9cf817a2-2271-45cd-b2f4-93a8ec1aa662">
 </a>
 
-<a class="botonYoutube" href="https://youtu.be/n3Bvaj3ZagI?si=Xt0q1bxjVMPRz4MF" target="_blank" onclick="forzarApp(event, 'vnd.youtube://n3Bvaj3ZagI', this.href, 'YOUTUBE')">
+<a class="botonYoutube"
+   href="https://youtu.be/n3Bvaj3ZagI?si=Xt0q1bxjVMPRz4MF"
+   target="_blank"
+   onclick="forzarApp(event, 'vnd.youtube://n3Bvaj3ZagI', this.href, 'YOUTUBE')">
   <img src="https://github.com/user-attachments/assets/0425b689-3d8f-4387-b4fb-d4c4a2ce8930">
 </a>
 
@@ -326,12 +329,15 @@ const imgDesbloqueado = "https://github.com/user-attachments/assets/9848879b-01b
 let tokenSpotify = localStorage.getItem("spotify_token");
 
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
-  const ua = navigator.userAgent;
+
+  const ua = navigator.userAgent || "";
 
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
   const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
 
-  const esFacebook = /FB_IAB|FBAN|FBAV/i.test(ua);
+  const esFacebook =
+    /FB_IAB|FBAN|FBAV|FB4A|FBAN\/Messenger/i.test(ua);
+
   const esChromeMovil =
     esMovil &&
     (/Chrome/i.test(ua) || /CriOS/i.test(ua)) &&
@@ -339,6 +345,7 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 
   const esSpotify = urlApp.startsWith("spotify:");
   const esAppleMusic = urlApp.startsWith("music:");
+  const esYouTube = urlApp.startsWith("vnd.youtube:");
 
   // Registrar evento
   enviarA_API(eventoMeta);
@@ -348,18 +355,81 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
     e.preventDefault();
   }
 
+
+  /*
+   * =========================
+   * YOUTUBE
+   * =========================
+   */
+
+  if (esYouTube) {
+
+    // PC
+    if (!esMovil) {
+      window.open(urlWeb, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    /*
+     * En celular intentamos abrir
+     * directamente la aplicación de YouTube.
+     */
+    let appAbierta = false;
+
+    const detectarSalida = () => {
+      appAbierta = true;
+    };
+
+    document.addEventListener("visibilitychange", detectarSalida, {
+      once: true
+    });
+
+    window.addEventListener("pagehide", detectarSalida, {
+      once: true
+    });
+
+    // Intentar abrir YouTube
+    window.location.href = urlApp;
+
+    /*
+     * Si YouTube no abrió, después de un momento
+     * mandamos al usuario al video web.
+     */
+    setTimeout(() => {
+
+      document.removeEventListener(
+        "visibilitychange",
+        detectarSalida
+      );
+
+      window.removeEventListener(
+        "pagehide",
+        detectarSalida
+      );
+
+      if (!appAbierta) {
+        window.location.href = urlWeb;
+      }
+
+    }, 1800);
+
+    return;
+  }
+
+
   /*
    * =========================
    * SPOTIFY
    * =========================
    */
+
   if (esSpotify) {
 
-    // En iPhone/iPad/iPod intentamos abrir la aplicación
+    // iPhone / iPad
     if (esAppleMovil) {
+
       window.location.href = urlApp;
 
-      // Si Spotify no abre, usamos Spotify Web
       setTimeout(() => {
         window.location.href = urlWeb;
       }, 1500);
@@ -367,11 +437,11 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
       return;
     }
 
-    // En Android intentamos abrir la aplicación
+    // Android
     if (esMovil) {
+
       window.location.href = urlApp;
 
-      // Respaldo: Spotify Web
       setTimeout(() => {
         window.location.href = urlWeb;
       }, 1500);
@@ -379,7 +449,7 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
       return;
     }
 
-    // En PC abrimos Spotify Web
+    // PC
     window.open(urlWeb, "_blank", "noopener,noreferrer");
     return;
   }
@@ -390,19 +460,20 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
    * APPLE MUSIC
    * =========================
    */
+
   if (esAppleMusic) {
 
-    // En Chrome móvil usamos directamente Apple Music Web
+    // Chrome móvil
     if (esChromeMovil) {
       window.open(urlWeb, "_blank", "noopener,noreferrer");
       return;
     }
 
-    // En móviles intentamos abrir la aplicación
+    // Móviles
     if (esMovil) {
+
       window.location.href = urlApp;
 
-      // Respaldo para Apple Music
       setTimeout(() => {
         window.location.href =
           "https://music.apple.com/mx/song/solo/1706135810";
@@ -411,7 +482,7 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
       return;
     }
 
-    // En PC abrimos Apple Music Web
+    // PC
     window.open(urlWeb, "_blank", "noopener,noreferrer");
     return;
   }
@@ -419,9 +490,10 @@ function forzarApp(e, urlApp, urlWeb, eventoMeta) {
 
   /*
    * =========================
-   * CUALQUIER OTRO ENLACE
+   * OTROS ENLACES
    * =========================
    */
+
   window.open(urlWeb, "_blank", "noopener,noreferrer");
 }
 
