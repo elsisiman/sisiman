@@ -327,34 +327,102 @@ let tokenSpotify = localStorage.getItem("spotify_token");
 
 function forzarApp(e, urlApp, urlWeb, eventoMeta) {
   const ua = navigator.userAgent;
-  const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
-  if (esAppleMovil && urlApp.startsWith('spotify:')) {
-    enviarA_API(eventoMeta);
-    window.location.href = urlApp;
-    return;
-  }
-  if (e && typeof e.preventDefault === 'function') {
-    e.preventDefault(); 
-  }
-  enviarA_API(eventoMeta);
+
   const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
-  const esChromeMovil = esMovil && (/Chrome/i.test(ua) || /CriOS/i.test(ua)) && !/FB_IAB|FBAN|FBAV/i.test(ua);
-  setTimeout(() => {
-    if (esChromeMovil && urlApp.startsWith('music:')) {
-      window.open(urlWeb, '_blank');
+  const esAppleMovil = /iPhone|iPad|iPod/i.test(ua);
+
+  const esFacebook = /FB_IAB|FBAN|FBAV/i.test(ua);
+  const esChromeMovil =
+    esMovil &&
+    (/Chrome/i.test(ua) || /CriOS/i.test(ua)) &&
+    !esFacebook;
+
+  const esSpotify = urlApp.startsWith("spotify:");
+  const esAppleMusic = urlApp.startsWith("music:");
+
+  // Registrar evento
+  enviarA_API(eventoMeta);
+
+  // Evitar que el enlace original se abra automáticamente
+  if (e && typeof e.preventDefault === "function") {
+    e.preventDefault();
+  }
+
+  /*
+   * =========================
+   * SPOTIFY
+   * =========================
+   */
+  if (esSpotify) {
+
+    // En iPhone/iPad/iPod intentamos abrir la aplicación
+    if (esAppleMovil) {
+      window.location.href = urlApp;
+
+      // Si Spotify no abre, usamos Spotify Web
+      setTimeout(() => {
+        window.location.href = urlWeb;
+      }, 1500);
+
       return;
     }
+
+    // En Android intentamos abrir la aplicación
     if (esMovil) {
       window.location.href = urlApp;
-      if (urlApp.startsWith('music:')) {
-        setTimeout(() => {
-          window.location.href = "https://music.apple.com/mx/song/solo/1706135810";
-        }, 1200);
-      }
-    } else {
-      window.open(urlWeb, '_blank');
+
+      // Respaldo: Spotify Web
+      setTimeout(() => {
+        window.location.href = urlWeb;
+      }, 1500);
+
+      return;
     }
-  }, 250);
+
+    // En PC abrimos Spotify Web
+    window.open(urlWeb, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+
+  /*
+   * =========================
+   * APPLE MUSIC
+   * =========================
+   */
+  if (esAppleMusic) {
+
+    // En Chrome móvil usamos directamente Apple Music Web
+    if (esChromeMovil) {
+      window.open(urlWeb, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // En móviles intentamos abrir la aplicación
+    if (esMovil) {
+      window.location.href = urlApp;
+
+      // Respaldo para Apple Music
+      setTimeout(() => {
+        window.location.href =
+          "https://music.apple.com/mx/song/solo/1706135810";
+      }, 1200);
+
+      return;
+    }
+
+    // En PC abrimos Apple Music Web
+    window.open(urlWeb, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+
+  /*
+   * =========================
+   * CUALQUIER OTRO ENLACE
+   * =========================
+   */
+  window.open(urlWeb, "_blank", "noopener,noreferrer");
 }
 
 function enviarA_API(nombreEvento) {
